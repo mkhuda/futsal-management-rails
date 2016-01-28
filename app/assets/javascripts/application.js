@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tether
+//= require bootstrap-sprockets
+//= require jquery_ujs
+//= require bootstrap-datepicker
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .

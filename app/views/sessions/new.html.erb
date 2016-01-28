@@ -1,0 +1,24 @@
+<% provide(:title, "Log in") %>
+<div class="container">
+
+  <%= form_for(:session, url: login_path, :html => {:class => "form-signin"}) do |f| %>
+
+  <h3 class="form-signin-heading">YukFutsal Login</h3>
+    <%= f.label :email, class: "sr-only", for: "inputEmail" %>
+    <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
+
+    <%= f.label :password, class: "sr-only" %>
+    <%= f.password_field :password, class: 'form-control', id: "inputPassword", placeholder: "Password", required: "" %>
+
+    <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span class="ember">Remember me on this computer</span>
+      <% end %>
+
+    <%= f.submit "Login", class: "btn btn-primary" %><br>
+    <% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+
+    <% end %>
+</div>
