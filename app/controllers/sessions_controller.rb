@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
 		if logged_in?
-			redirect_to root_path
+			redirect_to dashboard_path
 		else 
 		end
 	end

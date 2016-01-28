@@ -1,9 +1,12 @@
 /* Space out content a bit */
-body {
+body.home {
   padding-top: 70px;
   padding-bottom: 20px;
 }
-
+body.dashboard {
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
 .navbar {
   min-height: 50px;
   margin-bottom: 20px;

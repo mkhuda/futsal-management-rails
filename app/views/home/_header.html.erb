@@ -16,13 +16,33 @@
             
             <% if !logged_in? %> 
               <li>
-              <%= link_to "Login", login_path%>
+              <%= link_to "Login", "#", class: "dropdown-toggle", data: { :toggle =>"dropdown"}, id:"navLogin"%>
+              <div class="dropdown-menu" style="padding:17px;">
+              <%= form_for(:session, url: login_path, :html => {:class => "form-horizontal"}) do |f| %>
+    <%= f.label :email, class: "sr-only", for: "inputEmail" %>
+    <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
+
+    <%= f.label :password, class: "sr-only" %>
+    <%= f.password_field :password, class: 'form-control', id: "inputPassword", placeholder: "Password", required: "" %>
+
+    <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span class="ember">Remember me</span>
+      <% end %>
+
+    <%= f.submit "Login", class: "btn btn-primary" %><br>
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+
+    <% end %>
+            </div>
               </li>
             <% else %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Menu <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Dashboard</a></li>
+                  <li><%= link_to "Dashboard", dashboard_path %></li>
                   <li role="separator" class="divider"></li>
                   
                   
