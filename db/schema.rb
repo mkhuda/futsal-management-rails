@@ -14,15 +14,25 @@
 ActiveRecord::Schema.define(version: 20160128083924) do
 
   create_table "fields", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",             limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "jenis_rumput",     limit: 45
+    t.string   "kondisi_lapangan", limit: 45
+    t.text     "keterangan",       limit: 65535
   end
 
   create_table "futsal_places", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.text     "deskripsi",  limit: 65535
+    t.string   "alamat",     limit: 255
+    t.string   "kecamatan",  limit: 100
+    t.decimal  "latitude",                 precision: 9, scale: 6
+    t.decimal  "longitude",                precision: 9, scale: 6
+    t.string   "phone",      limit: 45
+    t.string   "email",      limit: 150
   end
 
   create_table "prices", force: :cascade do |t|
@@ -62,6 +72,9 @@ ActiveRecord::Schema.define(version: 20160128083924) do
     t.datetime "updated_at",                  null: false
     t.string   "password_digest", limit: 255
     t.string   "email",           limit: 100
+    t.string   "remember_digest", limit: 255
   end
+
+  add_index "users", ["email"], name: "email_UNIQUE", unique: true, using: :btree
 
 end
