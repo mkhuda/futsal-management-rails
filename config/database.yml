@@ -56,5 +56,5 @@ production:
   host: 168.235.92.178
   port: 3306
   database: ruby_futsalgan
-  username: root
-  password: singowijoyo
+  username: ruby_udb
+  password: ruby123
