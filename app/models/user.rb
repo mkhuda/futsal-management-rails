@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many :futsal_places
 	before_save { self.email = email.downcase }
 	attr_accessor :remember_token
 	validates :name,  presence: true, length: { maximum: 50 }

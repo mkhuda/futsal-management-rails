@@ -1,83 +1,59 @@
-<%= form_for(@athlete, :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for([:dashboard, @fp], :html => {:class => "form-horizontal"}) do |f| %>
 
 	<div class="form-group">
 		<%= f.label :name, class: "col-sm-2 control-label" %>
 		<div class="col-sm-6">
-			<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+			<%= f.text_field :name, class: "form-control", placeholder: "Nama Arena" %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :gender, class: "col-sm-2 control-label" %>
-		<div class="col-sm-2">
-			
-			<% if params[:action] == "edit" %>
-			
-			<%= select_tag "athlete[gender]", options_for_select([ "Male", "Female" ], @gender), class: "form-control" %>
-				
-			<% else %>
-			<select name="athlete[gender]" class="form-control">
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-			</select>
-			<% end %>
-			
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :birtday, class: "col-sm-2 control-label" %>
-		<% if params[:action] == "edit" %>
-			<div class="col-sm-2">
-				<%= select_tag "dd", options_for_select((1..31).map {|d| [d, d]}, @birthday.strftime('%-d')), class: "form-control", id: "hari" %>
-			</div>
-			<div class="col-sm-3">
-				<%= select_tag "mm", options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}, @birthday.strftime('%-m')), class: "form-control", id: "bulan" %>
-			</div>
-			<div class="col-sm-2">
-				<%= select_tag "yyyy", options_for_select((1900..2016).map {|y| [y, y]}, @birthday.strftime('%Y')), class: "form-control", id: "tahun" %>
-			</div>
-		<% else %>
-			<div class="col-sm-2">
-				<%= select_tag "dd", options_for_select((1..31).map {|d| [d, d]}), class: "form-control", id: "hari" %>
-			</div>
-			<div class="col-sm-3">
-				<%= select_tag "mm", options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}), class: "form-control", id: "bulan" %>
-			</div>
-			<div class="col-sm-2">
-				<%= select_tag "yyyy", options_for_select((1900..2016).map {|y| [y, y]}), class: "form-control", id: "tahun" %>
-			</div>
-		<% end %>
-		
-	</div>
-
-	<div class="form-group">
-		<%= f.label :address, class: "col-sm-2 control-label" %>
+		<%= f.label "Deskripsi Singkat", class: "col-sm-2 control-label" %>
 		<div class="col-sm-6">
-			<%= f.text_area :address, class: "form-control", placeholder: "Address" %>
+			<%= f.text_area :deskripsi, class: "form-control", placeholder: "Tulis Deskripsi" %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :city, class: "col-sm-2 control-label" %>
+		<%= f.label :alamat, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_area :alamat, class: "form-control", placeholder: "Alamat" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :jumlah_lapangan, class: "col-sm-2 control-label" %>
 		<div class="col-sm-3">
-			<%= f.text_field :city, class: "form-control", placeholder: "City" %>
+			<%= 
+			f.select :jumlah_lapangan, options_for_select((1..20).map {|d| [d, d]}, :selected => @fp.jumlah_lapangan), {}, {:class => "form-control"}
+			%>
+		</div>
+	</div>
+
+	
+
+	<div class="form-group">
+		<%= f.label :kecamatan, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= f.text_field :kecamatan, class: "form-control", placeholder: "Kecamatan" %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :province, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= f.text_field :province, class: "form-control", placeholder: "Province" %>
+		<%= f.label :longitude, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_field :longitude, class: "form-control", placeholder: "Longitude" %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :team, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= select("athlete", "team_id", Team.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Team'}, class: "form-control") %>
+		<%= f.label :latitude, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_field :latitude, class: "form-control", placeholder: "Latitude" %>
 		</div>
 	</div>
+
+
 
 	<div class="form-group">
 		<%= f.label :email, class: "col-sm-2 control-label" %>
@@ -90,13 +66,6 @@
 		<%= f.label :phone, class: "col-sm-2 control-label" %>
 		<div class="col-sm-4">
 			<%= f.text_field :phone, class: "form-control", placeholder: "Phone Number" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :number, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= f.text_field :number, class: "form-control", placeholder: "Athlete Number" %>
 		</div>
 	</div>
 

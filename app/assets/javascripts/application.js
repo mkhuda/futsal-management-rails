@@ -20,3 +20,43 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require_tree .
+
+
+var ready;
+ready = function() {
+
+$(function(){
+
+	$(document).on( 'scroll', function(){
+
+		if ($(window).scrollTop() > 100) {
+			$('.scroll-top-wrapper').addClass('show');
+		} else {
+			$('.scroll-top-wrapper').removeClass('show');
+		}
+	});
+
+	$('.scroll-top-wrapper').on('click', scrollToTop);
+});
+
+function scrollToTop() {
+	verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+	element = $('body');
+	offset = element.offset();
+	offsetTop = offset.top;
+	$('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+}
+
+$(".list-box").hover(function() {
+      // $(this).children(".actions-box").css("display", "block");
+      $(this).children(".actions-box").slideDown("fast");
+    }, function() {
+      
+      $(this).children(".actions-box").slideUp("fast");
+      $(this).children(".actions-box").css("display", "none");
+    });
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

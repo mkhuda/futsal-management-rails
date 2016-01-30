@@ -38,8 +38,17 @@ gem 'momentjs-rails', '>= 2.9.0'
 # datetime picker
 gem 'bootstrap-datepicker-rails', '~> 1.5'
 
+# carrierwave uploader
+gem 'carrierwave'
+
+# will paginate
+gem 'will_paginate'
+
 # fa
 gem 'font-awesome-rails'
+
+# breadcrumbs
+gem 'breadcrumbs_on_rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
