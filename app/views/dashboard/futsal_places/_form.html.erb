@@ -1,0 +1,115 @@
+<%= form_for(@athlete, :html => {:class => "form-horizontal"}) do |f| %>
+
+	<div class="form-group">
+		<%= f.label :name, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :gender, class: "col-sm-2 control-label" %>
+		<div class="col-sm-2">
+			
+			<% if params[:action] == "edit" %>
+			
+			<%= select_tag "athlete[gender]", options_for_select([ "Male", "Female" ], @gender), class: "form-control" %>
+				
+			<% else %>
+			<select name="athlete[gender]" class="form-control">
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+			<% end %>
+			
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :birtday, class: "col-sm-2 control-label" %>
+		<% if params[:action] == "edit" %>
+			<div class="col-sm-2">
+				<%= select_tag "dd", options_for_select((1..31).map {|d| [d, d]}, @birthday.strftime('%-d')), class: "form-control", id: "hari" %>
+			</div>
+			<div class="col-sm-3">
+				<%= select_tag "mm", options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}, @birthday.strftime('%-m')), class: "form-control", id: "bulan" %>
+			</div>
+			<div class="col-sm-2">
+				<%= select_tag "yyyy", options_for_select((1900..2016).map {|y| [y, y]}, @birthday.strftime('%Y')), class: "form-control", id: "tahun" %>
+			</div>
+		<% else %>
+			<div class="col-sm-2">
+				<%= select_tag "dd", options_for_select((1..31).map {|d| [d, d]}), class: "form-control", id: "hari" %>
+			</div>
+			<div class="col-sm-3">
+				<%= select_tag "mm", options_for_select((1..12).map {|m| [Date::MONTHNAMES[m], m]}), class: "form-control", id: "bulan" %>
+			</div>
+			<div class="col-sm-2">
+				<%= select_tag "yyyy", options_for_select((1900..2016).map {|y| [y, y]}), class: "form-control", id: "tahun" %>
+			</div>
+		<% end %>
+		
+	</div>
+
+	<div class="form-group">
+		<%= f.label :address, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_area :address, class: "form-control", placeholder: "Address" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :city, class: "col-sm-2 control-label" %>
+		<div class="col-sm-3">
+			<%= f.text_field :city, class: "form-control", placeholder: "City" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :province, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= f.text_field :province, class: "form-control", placeholder: "Province" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :team, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= select("athlete", "team_id", Team.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Team'}, class: "form-control") %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :email, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= f.text_field :email, class: "form-control", placeholder: "Email Address" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :phone, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= f.text_field :phone, class: "form-control", placeholder: "Phone Number" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :number, class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+			<%= f.text_field :number, class: "form-control", placeholder: "Athlete Number" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :image, class: "col-sm-2 control-label" %>
+		<div class="col-sm-5">
+			<%= f.file_field :image, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+		  <%= f.submit "Submit", class: "btn btn-default" %>
+		</div>
+	</div>
+<% end %>
