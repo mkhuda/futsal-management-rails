@@ -14,7 +14,7 @@
 	<%= f.label "Jam Mulai", class: "col-sm-2 control-label" %>
 		<div class="col-sm-4">
 <div class='input-group date' id='datetimepicker3' class="timepicker">
-                    <input type='text' class="form-control" />
+                    <input name="price[jam_mulai]" type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
@@ -26,7 +26,7 @@
 	<%= f.label "Jam Berakhir", class: "col-sm-2 control-label" %>
 		<div class="col-sm-4">
 <div class='input-group date' id='datetimepicker4'>
-                    <input type='text' class="form-control" />
+                    <input name="price[jam_akhir]" type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
@@ -37,11 +37,11 @@
     <div class="form-group">
 	<%= f.label "Harga", class: "col-sm-2 control-label" %>
 		<div class="col-sm-4">
-<div class='input-group date' id='datetimepicker4'>
+<div class='input-group'>
 					<span class="input-group-addon">
                         Rp
                     </span>
-                    <input type='text' class="form-control" />
+                    <input name="price[harga]" type='text' class="form-control" />
                     
                 </div>
                 </div>

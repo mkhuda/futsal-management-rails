@@ -47,7 +47,33 @@
     	
     </div>
     <div role="tabpanel" class="tab-pane fade in" id="jadwal">
-    	Jadwal Belum Terpublish
+    	<hr>
+<% if @fp.prices.present? %>
+
+  <% @fp.prices.each_with_index do |a, index| %>
+  
+    <div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+    	<div class="col-lg-5">
+    		<%= a.hari %>
+    	</div>
+    	<div class="col-lg-4">
+    		<i class="fa fa-clock-o"></i> <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB
+    	</div>
+    	<div class="col-lg-3">
+    		Rp. <%= a.harga %> Per Jam
+    	</div>
+    </div>
+
+  </div>
+</div>
+  <% end %>
+
+<% else %>
+	<div class="alert alert-warning">Belum ada ketentuan harga</div>
+<% end %>
     </div>
     <div role="tabpanel" class="tab-pane fade in" id="kontak">
     	<div class="page-header">
