@@ -7,12 +7,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">#yukFutsal</a>
+          <a class="navbar-brand" href="<%= root_path %>">#yukFutsal</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
-            <li><a href="#" class="text-muted">Home</a></li>
-            <li><a href="#">Daftar Tempat</a></li>
+            <li><a href="<%= root_path %>" class="text-muted">Home</a></li>
+            <li><a href="<%= arena_path %>">List Arena Futsal</a></li>
             
             <% if !logged_in? %> 
               <li>
@@ -21,15 +21,15 @@
               <%= form_for(:session, url: login_path, :html => {:class => "form-horizontal"}) do |f| %>
     <%= f.label :email, class: "sr-only", for: "inputEmail" %>
     <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
-
+    <br>
     <%= f.label :password, class: "sr-only" %>
     <%= f.password_field :password, class: 'form-control', id: "inputPassword", placeholder: "Password", required: "" %>
-
+    <br>
     <%= f.label :remember_me, class: "checkbox inline" do %>
         <%= f.check_box :remember_me %>
         <span class="ember">Remember me</span>
       <% end %>
-
+      <br>
     <%= f.submit "Login", class: "btn btn-primary" %><br>
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>

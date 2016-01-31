@@ -1,0 +1,38 @@
+<% provide(:title, @fp.name) %>
+
+<%= render "header" %>
+ <div class="container">
+ 	<div class="page-header">
+ 		<h2><%= @fp.name %></h2>
+ 	</div>
+
+	<div style='width: 100%; background: grey; padding: 3px;'>
+		<div id="map" style='width: auto; height: 400px;'></div>
+	</div>
+
+	<script>
+		
+
+			handler = Gmaps.build('Google');
+			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+			markers = handler.addMarkers([
+			{
+			"lat": <%= @fp.latitude %>,
+			"lng": <%= @fp.longitude %>,
+			"picture": {
+			"url": "http://androgan.com/ico/football.png",
+			"width":  32,
+			"height": 32
+			},
+			"infowindow": "<%= @fp.name %>"
+			}
+			]);
+			handler.bounds.extendWith(markers);
+			handler.fitMapToBounds();
+			handler.getMap().setZoom(12);
+
+			});
+
+	</script>
+ </div>

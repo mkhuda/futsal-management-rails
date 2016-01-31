@@ -50,6 +50,12 @@ gem 'font-awesome-rails'
 # breadcrumbs
 gem 'breadcrumbs_on_rails'
 
+# underscore
+gem 'underscore-rails'
+
+# gmaps
+gem 'gmaps4rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

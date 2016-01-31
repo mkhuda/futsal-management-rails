@@ -15,6 +15,8 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require underscore
+//= require gmaps/google
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
