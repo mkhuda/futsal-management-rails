@@ -11,6 +11,7 @@ class Dashboard::FutsalPlacesController < ApplicationController
 	end
 
 	def show
+		@fp = FutsalPlace.find_by(id: params[:id])
 	end
 	
 	def new

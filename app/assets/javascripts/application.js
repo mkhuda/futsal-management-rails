@@ -16,7 +16,9 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require underscore
+//= require moment
 //= require gmaps/google
+//= require bootstrap-datetimepicker
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require turbolinks

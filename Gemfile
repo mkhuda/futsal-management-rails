@@ -37,6 +37,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 
 # datetime picker
 gem 'bootstrap-datepicker-rails', '~> 1.5'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # carrierwave uploader
 gem 'carrierwave'

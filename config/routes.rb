@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :futsal_places do
-      resources :fields, :prices
+      resources :prices
     end
   end
 
