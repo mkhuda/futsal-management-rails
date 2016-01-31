@@ -53,7 +53,7 @@ class Dashboard::FutsalPlacesController < ApplicationController
 
 	private
 		def fp_params
-			params.require(:futsal_place).permit(:name, :deskripsi, :alamat, :kecamatan, :longitude, :latitude, :image, :phone, :email, :jumlah_lapangan)
+			params.require(:futsal_place).permit(:name, :deskripsi, :alamat, :kecamatan, :longitude, :latitude, :phone, :email, :jumlah_lapangan, :image)
 		end
 
 	def require_authorization
