@@ -19,7 +19,6 @@
 //= require gmaps/google
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
@@ -59,6 +58,14 @@ $(".list-box").hover(function() {
       $(this).children(".actions-box").slideUp("fast");
       $(this).children(".actions-box").css("display", "none");
     });
+
+    var target = window.location.href.split('#');
+    $('.nav a').filter('[href="#'+target[1]+'"]').tab('show');
+
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+}); 
 
 };
 

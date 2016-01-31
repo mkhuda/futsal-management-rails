@@ -40,6 +40,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.5'
 
 # carrierwave uploader
 gem 'carrierwave'
+gem 'mini_magick'
 
 # will paginate
 gem 'will_paginate'

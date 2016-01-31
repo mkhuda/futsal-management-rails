@@ -1,7 +1,37 @@
-<% provide(:title, "List Arena Futsal") %>
+<% if params[:search] %>
+	<% provide(:title, "Hasil Pencarian: "+params[:search]) %>
+<% else %>
+	<% provide(:title, "List Arena Futsal") %>
+<% end %>
 <%= render "header" %>
  <div class="container">
+ <ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+
  	<div class="page-header">
- 		<h2>List Lengkap Arena Futsal</h2>
+ 		<h2>List Arena Futsal</h2>
  	</div>
+ 	<% if params[:search] %>
+ 		<div class="alert alert-info" role="alert">Hasil Pencarian Keyword: <strong><%= params[:search] %></strong></div>
+	<% end %>
+ 	<%= form_tag(arena_path, :method => "get", id: "search-form") do %>
+ 	<div class="input-group">
+ 	
+	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
+	
+      <span class="input-group-btn">
+      	<%= submit_tag "Cari Sekarang", class: "btn btn-default" %>
+      </span>
+     
+    </div><!-- /input-group -->
+    <% end %>
+    <hr>
+    <% if !@fp.present? %>
+    	<center><%= image_tag("no-result.png", :class => "img-rounded img-responsive") %></center><br>
+    <% end %>
+    <%= render "listarena" %>
+    <%= will_paginate @fp %>
+
+      <%= render "footer" %>
  </div>

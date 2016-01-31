@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
-            <li><a href="<%= root_path %>" class="text-muted">Home</a></li>
+            <li class="active"><a href="<%= root_path %>" class="text-muted"><i class="fa fa-home"></i> Beranda</a></li>
             <li><a href="<%= arena_path %>">List Arena Futsal</a></li>
             
             <% if !logged_in? %> 
@@ -30,7 +30,9 @@
         <span class="ember">Remember me</span>
       <% end %>
       <br>
-    <%= f.submit "Login", class: "btn btn-primary" %><br>
+    <%= f.button :submit, class: "btn btn-sm btn-danger" do %>
+      <i class='fa fa-sign-in'></i> Masuk
+    <% end %><br>
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>

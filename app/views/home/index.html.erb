@@ -6,8 +6,9 @@
       <div class="row">
       <div class="col-lg-7">
         <h1>Mau Futsal? Yuk kesini!</h1>
-        <p class="lead"><strong>Yuk Futsal!</strong> Direktori informasi mengenai ketersediaan lapangan futsal, informasi harga, jadwal, dan peta tempat futsal khusus daerah Semarang dan sekitarnya</p><br><br><br>
-        <p><a class="btn btn-lg btn-danger" href="<%= arena_path %>" role="button">Lihat Tempat Futsal</a></p>
+        <br>
+        <p class="lead"><strong>Yuk Futsal!</strong> Direktori informasi mengenai ketersediaan lapangan futsal, informasi harga, jadwal, dan peta tempat futsal khusus daerah Semarang dan sekitarnya</p><br><br>
+        <p><a class="btn btn-lg btn-danger" href="<%= arena_path %>" role="button">Lihat Semua Arena</a></p>
         </div>
 
         <div class="col-lg-5 right-jumbo">
@@ -19,31 +20,9 @@
 			<h3>Arena Futsal Terpopuler</h3>
 		</div>
       
-<% @fp.each_with_index do |a, index| %>
-      <div class="row">
-      	<div class="col-lg-2">
-      		<i class="fa fa-bookmark-o mini-logo"></i>
-      	</div>
-        <div class="col-lg-8">
-          <h2>
-            <%= link_to a.name, showarena_path(a.id, (a.name).gsub(' ', '-').downcase), class: "text-info" %>
-          </h2>
-          <p><%= a.deskripsi %></p>
-        </div>
-        <div class="col-lg-2">
-        <div class="list-group">
-  <a class="list-group-item" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase) %>#peta-box"><i class="fa fa-map-o fa-fw"></i> Lihat Peta</a>
-  <a class="list-group-item" href="showarena_path(a.id, (a.name).gsub(' ', '-').downcase)#jadwal-box"><i class="fa fa-calendar-plus-o fa-fw"></i> Jadwal</a>
-  <a class="list-group-item active" href="#"><i class="fa fa-phone-square fa-fw"></i> Hubungi!</a>
-</div>
-        </div>
-      </div>
-      <hr>
-<% end %>
+    <%= render "listarena" %>
      
 
-      <footer class="footer">
-        <p>© 2015 Company, Inc.</p>
-      </footer>
+      <%= render "footer" %>
 
     </div> <!-- /container -->

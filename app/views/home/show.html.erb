@@ -2,6 +2,11 @@
 
 <%= render "header" %>
  <div class="container">
+ 
+ <ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+
  	<div class="page-header">
  		<h2><%= @fp.name %></h2>
  	</div>
@@ -10,6 +15,61 @@
 		<div id="map" style='width: auto; height: 400px;'></div>
 	</div>
 
+	<div>
+<hr>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs navbar-default" role="tablist">
+    <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li>
+    <li role="presentation"><a href="#jadwal" aria-controls="profile" role="tab" data-toggle="tab">Jadwal</a></li>
+    <li role="presentation"><a href="#kontak" aria-controls="messages" role="tab" data-toggle="tab">Kontak</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="detail">
+    	<div class="page-header">
+    		<h3>Detail <%= @fp.name %></h3>
+    	</div>
+    	<!-- <p><%= @fp.deskripsi %></p> -->
+			<div class="media">
+				<div class="media-left">
+					<a href="<%= @fp.image? ? @fp.image_url : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
+						<%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
+					</a>
+				</div>
+				<div class="media-body">
+					<p><%= @fp.deskripsi %></p>
+				</div>
+			</div>
+    	<div class="page-header">
+    		<h4>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h4>
+    	</div>
+    	
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="jadwal">
+    	Jadwal Belum Terpublish
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="kontak">
+    	<div class="page-header">
+    		<h3>Alamat</h3>
+    	</div>
+    	<p><%= @fp.alamat %></p>
+    	<div class="page-header">
+    		<h3>Telephon</h3>
+    	</div>
+    	<p><i class="fa fa-phone"></i> <%= @fp.phone %></p>
+
+
+    	<div class="page-header">
+    		<h3>Email</h3>
+    	</div>
+    	<p><i class="fa fa-envelope"></i> <%= @fp.email %></p>
+    </div>
+  </div>
+
+</div>
+
+<%= render "footer" %>
 	<script>
 		
 
@@ -32,6 +92,16 @@
 			handler.fitMapToBounds();
 			handler.getMap().setZoom(12);
 
+			});
+			$('#lightbox-<%= @fp.id %>').click(function(e){
+				 e.preventDefault();
+				$(this).ekkoLightbox();	
+			});
+			$('#lightbox-gallery-<%= @fp.id %>').click(function(e){
+				 e.preventDefault();
+				$(this).ekkoLightbox({
+					gallery: "galleryname"
+				});	
 			});
 
 	</script>

@@ -1,0 +1,21 @@
+<% @fp.each_with_index do |a, index| %>
+      <div class="row">
+      	<div class="col-lg-2">
+      		<%= a.image? ? image_tag(a.image_url(:thumb), :class => "img-thumbnail img-responsive") : image_tag("no-image.jpg", :class => "img-thumbnail img-responsive") %>
+      	</div>
+        <div class="col-lg-8">
+          <h2>
+            <%= link_to a.name, showarena_path(a.id, (a.name).gsub(' ', '-').downcase), class: "text-info" %>
+          </h2>
+          <p><%= truncate(a.deskripsi, :length => 200, :separator => '...') %></p>
+        </div>
+        <div class="col-lg-2">
+        <div class="list-group">
+  <a class="list-group-item" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase) %>#detail"><i class="fa fa-map-o fa-fw"></i> Lihat Peta</a>
+  <a class="list-group-item" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#jadwal"><i class="fa fa-calendar-plus-o fa-fw"></i> Jadwal</a>
+  <a class="list-group-item active" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#kontak"><i class="fa fa-phone-square fa-fw"></i> Hubungi!</a>
+</div>
+        </div>
+      </div>
+      <hr>
+<% end %>
