@@ -8,30 +8,43 @@
  <ol class="breadcrumb">
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
+  <div class="row">
+      <div class="col-lg-7">
+        <h1>Bingung Cari Arena Futsal ?</h1>
+        <br><br>
+        <p class="lead"><strong>Yuk Futsal!</strong> Menyediakan sistem pencarian arena futsal yang bisa kamu gunakan untuk mencari tempat arena yang belum kamu ketahui. Yuk cari !</p>
+         <%= form_tag(arena_path, :method => "get", id: "search-form") do %>
+  <div class="input-group">
+  
+  <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
+  
+      <span class="input-group-btn">
+        <%= submit_tag "Cari Sekarang", class: "btn btn-default" %>
+      </span>
+     
+    </div><!-- /input-group -->
+    <% end %>
+        </div>
+<!-- 
+        <div class="col-lg-5 right-jumbo">
+          <i class="fa fa-futbol-o big-logo"></i>
+        </div> -->
 
+      </div>
+      <div id="the-content">
  	<div class="page-header">
  		<h2>List Arena Futsal</h2>
  	</div>
  	<% if params[:search] %>
  		<div class="alert alert-info" role="alert">Hasil Pencarian Keyword: <strong><%= params[:search] %></strong></div>
 	<% end %>
- 	<%= form_tag(arena_path, :method => "get", id: "search-form") do %>
- 	<div class="input-group">
  	
-	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
-	
-      <span class="input-group-btn">
-      	<%= submit_tag "Cari Sekarang", class: "btn btn-default" %>
-      </span>
-     
-    </div><!-- /input-group -->
-    <% end %>
     <hr>
     <% if !@fp.present? %>
     	<center><%= image_tag("no-result.png", :class => "img-rounded img-responsive") %></center><br>
     <% end %>
     <%= render "listarena" %>
     <%= will_paginate @fp %>
-
+</div>
       <%= render "footer" %>
  </div>

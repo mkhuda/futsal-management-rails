@@ -17,10 +17,23 @@
 @import "bootstrap-datepicker";
 @import 'bootstrap-datetimepicker';
 @import "font-awesome";
+$nprogress-color: #82BD7D;
+$nprogress-height: 10px;
+$nprogress-zindex: 10100;
 @import "nprogress";
 @import "nprogress-bootstrap";
 
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
 
+body.home {
+	background-image: image-url("futsal.png");
+	background-repeat: repeat-x;
+	font-family: 'Quattrocento Sans', sans-serif !important;
+}
+
+body.home ol.breadcrumb a {
+	color: #82BD7D !important;
+}
 body.home .dropdown-menu {
   min-width: 250px !important;
 }
@@ -29,6 +42,23 @@ body.home .checkbox input[type="checkbox"] {
 }
 body.home span.ember {
   margin-left: 2rem !important;
+}
+
+body.home .lead {
+	background: rgba(255, 255, 255, 0.15) !important;
+    padding: 3px;
+}
+
+.yuk-logo {
+	padding-top: 2px !important;
+}
+
+.text-info {
+	color: #666666 !important;
+	font-family: 'Quattrocento Sans', sans-serif !important;
+}
+#the-content {
+	padding-top: 55px;
 }
 
 .list-group.list-group-root {
