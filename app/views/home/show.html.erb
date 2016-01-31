@@ -33,7 +33,7 @@
     	<!-- <p><%= @fp.deskripsi %></p> -->
 			<div class="media">
 				<div class="media-left">
-					<a href="<%= @fp.image? ? @fp.image_url : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
+					<a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
 						<%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
 					</a>
 				</div>
