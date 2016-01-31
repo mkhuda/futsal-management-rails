@@ -14,6 +14,7 @@
     <%= a.name %>
   </a>
   <div class="pull-right actions-box">
+      <%= link_to (fa_icon "gears", text: "Setting Harga"), edit_dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-default" %>
       <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-warning" %>
       <%= link_to (fa_icon "eye", text: "Lihat Data"), dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-default" %>
   <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(a), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
