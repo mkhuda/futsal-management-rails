@@ -1,17 +1,23 @@
 module SessionsHelper
 	def log_in(user)
 		session[:user_id] = user.id
+		session[:role] = user.role
+		session[:futsal_place_id] = user.futsal_place_id
 	end
 
 	def remember(user)
 		user.remember
 		cookies.permanent.signed[:user_id] = user.id
 		cookies.permanent[:remember_token] = user.remember_token
+		cookies.permanent[:role] = user.role
+		cookies.permanent[:futsal_place_id] = user.futsal_place_id
 	end
 
 	def log_out
 		forget(current_user)
 		session.delete(:user_id)
+		session.delete(:role)
+		session.delete(:futsal_place_id)
 		@current_user = nil
 	end
 
@@ -19,6 +25,8 @@ module SessionsHelper
 		user.forget
 		cookies.delete(:user_id)
 		cookies.delete(:remember_token)
+		cookies.delete(:role)
+		cookies.delete(:futsal_place_id)
 	end
 
 	
@@ -35,7 +43,7 @@ module SessionsHelper
 	end
 
 	def logged_in?
-		!current_user.nil?
+		[ !current_user.nil?, session[:role], session[:futsal_place_id] ]
 	end
 	
 end

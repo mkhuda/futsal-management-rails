@@ -3,7 +3,8 @@
 
   <%= form_for(:session, url: login_path, :html => {:class => "form-signin"}) do |f| %>
 
-  <h3 class="form-signin-heading">YukFutsal Login</h3>
+  <center><a href="<%= root_url %>"><%= image_tag("yukfutsal.png") %></a></center>
+  <br>
     <%= f.label :email, class: "sr-only", for: "inputEmail" %>
     <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
 

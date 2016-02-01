@@ -18,7 +18,7 @@
 @import 'bootstrap-datetimepicker';
 @import "font-awesome";
 $nprogress-color: #82BD7D;
-$nprogress-height: 10px;
+$nprogress-height: 5px;
 $nprogress-zindex: 10100;
 @import "nprogress";
 @import "nprogress-bootstrap";
@@ -26,25 +26,34 @@ $nprogress-zindex: 10100;
 @import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
 
 body.home {
-	background-image: image-url("futsal.png");
+	background-image: url("http://labs.mkhuda.com/yukfutsal/futsal.png");
 	background-repeat: repeat-x;
 	font-family: 'Quattrocento Sans', sans-serif !important;
 }
 
-body.home ol.breadcrumb a {
+body.home, body.list, body.dashboard {
+	font-family: 'Quattrocento Sans', sans-serif !important;
+	background-color: #fafafa;
+}
+
+body.session {
+	font-family: 'Quattrocento Sans', sans-serif !important;	
+}
+
+body.home ol.breadcrumb a, body.list ol.breadcrumb a {
 	color: #82BD7D !important;
 }
-body.home .dropdown-menu {
+body.home .dropdown-menu, body.list .dropdown-menu {
   min-width: 250px !important;
 }
-body.home .checkbox input[type="checkbox"] {
+body.home .checkbox input[type="checkbox"], body.list .checkbox input[type="checkbox"] {
   margin-left: 1px !important;
 }
-body.home span.ember {
+body.home span.ember, body.list span.ember {
   margin-left: 2rem !important;
 }
 
-body.home .lead {
+body.home .lead, body.list .lead {
 	background: rgba(255, 255, 255, 0.15) !important;
     padding: 3px;
 }
@@ -57,6 +66,10 @@ body.home .lead {
 	color: #666666 !important;
 	font-family: 'Quattrocento Sans', sans-serif !important;
 }
+body.list #the-content {
+	padding-top: 10px;
+}
+
 #the-content {
 	padding-top: 55px;
 }
@@ -127,4 +140,22 @@ body.home .lead {
 	position: relative;
 	margin-top: -35px;
 	display: none;
+}
+
+.page-header {
+	text-align: center;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    moz-border-radius: 4px;
+    padding: 5px !important;
+}
+
+.page-header h3 {
+	margin-top: 10px !important;
+}
+
+body.home .list-group-item.active, body.list .list-group-item.active {
+    background-color: #82BD7D !important;
+    border-color: #dddddd !important;
 }

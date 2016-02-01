@@ -10,16 +10,18 @@
   </ol>
   <div class="row">
       <div class="col-lg-7">
+      <% if !params[:search] %>
         <h1>Bingung Cari Arena Futsal ?</h1>
         <br><br>
         <p class="lead"><strong>Yuk Futsal!</strong> Menyediakan sistem pencarian arena futsal yang bisa kamu gunakan untuk mencari tempat arena yang belum kamu ketahui. Yuk cari !</p>
+      <% end %>
          <%= form_tag(arena_path, :method => "get", id: "search-form") do %>
   <div class="input-group">
   
   <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
   
       <span class="input-group-btn">
-        <%= submit_tag "Cari Sekarang", class: "btn btn-default" %>
+        <%= submit_tag "Cari Sekarang", class: "btn btn-success" %>
       </span>
      
     </div><!-- /input-group -->
@@ -33,13 +35,12 @@
       </div>
       <div id="the-content">
  	<div class="page-header">
- 		<h2>List Arena Futsal</h2>
+ 		<h3>List Arena Futsal</h3>
  	</div>
  	<% if params[:search] %>
  		<div class="alert alert-info" role="alert">Hasil Pencarian Keyword: <strong><%= params[:search] %></strong></div>
 	<% end %>
- 	
-    <hr>
+
     <% if !@fp.present? %>
     	<center><%= image_tag("no-result.png", :class => "img-rounded img-responsive") %></center><br>
     <% end %>

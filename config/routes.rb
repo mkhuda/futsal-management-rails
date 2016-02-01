@@ -10,11 +10,20 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   get 'dashboard' => 'dashboard/home#index'
+  get 'dashboard_admin' => 'dashboard_admin/home#index'
 
   namespace :dashboard do
     resources :futsal_places do
       resources :prices
     end
+  end
+
+  namespace :dashboard_admin do
+    resources :futsal_places
+  end
+
+  namespace :dashboard_admin do
+    resources :prices
   end
 
 end

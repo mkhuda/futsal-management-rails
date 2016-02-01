@@ -1,11 +1,15 @@
 /* Space out content a bit */
-body.home {
+body.home, body.list {
   padding-top: 70px;
   padding-bottom: 20px;
 }
+
 body.dashboard {
   padding-top: 0px;
   padding-bottom: 20px;
+}
+body.dashboard #the-content {
+  padding-top: 55;
 }
 .navbar {
   min-height: 50px;

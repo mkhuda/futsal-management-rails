@@ -5,7 +5,7 @@ class Dashboard::FutsalPlacesController < ApplicationController
 	add_breadcrumb "Futsal Places", :dashboard_futsal_places_path
 	
 	def index
-
+		
 		@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 20)
 		
 	end
@@ -57,6 +57,6 @@ class Dashboard::FutsalPlacesController < ApplicationController
 		end
 
 	def require_authorization
-		redirect_to root_path unless logged_in? 
+		redirect_to root_path unless logged_in?[0]
 	end
 end
