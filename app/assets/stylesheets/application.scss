@@ -31,9 +31,9 @@ body.home {
 	font-family: 'Quattrocento Sans', sans-serif !important;
 }
 
-body.list {
-	background-repeat: repeat-x;
+body.home, body.list, body.dashboard {
 	font-family: 'Quattrocento Sans', sans-serif !important;
+	background-color: #fafafa;
 }
 
 body.session {
@@ -140,4 +140,22 @@ body.list #the-content {
 	position: relative;
 	margin-top: -35px;
 	display: none;
+}
+
+.page-header {
+	text-align: center;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    moz-border-radius: 4px;
+    padding: 5px !important;
+}
+
+.page-header h3 {
+	margin-top: 10px !important;
+}
+
+body.home .list-group-item.active, body.list .list-group-item.active {
+    background-color: #82BD7D !important;
+    border-color: #dddddd !important;
 }
