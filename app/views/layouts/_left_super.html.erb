@@ -1,0 +1,36 @@
+<div class="list-group list-group-root">
+
+	<%= link_to "#", class: "list-group-item disabled" do %>
+		<i class="fa fa-thumb-tack fa-fw"></i> Arena
+	<% end %>
+		<div class="list-group">
+			<%= link_to dashboard_futsal_places_path, class: "list-group-item" do %>
+				<i class="fa fa-bars fa-fw"></i> List Arena
+			<% end %>
+			<%= link_to new_dashboard_futsal_place_path, class: "list-group-item" do %>
+				<i class="fa fa-plus-square fa-fw"></i> Tambah Arena
+			<% end %>
+		</div>
+
+	<%= link_to "#", class: "list-group-item disabled" do %>
+		<i class="fa fa-thumb-tack fa-fw"></i> User Management
+	<% end %>
+		<div class="list-group">
+		<%= link_to "#", class: "list-group-item" do %>
+			<i class="fa fa-male fa-fw"></i> List Admin
+		<% end %>
+		<%= link_to "#", class: "list-group-item" do %>
+			<i class="fa fa-user-plus fa-fw"></i> Tambah Admin
+		<% end %>
+		</div>
+
+	<%= link_to "#", class: "list-group-item disabled" do %>
+		<i class="fa fa-thumb-tack fa-fw"></i> Settings
+	<% end %>
+		<div class="list-group">
+		<%= link_to "#", class: "list-group-item" do %>
+			<i class="fa fa-user fa-fw"></i> Account Setting
+		<% end %>
+		</div>
+
+</div>

@@ -1,0 +1,2 @@
+module DashboardAdmin::FutsalPlacesHelper
+end

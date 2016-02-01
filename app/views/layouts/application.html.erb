@@ -11,19 +11,26 @@
 <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.1.2/src/markerclusterer_packed.js" type="text/javascript"></script>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= dashboard? ? "dashboard" : "home" %>">
-<% if dashboard? %>
+<body class="<%= (dashboard? || dashboard_admin?) ? "dashboard" : (session? ? "session" : (list? ? "list" : "home")) %>">
+
+<% if dashboard? || dashboard_admin? %>
+	<%= render '/home/header' %>
 	<div class="container">
+	<div id="the-content">
 	<%= render 'layouts/top' %>
 	<div class="row">
 		<div class="col-md-3">
-			<%= render 'layouts/left' %>
+			<% if logged_in?[1] == 'super' %>
+				<%= render 'layouts/left_super' %>
+			<% elsif logged_in?[1] == 'admin' %>
+				<%= render 'layouts/left_admin' %>
+			<% end %>
 		</div>
 		<div class="col-md-9">
 			<%= yield %>
 		</div>
 	</div>
-	
+	</div>
 <%= render "/home/footer" %>
 	</div>
 <% else %>

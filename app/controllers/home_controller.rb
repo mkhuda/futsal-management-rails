@@ -14,7 +14,7 @@ class HomeController < ApplicationController
 	def list
 		if params[:search]
 			@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 10).search(params[:search]).order('created_at DESC')
-			add_breadcrumb "Hasil Pencarian"
+			add_breadcrumb "Hasil Pencarian", :arena_path
 		else
 			@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
 			add_breadcrumb "List Arena Futsal"
