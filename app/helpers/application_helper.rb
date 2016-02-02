@@ -1,7 +1,6 @@
 module ApplicationHelper
 	
 	def dashboard?
-		# jika adalah dashboard
 		controller.class.name.split("::").first=="Dashboard"
 	end
 
@@ -10,7 +9,6 @@ module ApplicationHelper
 	end
 
 	def session?
-		# jika adalah dashboard
 		controller_name == "sessions"
 	end
 
@@ -20,5 +18,9 @@ module ApplicationHelper
 
 	def activemenu(menu)
 		(action_name == menu) ? "active" : " "
+	end
+	
+	def dashboard_header(type, title)
+		("<div class='page-header grey'><#{type}> <i class='fa fa-chevron-circle-right fa-fw'></i> "+title+"</#{type}></div>").html_safe
 	end
 end

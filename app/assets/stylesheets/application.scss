@@ -58,6 +58,18 @@ body.home .lead, body.list .lead {
     padding: 3px;
 }
 
+body.dashboard .page-header {
+	text-align: left;
+	margin-top: 5px !important;
+	background: #eeeeee;
+	color: #888888;
+}  
+
+body.dashboard .page-header h3, body.dashboard .page-header h4 {
+	margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
 .yuk-logo {
 	padding-top: 2px !important;
 }

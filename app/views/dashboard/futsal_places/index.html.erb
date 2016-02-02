@@ -3,9 +3,9 @@
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
 <% if @fp.present? %>
-<div class="page-header">
-<h2>List Arena Futsal</h2>
-</div>
+
+<%= dashboard_header("h3", "List Arena Futsal") %>
+
 <ul class="list-group">
 
   <% @fp.each_with_index do |a, index| %>
