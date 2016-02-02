@@ -1,4 +1,4 @@
-class Dashboard::FutsalPlacesController < ApplicationController
+class Dashboard::UsersController < ApplicationController
 	before_filter :require_authorization
 
 	add_breadcrumb "Dashboard", :dashboard_path
@@ -24,7 +24,7 @@ class Dashboard::FutsalPlacesController < ApplicationController
 		@user = User.find(current_user)
 		@fp = @user.futsal_places.create(fp_params)
 		if @fp.save
-			redirect_to dashboard_futsal_places_path, :flash => { :success => "Arena Baru Berhasil Ditambahkan" }
+			redirect_to dashboard_futsal_places_path
 		else
 			render 'new'
 		end
@@ -39,7 +39,7 @@ class Dashboard::FutsalPlacesController < ApplicationController
 	def update
 		@fp = FutsalPlace.find(params[:id])
 		if @fp.update(fp_params)
-	  		redirect_to edit_dashboard_futsal_place_path(@fp), :flash => { :success => "Pengeditan Berhasil" }
+	  		redirect_to dashboard_futsal_places_path
 	  	else
 	  		render 'edit'
 	  	end

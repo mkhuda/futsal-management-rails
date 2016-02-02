@@ -4,8 +4,10 @@
   </ol>
 <% if @fp.present? %>
 
-<%= dashboard_header("h3", "List Arena Futsal") %>
-
+<%= dashboard_header("h3", "List Arena Futsal", "") %>
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
 <ul class="list-group">
 
   <% @fp.each_with_index do |a, index| %>

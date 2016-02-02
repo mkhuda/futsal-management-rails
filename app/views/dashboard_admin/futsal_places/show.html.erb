@@ -1,2 +1,95 @@
-<h1>DashboardAdmin::FutsalPlaces#show</h1>
-<p>Find me in app/views/dashboard_admin/futsal_places/show.html.erb</p>
+<ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+<%= dashboard_header("h3", @fp.name, "fa-building") %>
+ <!-- Nav tabs -->
+  <ul class="nav nav-tabs navbar-default" role="tablist">
+    <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail Arena</a></li>
+    <li role="presentation"><a href="#jadwal" aria-controls="jadwal" role="tab" data-toggle="tab">Jadwal</a></li>
+    <li role="presentation"><a href="#kontak" aria-controls="kontak" role="tab" data-toggle="tab">Kontak</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="detail">
+    	<div style='width: 100%; background: grey; padding: 3px;'>
+		<div id="map" style='width: auto; height: 400px;'></div>
+	</div>
+    	<div class="page-header">
+    		<h5>Detail <%= @fp.name %></h5>
+    	</div>
+    	<!-- <p><%= @fp.deskripsi %></p> -->
+			<div class="media">
+				<div class="media-left">
+					<a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
+						<%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
+					</a>
+				</div>
+				<div class="media-body">
+					<p><%= @fp.deskripsi %></p>
+				</div>
+			</div>
+    	<div class="page-header">
+    		<h5>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h5>
+    	</div>
+    	
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="jadwal">
+    	Jadwal Belum Terpublish
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="kontak">
+    	<div class="page-header">
+    		<h5>Alamat</h5>
+    	</div>
+    	<p class="text-center"><%= @fp.alamat %></p>
+    	<div class="page-header">
+    		<h5>Telephon</h5>
+    	</div>
+    	<p class="text-center"><i class="fa fa-phone"></i> <%= @fp.phone %></p>
+
+
+    	<div class="page-header">
+    		<h5>Email</h5>
+    	</div>
+    	<p class="text-center"><i class="fa fa-envelope"></i> <%= @fp.email %></p>
+    </div>
+
+  </div>
+
+	<script>
+		
+
+			handler = Gmaps.build('Google');
+			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+			markers = handler.addMarkers([
+			{
+			"lat": <%= @fp.latitude %>,
+			"lng": <%= @fp.longitude %>,
+			"picture": {
+			"url": "http://androgan.com/ico/football.png",
+			"width":  32,
+			"height": 32
+			},
+			"infowindow": "<%= @fp.name %>"
+			}
+			]);
+			handler.bounds.extendWith(markers);
+			handler.fitMapToBounds();
+			handler.getMap().setZoom(16);
+
+			});
+
+			$('#lightbox-<%= @fp.id %>').click(function(e){
+				 e.preventDefault();
+				$(this).ekkoLightbox();	
+			});
+			$('#lightbox-gallery-<%= @fp.id %>').click(function(e){
+				 e.preventDefault();
+				$(this).ekkoLightbox({
+					gallery: "galleryname"
+				});	
+			});
+
+
+	</script>

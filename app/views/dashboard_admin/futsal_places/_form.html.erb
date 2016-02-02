@@ -1,4 +1,4 @@
-<%= form_for([:dashboard, @fp], :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for([:dashboard_admin, @fp], :html => {:class => "form-horizontal"}) do |f| %>
 
 	<div class="form-group">
 		<%= f.label :name, class: "col-sm-2 control-label" %>
@@ -101,7 +101,7 @@
       </div>
       <div class="modal-body">
         <div>
-		<div id="map-<%= @fp.id %>" style='width: auto; height: 400px;'></div>
+		<div id="map-<%= session[:futsal_place_id] %>" style='width: auto; height: 400px;'></div>
 	</div>
       </div>
       <div class="modal-footer">
@@ -116,7 +116,7 @@
 	$('#editMaps').on('shown.bs.modal', function(e) {
 		markers_options = { draggable: true };
 		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map-<%= @fp.id %>'}}, function(){
+		handler.buildMap({ provider: {}, internal: {id: 'map-<%= session[:futsal_place_id] %>'}}, function(){
 				var markers_json =[
 			{
 			"lat": <%= @fp.latitude %>,

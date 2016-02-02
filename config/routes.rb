@@ -9,17 +9,20 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  # super
   get 'dashboard' => 'dashboard/home#index'
+
+  # admin
   get 'dashboard_admin' => 'dashboard_admin/home#index'
+  
+  namespace :dashboard_admin do
+    resources :futsal_places
+  end
 
   namespace :dashboard do
     resources :futsal_places do
       resources :prices
     end
-  end
-
-  namespace :dashboard_admin do
-    resources :futsal_places
   end
 
   namespace :dashboard_admin do

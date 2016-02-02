@@ -37,6 +37,6 @@ class Dashboard::PricesController < ApplicationController
 		end
 
 	def require_authorization
-		redirect_to root_path unless logged_in? 
+		redirect_to root_path unless ((logged_in?[0]) && (logged_in?[1] == 'super'))
 	end
 end

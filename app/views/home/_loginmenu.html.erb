@@ -28,7 +28,7 @@
     </li>
     <% else %>
                 <li>
-                    <%= link_to "<i class='fa fa-gears'></i> Dashboard".html_safe, dashboard_path %>
+                    <%= link_to "<i class='fa fa-gears'></i> Dashboard".html_safe, (logged_in?[1] == 'super') ? dashboard_path : dashboard_admin_path %>
                 </li>
                 <li>
                     <%= link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, logout_path, method: :delete %>

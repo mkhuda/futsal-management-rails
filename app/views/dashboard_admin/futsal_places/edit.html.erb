@@ -1,2 +1,10 @@
-<h1>DashboardAdmin::FutsalPlaces#edit</h1>
-<p>Find me in app/views/dashboard_admin/futsal_places/edit.html.erb</p>
+<ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+  
+<%= dashboard_header("h3", "Edit Arena", "") %>
+<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+	
+<%= render 'form' %>
