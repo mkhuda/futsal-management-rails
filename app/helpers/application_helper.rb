@@ -25,4 +25,8 @@ module ApplicationHelper
 
 		("<div class='page-header grey'><#{type}> <i class='fa #{icon} fa-fw'></i> "+title+"</#{type}></div>").html_safe
 	end
+	
+	def nl2br(s)
+		s.gsub(/\n/, '<br>')
+	end
 end

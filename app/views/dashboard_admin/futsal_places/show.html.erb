@@ -30,7 +30,7 @@
 					</a>
 				</div>
 				<div class="media-body">
-					<p><%= @fp.deskripsi %></p>
+					<%= nl2br(@fp.deskripsi).html_safe %>
 				</div>
 			</div>
     	<div class="page-header">
