@@ -1,0 +1,30 @@
+<hr>
+<% if @fp.prices.present? %>
+
+  <% @fp.prices.each_with_index do |a, index| %>
+  
+    <div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+    	<div class="col-lg-4">
+    		<%= a.hari %>
+    	</div>
+    	<div class="col-lg-4">
+    		<i class="fa fa-clock-o"></i> <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB
+    	</div>
+    	<div class="col-lg-3">
+    		Rp. <%= a.harga %> per Jam
+    	</div>
+    	<div class="col-lg-1">
+    		<%= link_to (fa_icon "trash"), dashboard_admin_price_path(a.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
+    	</div>
+    </div>
+
+  </div>
+</div>
+  <% end %>
+
+<% else %>
+	<div class="alert alert-warning">Belum ada ketentuan harga</div>
+<% end %>

@@ -1,6 +1,10 @@
 <ol class="breadcrumb">
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
+    <div class="pull-right">
+      <%= link_to (fa_icon "gears", text: "Setting Harga"), new_dashboard_futsal_place_price_path(@fp.id), class: "btn btn-sm btn-default" %>
+      <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_admin_futsal_place_path(@fp.id), class: "btn btn-sm btn-default" %>
+    </div>
 <%= dashboard_header("h3", @fp.name, "fa-building") %>
  <!-- Nav tabs -->
   <ul class="nav nav-tabs navbar-default" role="tablist">

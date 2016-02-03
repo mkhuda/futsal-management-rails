@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
+
+ <%= dashboard_header("h3", "Setting Jadwal", "") %>
+<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+	
+<%= render 'form' %>
+<%= render 'list' %>
