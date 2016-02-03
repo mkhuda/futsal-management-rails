@@ -16,10 +16,10 @@
 		<i class="fa fa-thumb-tack fa-fw"></i> User Management
 	<% end %>
 		<div class="list-group">
-		<%= link_to "#", class: "list-group-item" do %>
+		<%= link_to dashboard_users_path, class: "list-group-item" do %>
 			<i class="fa fa-male fa-fw"></i> List Admin
 		<% end %>
-		<%= link_to "#", class: "list-group-item" do %>
+		<%= link_to new_dashboard_user_path, class: "list-group-item" do %>
 			<i class="fa fa-user-plus fa-fw"></i> Tambah Admin
 		<% end %>
 		</div>

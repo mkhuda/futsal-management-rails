@@ -21,39 +21,38 @@ class Dashboard::UsersController < ApplicationController
 	end
 
 	def create 
-		@user = User.find(current_user)
-		@fp = @user.futsal_places.create(fp_params)
-		if @fp.save
-			redirect_to dashboard_futsal_places_path
+		@user = User.create(user_params)
+		if @user.save
+			redirect_to dashboard_users_path, :flash => { :success => "User berhasil ditambahkan" }
 		else
 			render 'new'
 		end
 	end
 
 	def edit
-		@fp = FutsalPlace.find(params[:id])
-		add_breadcrumb @fp.name, dashboard_futsal_place_path(@fp.id)
-		add_breadcrumb "Edit", edit_dashboard_futsal_place_path(@fp.id)
+		@user = User.find(params[:id])
+		add_breadcrumb @user.name, dashboard_user_path(@user.id)
+		add_breadcrumb "Edit", edit_dashboard_user_path(@user.id)
 	end
 
 	def update
-		@fp = FutsalPlace.find(params[:id])
-		if @fp.update(fp_params)
-	  		redirect_to dashboard_futsal_places_path
+		@user = User.find(params[:id])
+		if @user.update(user_params)
+	  		redirect_to dashboard_users_path, :flash => { :success => "User berhasil diedit" }
 	  	else
 	  		render 'edit'
 	  	end
 	end
 
 	def destroy
-		@fp = FutsalPlace.find(params[:id])
-		@fp.destroy
-		redirect_to dashboard_futsal_places_path
+		@user = User.find(params[:id])
+		@user.destroy
+		redirect_to dashboard_users_path, :flash => { :success => "User berhasil dihapus" }
 	end
 
 	private
-		def fp_params
-			params.require(:futsal_place).permit(:name, :deskripsi, :alamat, :kecamatan, :longitude, :latitude, :phone, :email, :jumlah_lapangan, :image)
+		def user_params
+			params.require(:user).permit(:name, :email, :futsal_place_id, :role, :password, :password_confirmation)
 		end
 
 	def require_authorization

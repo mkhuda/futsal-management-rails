@@ -1,0 +1,29 @@
+<% provide(:title, "User Admin List") %>
+<ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+<% if @user.present? %>
+
+<%= dashboard_header("h3", "List User Admin", "") %>
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+<ul class="list-group">
+
+  <% @user.each_with_index do |a, index| %>
+  <div class="list-box list-box-<%= a.id %>">
+  <a href="<%= dashboard_futsal_place_path(a.id) %>" class="list-group-item">
+    <%= a.name %>
+  </a>
+  <div class="pull-right actions-box">
+      <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_user_path(a.id), class: "btn btn-sm btn-warning" %>
+      <%= link_to (fa_icon "eye", text: "Lihat Data"), dashboard_user_path(a.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "trash"), dashboard_user_path(a), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
+    </div>
+    </div>
+  <% end %>
+</ul>
+<% else %>
+	<div class="alert alert-warning"> Belum ada User Admin Arena. <%= link_to "Tambahkan arena.", new_dashboard_user_path, class: "btn btn-sm btn-default" %> </div>
+<% end %>
+<%= will_paginate @user %>

@@ -1,0 +1,57 @@
+<%= form_for([:dashboard, @user], :html => {:class => "form-horizontal"}) do |f| %>
+	<p class="error-form">
+		<% if @user.errors.any? %>
+				<% @user.errors.full_messages.each do |msg| %>
+					<div class="alert alert-danger"><%= msg %></div>
+				<% end %>
+		<% end %>
+	</p>
+	<div class="form-group">
+		<%= f.label :name, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.text_field :name, class: "form-control", placeholder: "Nama Admin (Contoh: Admin Garasi Futsal)" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "Arena Futsal", class: "col-sm-2 control-label" %>
+		<div class="col-sm-3">
+			<%= 
+			f.select :futsal_place_id, options_for_select(FutsalPlace.all.collect {|p| [ p.name, p.id ] }, :selected => @user.futsal_place_id), {prompt: 'Pilih Arena'}, {:class => "form-control"}
+			%>
+		</div>
+	</div>
+
+	<%= f.hidden_field :role, :value => "admin" %>
+
+
+
+	<div class="form-group">
+		<%= f.label :email, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.email_field :email, class: "form-control", placeholder: "Email Address (Must Unique)" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :password, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Type again the password above" %>
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+		  <%= f.submit "Simpan Sekarang", class: "btn btn-lg btn-danger" %>
+		</div>
+	</div>
+<% end %>
