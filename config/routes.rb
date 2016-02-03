@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :futsal_places do
       resources :prices
     end
+    resources :users
   end
 
   namespace :dashboard_admin do

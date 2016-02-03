@@ -4,11 +4,16 @@ body.home, body.list {
   padding-bottom: 20px;
 }
 
+body.list {
+  // padding-top: 0px;
+  padding-bottom: 20px;
+}
+
 body.dashboard {
   padding-top: 0px;
   padding-bottom: 20px;
 }
-body.dashboard #the-content {
+body.dashboard #the-content,body.list #the-content {
   padding-top: 55;
 }
 .navbar {

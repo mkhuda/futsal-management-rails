@@ -26,9 +26,19 @@ $nprogress-zindex: 10100;
 @import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
 
 body.home {
-	background-image: url("http://labs.mkhuda.com/yukfutsal/futsal.png");
+	background-image: url("http://labs.mkhuda.com/yukfutsal/headeryukfutsal.png");
 	background-repeat: repeat-x;
 	font-family: 'Quattrocento Sans', sans-serif !important;
+	    background-size: 24%;
+    background-position-y: 305px;
+}
+
+body.list {
+	background-image: url("http://labs.mkhuda.com/yukfutsal/headeryukfutsal.png");
+	background-repeat: repeat-x;
+	font-family: 'Quattrocento Sans', sans-serif !important;
+	    background-size: 24%;
+    background-position-y: 305px;
 }
 
 body.home, body.list, body.dashboard {
@@ -79,7 +89,7 @@ body.dashboard .page-header h3, body.dashboard .page-header h4 {
 	font-family: 'Quattrocento Sans', sans-serif !important;
 }
 body.list #the-content {
-	padding-top: 10px;
+	// padding-top: 10px;
 }
 
 #the-content {
@@ -168,6 +178,6 @@ body.list #the-content {
 }
 
 body.home .list-group-item.active, body.list .list-group-item.active {
-    background-color: #82BD7D !important;
+    background-color: #4E5469 !important;
     border-color: #dddddd !important;
 }

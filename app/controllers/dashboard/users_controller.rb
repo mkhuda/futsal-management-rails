@@ -2,21 +2,21 @@ class Dashboard::UsersController < ApplicationController
 	before_filter :require_authorization
 
 	add_breadcrumb "Dashboard", :dashboard_path
-	add_breadcrumb "Futsal Places", :dashboard_futsal_places_path
+	add_breadcrumb "Users", :dashboard_users_path
 	
 	def index
 		
-		@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 20)
+		@user = User.paginate(:page => params[:page], :per_page => 20).where("role = ?", "admin")
 		
 	end
 
 	def show
-		@fp = FutsalPlace.find_by(id: params[:id])
+		@user = User.find_by(id: params[:id])
 	end
 	
 	def new
 
-		@fp = FutsalPlace.new
+		@user = User.new
 		
 	end
 
