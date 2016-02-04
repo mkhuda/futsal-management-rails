@@ -12,6 +12,10 @@ module ApplicationHelper
 		controller_name == "sessions"
 	end
 
+	def account?
+		controller_name == "account"
+	end
+
 	def list?
 		action_name == "list"
 	end

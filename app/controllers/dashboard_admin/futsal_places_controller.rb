@@ -25,7 +25,7 @@ class DashboardAdmin::FutsalPlacesController < ApplicationController
     if @fp.update(fp_params)
         redirect_to edit_dashboard_admin_futsal_place_path(session[:futsal_place_id]), :flash => { :success => "Pengeditan Berhasil" }
       else
-		flash.now[:danger] = 'Gagal Melakukan Update'
+		    flash.now[:danger] = 'Gagal Melakukan Update'
         render 'edit'
       end
   end
