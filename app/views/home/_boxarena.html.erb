@@ -1,6 +1,6 @@
-<% @fp.each_with_index do |a, index| %>
+
       <div class="row">
-     
+<% @fp.each_with_index do |a, index| %>     
 	  <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <%= a.image? ? image_tag(a.image_url) : image_tag("no-image.jpg") %>
@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+    <% end %>
+    </div>
   
   
-<% end %>
