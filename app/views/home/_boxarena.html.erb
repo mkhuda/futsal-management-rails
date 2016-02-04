@@ -1,22 +1,21 @@
-
-      <div class="row">
-<% @fp.each_with_index do |a, index| %>     
-	  <div class="col-sm-6 col-md-4">
+<div class="row">
+<% @fp.each_with_index do |a, index| %>
+<div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <%= a.image? ? image_tag(a.image_url) : image_tag("no-image.jpg") %>
       <div class="caption">
+	  
         <h3><%= link_to a.name, showarena_path(a.id, (a.name).gsub(' ', '-').downcase), class: "text-info" %></h3>
         <p><%= truncate(a.deskripsi, :length => 200, :separator => '...') %></p>
 
 		<div class="btn-group" role="group" aria-label="...">
-  <a  class="btn btn-sm btn-default" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase) %>#detail"><i class="fa fa-map-o fa-fw"></i> Lihat Peta</a>
-  <a  class="btn btn-sm btn-default" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#jadwal"><i class="fa fa-calendar-plus-o fa-fw"></i> Jadwal</a>
-  <a  class="btn btn-sm btn-warning" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#kontak"><i class="fa fa-phone-square fa-fw"></i> Hubungi!</a>
+			<a  class="btn btn-sm btn-default" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase) %>#detail"><i class="fa fa-map-o fa-fw"></i> Lihat Peta</a>
+			<a  class="btn btn-sm btn-default" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#jadwal"><i class="fa fa-calendar-plus-o fa-fw"></i> Jadwal</a>
+			<a  class="btn btn-sm btn-warning" href="<%= showarena_path(a.id, (a.name).gsub(' ', '-').downcase)%>#kontak"><i class="fa fa-phone-square fa-fw"></i> Hubungi!</a>
 		</div>
+		
       </div>
     </div>
   </div>
-    <% end %>
-    </div>
-  
-  
+<% end %>
+</div>
