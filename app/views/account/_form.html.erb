@@ -1,0 +1,32 @@
+<h4>Update Password</h4>
+<hr>
+<%= form_for(@account, url: account_path, :html => {:class => "form-horizontal", :method => :put}) do |f| %>
+
+	<div class="form-group">
+		<%= f.label "Password Lama", class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<input type="password" name="old" class="form-control" placeholder="Password Lama">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "Password Baru", class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.password_field :password, class: "form-control", placeholder: "Password Baru" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "Konfirmasi Password", class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+			<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Konfirmasi Password Baru" %>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+		  <%= f.submit "Simpan Sekarang", class: "btn btn-lg btn-danger" %>
+		</div>
+	</div>
+<% end %>

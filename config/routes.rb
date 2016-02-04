@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get 'arena/:id-:name' => 'home#show', as: :showarena
   get 'arena' => 'home#list'
 
+  get 'account' => 'account#index'
+  patch 'account' => 'account#update'
+  put 'account' => 'account#update'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

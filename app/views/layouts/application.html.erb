@@ -11,9 +11,9 @@
 <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.1.2/src/markerclusterer_packed.js" type="text/javascript"></script>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= (dashboard? || dashboard_admin?) ? "dashboard" : (session? ? "session" : (list? ? "list" : "home")) %>">
+<body class="<%= (dashboard? || dashboard_admin? || account?) ? "dashboard" : (session? ? "session" : (list? ? "list" : "home")) %>">
 
-<% if dashboard? || dashboard_admin? %>
+<% if dashboard? || dashboard_admin? || account? %>
 	<%= render '/home/header' %>
 	<div class="container">
 	<div id="the-content">
