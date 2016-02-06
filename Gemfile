@@ -61,6 +61,8 @@ gem 'gmaps4rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem "lazyload-rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
