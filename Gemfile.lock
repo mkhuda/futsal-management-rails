@@ -59,6 +59,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-ftp (0.2.8)
+      carrierwave (>= 0.6.2)
+      net-sftp (~> 2.1.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -98,6 +101,9 @@ GEM
       railties (>= 3.1)
     multi_json (1.11.2)
     mysql2 (0.3.20)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.0.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
@@ -179,6 +185,7 @@ DEPENDENCIES
   breadcrumbs_on_rails
   byebug
   carrierwave
+  carrierwave-ftp
   coffee-rails (~> 4.1.0)
   font-awesome-rails
   gmaps4rails

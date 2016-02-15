@@ -1,3 +1,3 @@
 Lazyload::Rails.configure do |config|
-  config.placeholder = "futsal/images/load.jpg"
+  config.placeholder = "images/load.jpg"
 end

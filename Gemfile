@@ -41,6 +41,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # carrierwave uploader
 gem 'carrierwave'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all'
 gem 'mini_magick'
 
 # will paginate
