@@ -1,0 +1,32 @@
+<% provide(:title, "Peta Arena Futsal") %>
+<%= render "header" %>
+ <div class="container">
+ <ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => "" %>
+  </ol>
+	<div id="map-content">
+	 	<div class="page-header">
+	 		<h3>Map Arena Futsal</h3>
+	 	</div>
+
+	 	<div style='width: 100%; background: grey; padding: 3px;'>
+		<div id="map-full" style='width: auto; height: 600px;'></div>
+	</div>
+	</div>
+
+      <%= render "footer" %>
+
+      <script>
+		
+
+			handler = Gmaps.build('Google');
+			handler.buildMap({ provider: {}, internal: {id: 'map-full'}}, function(){
+
+			markers = handler.addMarkers(<%=raw @hashmap.to_json %>);
+			handler.bounds.extendWith(markers);
+			handler.fitMapToBounds();
+			handler.getMap().setZoom(12);
+
+			});
+	</script>
+ </div>

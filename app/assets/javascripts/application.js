@@ -68,7 +68,8 @@ $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
 }); 
-
+	
+	$("img.load").lazyload();
 };
 
 $(document).ready(ready);

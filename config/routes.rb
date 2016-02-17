@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'arena/:id-:name' => 'home#show', as: :showarena
   get 'arena' => 'home#list'
+  get 'map' => 'home#map'
 
   get 'account' => 'account#index'
   patch 'account' => 'account#update'

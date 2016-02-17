@@ -11,6 +11,19 @@ class HomeController < ApplicationController
 		add_breadcrumb @fp.name
 	end
 
+	def map
+		@fp = FutsalPlace.all
+		@hashmap = Gmaps4rails.build_markers(@fp) do |futsal, marker|
+			futsal_path = view_context.link_to futsal.name, showarena_path(futsal.id, (futsal.name).gsub(' ', '-').downcase)
+
+			marker.lat futsal.latitude
+			marker.lng futsal.longitude
+			marker.picture({ :url => "http://androgan.com/ico/football.png", :width   => 32, :height  => 32
+                 })
+			marker.infowindow "<b>"+futsal_path+"</b><br><p>"+futsal.alamat+"</p>"
+		end
+	end
+
 	def list
 		if params[:search]
 			@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 10).search(params[:search]).order('created_at DESC')

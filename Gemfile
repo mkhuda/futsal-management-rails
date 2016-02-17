@@ -41,7 +41,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # carrierwave uploader
 gem 'carrierwave'
+
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
+
 gem 'mini_magick'
 
 # will paginate
@@ -61,6 +63,8 @@ gem 'gmaps4rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+
+gem "lazyload-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
