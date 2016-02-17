@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.datepicker .datepicker-switch, .datepicker .prev, .datepicker .next, .datepicker tfoot tr th {
+    font-size: 22px;
+    font-weight: lighter;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
+    padding: 10px !important;
+}
+
+.datepicker table tr td.active.active {
+    background: #66be8c!important;
+    border-radius: 50% !important;
+}
+
+.datepicker {
+	font-family: 'Roboto', sans-serif !important;
+}
+
+.datepicker table thead tr {
+	border-bottom: 1px solid #E0E0E0;
+}

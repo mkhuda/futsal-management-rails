@@ -11,21 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130161305) do
+ActiveRecord::Schema.define(version: 20160217155524) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.string   "lapangan",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "futsal_places", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.text     "deskripsi",  limit: 65535
-    t.string   "alamat",     limit: 255
-    t.string   "kecamatan",  limit: 100
-    t.decimal  "latitude",                 precision: 9, scale: 6
-    t.decimal  "longitude",                precision: 9, scale: 6
-    t.string   "phone",      limit: 45
-    t.string   "email",      limit: 150
-    t.integer  "user_id",    limit: 4
-    t.string   "image",      limit: 255
+    t.string   "name",            limit: 255
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.text     "deskripsi",       limit: 65535
+    t.string   "alamat",          limit: 255
+    t.string   "kecamatan",       limit: 100
+    t.decimal  "latitude",                      precision: 9, scale: 6
+    t.decimal  "longitude",                     precision: 9, scale: 6
+    t.string   "phone",           limit: 45
+    t.string   "email",           limit: 150
+    t.integer  "user_id",         limit: 4
+    t.string   "image",           limit: 255
+    t.integer  "jumlah_lapangan", limit: 4
   end
 
   add_index "futsal_places", ["user_id"], name: "fk_futsal_places_1_idx", using: :btree
@@ -55,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160130161305) do
     t.time     "jam_akhir"
     t.string   "hari",            limit: 100
     t.integer  "futsal_place_id", limit: 4
+    t.string   "array_hari",      limit: 50
   end
 
   add_index "prices", ["futsal_place_id"], name: "fk_prices_to_place1_idx", using: :btree
@@ -103,6 +111,8 @@ ActiveRecord::Schema.define(version: 20160130161305) do
     t.string   "password_digest", limit: 255
     t.string   "email",           limit: 100
     t.string   "remember_digest", limit: 255
+    t.string   "role",            limit: 45
+    t.integer  "futsal_place_id", limit: 4
   end
 
   add_index "users", ["email"], name: "email_UNIQUE", unique: true, using: :btree

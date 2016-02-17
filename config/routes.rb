@@ -26,13 +26,13 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :futsal_places do
-      resources :prices
+      resources :prices, :bookings
     end
     resources :users
   end
 
   namespace :dashboard_admin do
-    resources :prices
+    resources :prices, :bookings
   end
 
 end

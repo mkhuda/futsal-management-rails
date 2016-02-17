@@ -1,0 +1,27 @@
+
+<hr>
+<span class="label label-default"><%= @hari %></span>
+  <% @fp.jumlah_lapangan.times do |i| %>
+  
+    <div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-lg-5">
+
+        Lapangan <%= i+1 %>
+      </div>
+    </div>
+
+  </div>
+  <% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
+  <% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
+          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Penuh</span></div>
+          <% end %>
+        <% else %>
+        <div class="alert alert-success">Lapangan Bisa Dibooking</div>
+        
+        <% end %>
+  
+</div>
+  <% end %>

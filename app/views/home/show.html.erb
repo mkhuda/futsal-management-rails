@@ -21,6 +21,7 @@
   <ul class="nav nav-tabs navbar-default" role="tablist">
     <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li>
     <li role="presentation"><a href="#jadwal" aria-controls="profile" role="tab" data-toggle="tab">Jadwal</a></li>
+    <li role="presentation"><a href="#booking" aria-controls="booking" role="tab" data-toggle="tab">Booking</a></li>
     <li role="presentation"><a href="#kontak" aria-controls="messages" role="tab" data-toggle="tab">Kontak</a></li>
   </ul>
 
@@ -74,6 +75,45 @@
 	<div class="alert alert-warning">Belum ada ketentuan harga</div>
 <% end %>
     </div>
+
+    <div role="tabpanel" class="tab-pane fade in" id="booking">
+      <div class="row">
+        <div class="col-lg-4">
+        <div id="tanggalan" data-date="02/03/2016"></div>
+<input type="hidden" id="my_hidden_input" value="<%= @sethari %>">
+      </div>
+      <div class="col-lg-8">
+      <br>
+<span class="label label-default"><%= @hari %></span>
+  <% @fp.jumlah_lapangan.times do |i| %>
+  
+    <div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-lg-5">
+
+        Lapangan <%= i+1 %>
+      </div>
+    </div>
+
+  </div>
+  <% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
+  <% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
+          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Penuh</span></div>
+        <% end %>
+        <% else %>
+        <div class="alert alert-success">Lapangan Bisa Dibooking</div>
+        <% end %>
+  
+</div>
+  <% end %>
+
+      </div>
+      </div>
+      
+    </div>
+
     <div role="tabpanel" class="tab-pane fade in" id="kontak">
     	<div class="page-header">
     		<h5>Alamat</h5>
@@ -128,6 +168,31 @@
 					gallery: "galleryname"
 				});	
 			});
+
+      var date = new Date();
+      date.setDate(date.getDate());
+      $('#tanggalan').datepicker({
+        
+        todayHighlight: true,
+        startDate: date,
+        format: "mm-dd-yyyy"
+      });
+      $('#tanggalan').on("changeDate", function() {
+        tanggal = $('#tanggalan').datepicker('getDate');
+        // Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"#booking");
+        var tanggal = $('#tanggalan').datepicker('getDate');
+        var day = tanggal.getDate();
+        var month = tanggal.getMonth()+1;
+        var year = tanggal.getFullYear();
+        var full = year+"-"+month+"-"+day; 
+        Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"?hari="+full+"#booking");
+      $('#my_hidden_input').val(
+        $('#tanggalan').datepicker('getFormattedDate')
+
+      );
+      });
+
+
 
 	</script>
  </div>
