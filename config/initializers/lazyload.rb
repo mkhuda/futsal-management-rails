@@ -1,3 +1,3 @@
 Lazyload::Rails.configure do |config|
-  config.placeholder = "images/load.jpg"
+  config.placeholder = "http://168.235.92.178/futsal/images/load.jpg"
 end
