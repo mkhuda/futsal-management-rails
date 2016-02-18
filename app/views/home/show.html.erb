@@ -6,28 +6,37 @@
  <ol class="breadcrumb">
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
-
- 	<div class="page-header">
+<div class="row">
+<div class="page-header">
  		<h2><%= @fp.name %></h2>
- 	</div>
+		</div>
+	<div class="col-lg-6">
+		
 
 	<div style='width: 100%; background: grey; padding: 3px;'>
 		<div id="map" style='width: auto; height: 400px;'></div>
 	</div>
-
-	<div>
+	
+    		<h3>Detail <%= @fp.name %></h3>
+   
+		<div class="media-body">
+					<%= nl2br(@fp.deskripsi).html_safe %>
+				</div>
+	</div>
+	<div class="col-lg-6" style="background: white">
+		<div>
 <hr>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs navbar-default" role="tablist">
-    <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li>
+    <!-- <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li> -->
     <li role="presentation"><a href="#jadwal" aria-controls="profile" role="tab" data-toggle="tab">Jadwal</a></li>
     <li role="presentation"><a href="#booking" aria-controls="booking" role="tab" data-toggle="tab">Booking</a></li>
-    <li role="presentation"><a href="#kontak" aria-controls="messages" role="tab" data-toggle="tab">Kontak</a></li>
+    <li role="presentation" class="active"><a href="#kontak" aria-controls="messages" role="tab" data-toggle="tab">Kontak</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="detail">
+    <div role="tabpanel" class="tab-pane fade" id="detail">
     	<div class="page-header">
     		<h3>Detail <%= @fp.name %></h3>
     	</div>
@@ -78,11 +87,11 @@
 
     <div role="tabpanel" class="tab-pane fade in" id="booking">
       <div class="row">
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
         <div id="tanggalan" data-date="02/03/2016"></div>
 <input type="hidden" id="my_hidden_input" value="<%= @sethari %>">
-      </div>
-      <div class="col-lg-8">
+      </div> -->
+      <div class="col-lg-12">
       <br>
 <span class="label label-default"><%= @hari %></span>
   <% @fp.jumlah_lapangan.times do |i| %>
@@ -114,7 +123,7 @@
       
     </div>
 
-    <div role="tabpanel" class="tab-pane fade in" id="kontak">
+    <div role="tabpanel" class="tab-pane fade in active" id="kontak">
     	<div class="page-header">
     		<h5>Alamat</h5>
     	</div>
@@ -133,6 +142,11 @@
   </div>
 
 </div>
+	</div>
+</div>
+ 	
+
+	
 
 <%= render "footer" %>
 	<script>
