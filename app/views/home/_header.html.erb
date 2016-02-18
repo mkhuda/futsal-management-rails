@@ -10,12 +10,22 @@
             <a class="navbar-brand yuk-logo" href="<%= root_path %>">
                 <%= image_tag "yukfutsal.png" %>
             </a>
+				<div class="col-sm-7 col-md-7 pull-left">
+					<%= form_tag(arena_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+<div class="input-group">
+	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
+	<span class="input-group-btn">
+	<%= submit_tag "Cari", class: "btn btn-success" %>
+	</span>
+</div>
+<% end %>
+				</div>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="<%= activemenu('index') %>"><a href="<%= root_path %>" class="text-muted"><i class="fa fa-home"></i> Beranda</a></li>
-                <li class="<%= activemenu('map')%>"><a href="<%= map_path %>"><i class="fa fa-map"></i> Peta Arena</a></li>
-                <li class="<%= activemenu('show')+activemenu('list') %>"><a href="<%= arena_path %>"><i class="fa fa-map-marker"></i> List Arena Futsal</a></li>
+                <li class="<%= activemenu('index') %>"><a href="<%= root_path %>" class="text-muted"><i class="fa fa-home"></i> Home</a></li>
+                <li class="<%= activemenu('map')%>"><a href="<%= map_path %>"><i class="fa fa-map"></i> Peta</a></li>
+                <li class="<%= activemenu('show')+activemenu('list') %>"><a href="<%= arena_path %>"><i class="fa fa-map-marker"></i> Arena</a></li>
                 <%= render "home/loginmenu" %>
             </ul>
         </div>
