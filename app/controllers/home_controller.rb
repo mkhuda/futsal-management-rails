@@ -12,6 +12,11 @@ class HomeController < ApplicationController
 		params[:hari].present? ? @sethari = params[:hari] : @sethari = Time.now.strftime("%Y-%m-%d")
 		add_breadcrumb "Arena Futsal", :arena_path
 		add_breadcrumb @fp.name
+		
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def map
