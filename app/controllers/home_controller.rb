@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
 
+	before_action :set_locale
+
 	add_breadcrumb "<i class='fa fa-home'></i> Beranda".html_safe, :root_path
+
 	def index
 		@fp = FutsalPlace.order('created_at DESC').take(3)
 	end
@@ -41,6 +44,10 @@ class HomeController < ApplicationController
 			add_breadcrumb "List Arena Futsal"
 		end
 		
+	end
+ 
+	def set_locale
+	  I18n.locale = params[:locale] || I18n.default_locale
 	end
 
 end

@@ -36,6 +36,8 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
+
+  <!-- Tab panel for Detail -->
     <div role="tabpanel" class="tab-pane fade" id="detail">
     	<div class="page-header">
     		<h3>Detail <%= @fp.name %></h3>
@@ -55,13 +57,15 @@
     	</div>
     	
     </div>
+
+    <!-- Tab panel for Jadwal -->
     <div role="tabpanel" class="tab-pane fade in" id="jadwal">
     	<hr>
 <% if @fp.prices.present? %>
 
   <% @fp.prices.each_with_index do |a, index| %>
   
-    <div class="panel panel-default">
+  <div class="panel panel-default">
   <div class="panel-body">
 
     <div class="row">
@@ -85,44 +89,38 @@
 <% end %>
     </div>
 
-    <div role="tabpanel" class="tab-pane fade in" id="booking">
-      <div class="row">
-        <!-- <div class="col-lg-4">
-        <div id="tanggalan" data-date="02/03/2016"></div>
-<input type="hidden" id="my_hidden_input" value="<%= @sethari %>">
-      </div> -->
-      <div class="col-lg-12">
+<!-- Tab panel for booking -->
+  <div role="tabpanel" class="tab-pane fade in" id="booking"> 
+      <div id="tanggalan" data-date="02/03/2016"></div>
+      <input type="hidden" id="my_hidden_input" value="<%= @sethari %>"> 
       <br>
-<span class="label label-default"><%= @hari %></span>
+<span class="label label-default"><%= @hari == Time.now.strftime('%A, %d %B %Y') ? "Jadwal Booking Hari ini" : "Jadwal Booking Hari: "+l(@hari.to_date, :format => '%A, %d %B %Y') %></span>
   <% @fp.jumlah_lapangan.times do |i| %>
-  
-    <div class="panel panel-default">
-  <div class="panel-body">
 
-    <div class="row">
-      <div class="col-lg-5">
+<div class="panel panel-default">
+<div class="panel-body">
 
-        Lapangan <%= i+1 %>
-      </div>
+  <div class="row">
+    <div class="col-lg-5">
+      Lapangan <%= i+1 %>
     </div>
-
   </div>
-  <% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
-  <% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
-          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Penuh</span></div>
-        <% end %>
-        <% else %>
-        <div class="alert alert-success">Lapangan Bisa Dibooking</div>
-        <% end %>
-  
-</div>
-  <% end %>
 
+</div>
+<% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
+<% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
+      <div class="panel-heading">
+        <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Penuh</span>
       </div>
-      </div>
-      
+    <% end %>
+    <% else %>
+      <div class="alert alert-success">Lapangan Bisa Dibooking</div>
+    <% end %>
+</div>
+<% end %>
     </div>
 
+    <!-- Tab panel for Kontak -->
     <div role="tabpanel" class="tab-pane fade in active" id="kontak">
     	<div class="page-header">
     		<h5>Alamat</h5>
@@ -184,10 +182,20 @@
       var date = new Date();
       date.setDate(date.getDate());
       $('#tanggalan').datepicker({
-        
         todayHighlight: true,
         startDate: date,
-        format: "mm-dd-yyyy"
+        format: "mm-dd-yyyy",
+        multidate: true,
+        minDate: 0,
+        beforeShowDay: function(date) {
+          var current = date.getFullYear() + "-" + (date.getMonth()+1) + "-" +date.getDate();
+          var hariterpilih = ['<%= @hari.to_date.strftime("%Y-%-m-%e") %>'];
+          if ($.inArray(current, hariterpilih) < 0) {
+          } else {
+            return {classes: 'highlight_booked', tooltip: 'Pilihan Anda'};
+          }
+        }
+
       });
       $('#tanggalan').on("changeDate", function() {
         tanggal = $('#tanggalan').datepicker('getDate');
