@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   namespace :dashboard_admin do
-    resources :prices, :bookings
+    resources :prices, :bookings, :testimonials
   end
 
 end
