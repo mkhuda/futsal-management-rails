@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :futsal_places do
-      resources :prices, :bookings, :galleries
+      resources :prices, :bookings, :galleries, :testimonials
     end
     resources :users
   end

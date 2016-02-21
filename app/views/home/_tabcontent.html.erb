@@ -106,7 +106,7 @@
     <div role="tabpanel" class="tab-pane fade" id="testimoni">
       <hr>
         <% if @fp.testimonials.blank? %>
-        <div class="alert alert-warning">Belum testimoni</div>
+        <div class="alert alert-warning">Belum ada testimoni</div>
         <% else %>
         <% @fp.testimonials.each do |t| %>
           <div class="media">
@@ -124,7 +124,7 @@
         <% end %>
         <% end %>
         <hr>
-        <center><button class="btn btn-default btn-testimoni"><i class="fa fa-square-plus"></i> Kirim Testimoni</button></center>
+        <center><button class="btn btn-default btn-testimoni"><i class="fa fa-plus-square"></i> Kirim Testimoni</button></center>
 
         <div id="form-testimoni" style="display: none;">
         <h4>Kirim Testimoni</h4>

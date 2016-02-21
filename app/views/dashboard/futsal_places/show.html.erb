@@ -6,6 +6,7 @@
       <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(@fp.id), class: "btn btn-sm btn-default" %>
       <%= link_to (fa_icon "calendar-check-o", text: "Edit Booking"), dashboard_futsal_place_bookings_path(@fp.id), class: "btn btn-sm btn-default" %>
       <%= link_to (fa_icon "image", text: "Gallery"), dashboard_futsal_place_galleries_path(@fp.id), class: "btn btn-sm btn-default" %>
+      <%= link_to (fa_icon "commenting", text: "Testimoni"), dashboard_futsal_place_testimonials_path(@fp.id), class: "btn btn-sm btn-default" %>
       <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(@fp.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
     </div>
 <%= dashboard_header("h3", @fp.name, "fa-building") %>
