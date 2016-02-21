@@ -84,9 +84,9 @@ $(".list-box").hover(function() {
 	});
 
 	 $('.bxslider').bxSlider({
-		minSlides: 4,
+		minSlides: 3,
 		maxSlides: 5,
-		slideWidth: 360,
+		slideWidth: 400,
 		slideMargin: 10
 	 });
 };
