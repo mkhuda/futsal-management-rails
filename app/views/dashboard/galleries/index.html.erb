@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
+
+ <%= dashboard_header("h3", "Gallery", "") %>
+<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+
+
+<hr>
+<%= form_for([:dashboard, :futsal_place, @gallery], :html => {:class => "form-horizontal form-gallery", :multipart => true}, :remote => true) do |f| %>
+
+	<div class="form-group">
+		<div  class="col-xs-6 col-md-3">
+			<span class="btn btn-default btn-file">
+				<%= 
+				image_tag("add-image.png", :class => "img-thumbnail img-responsive") %> <%= f.file_field :image, class: "form-control" 
+				%>
+			</span>
+<!-- 			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-8">
+					<%= f.submit %>
+				</div>
+			</div> -->
+		</div>
+	</div>
+
+<% end %>
+
+<div id="gallery-list">
+<%= render 'list' %>
+</div>

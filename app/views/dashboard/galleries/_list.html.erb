@@ -1,0 +1,39 @@
+
+<hr>
+<div class="row">
+<% if @f.galleries.present? %>
+
+  <% @f.galleries.each_with_index do |a, index| %>
+  
+ <div class="col-xs-6 col-md-3">
+	<div class="thumbnail">
+		<a href="#">
+		  <%= image_tag(a.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
+		</a>
+		<div class="caption">
+		    <center>
+		    <%= link_to "Hapus", dashboard_futsal_place_gallery_path(@f.id, a.id), method: :delete, remote: true, data: { confirm: "Apakah anda ingin menghapus gambar ini?" }, class: "text-danger"  %>
+		    </center>
+		</div>
+	</div>
+ </div>
+  <% end %>
+
+<% else %>
+	<div class="alert alert-warning">Belum ada gambar yang ditambahkan</div>
+<% end %>
+
+ 
+
+</div>
+
+<script>
+	$(document).on('change', '.btn-file :file', function() {
+		// alert("ok");
+		$( ".form-gallery" ).submit();
+ //    var input = $(this),
+ //        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+ //        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+ //    input.trigger('fileselect', [numFiles, label]);
+	});
+</script>

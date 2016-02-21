@@ -4,6 +4,7 @@ class FutsalPlace < ActiveRecord::Base
 	has_many :users
 	has_many :prices
 	has_many :bookings
+	has_many :galleries
 	# scope :top3,
 	#     select("*, count(bookings.id) AS booking_count").
 	#     joins(:bookings).
@@ -22,7 +23,7 @@ class FutsalPlace < ActiveRecord::Base
 		.order("booking_count desc")
 		.take(3)
 	end
-	
+
 	def count_book_by_fp(id)
 		includes("bookings").where(bookings: { futsal_place_id: '#{id}' }).count
 	end

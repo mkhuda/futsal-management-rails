@@ -11,13 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217155524) do
+ActiveRecord::Schema.define(version: 20160221101428) do
 
   create_table "bookings", force: :cascade do |t|
-    t.string   "lapangan",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "lapangan",        limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.time     "jam_mulai"
+    t.time     "jam_akhir"
+    t.date     "hari"
+    t.integer  "futsal_place_id", limit: 4
   end
+
+  add_index "bookings", ["futsal_place_id"], name: "fk_bookings_to_fp_1_idx", using: :btree
 
   create_table "futsal_places", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -35,24 +41,13 @@ ActiveRecord::Schema.define(version: 20160217155524) do
     t.integer  "jumlah_lapangan", limit: 4
   end
 
+  add_index "futsal_places", ["email"], name: "email_un", unique: true, using: :btree
   add_index "futsal_places", ["user_id"], name: "fk_futsal_places_1_idx", using: :btree
 
-  create_table "orders", force: :cascade do |t|
-    t.decimal  "biaya",                     precision: 10
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "order_id",        limit: 4
-    t.integer  "visitor_id",      limit: 4
-    t.time     "jam_mulai"
-    t.time     "jam_akhir"
-    t.datetime "hari"
-    t.integer  "team_member_id",  limit: 4
-    t.integer  "futsal_place_id", limit: 4
+  create_table "galleries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "orders", ["futsal_place_id"], name: "fk_orders_to_place1_idx", using: :btree
-  add_index "orders", ["team_member_id"], name: "fk_orders_to_team1_idx", using: :btree
-  add_index "orders", ["visitor_id"], name: "index_orders_on_visitor_id", using: :btree
 
   create_table "prices", force: :cascade do |t|
     t.decimal  "harga",                       precision: 10
@@ -66,43 +61,6 @@ ActiveRecord::Schema.define(version: 20160217155524) do
   end
 
   add_index "prices", ["futsal_place_id"], name: "fk_prices_to_place1_idx", using: :btree
-
-  create_table "team_members", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "email",         limit: 150
-    t.string   "phone",         limit: 50
-    t.string   "alamat",        limit: 255
-    t.string   "kecamatan",     limit: 100
-    t.string   "member_status", limit: 20
-  end
-
-  create_table "usages", force: :cascade do |t|
-    t.integer  "field_id",       limit: 4
-    t.integer  "team_member_id", limit: 4
-    t.datetime "start_date"
-    t.datetime "finish_date"
-    t.decimal  "harga",                    precision: 10
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-  end
-
-  add_index "usages", ["team_member_id"], name: "index_usages_on_team_member_id", using: :btree
-
-  create_table "user_members", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "alamat",         limit: 255
-    t.string   "team_position",  limit: 45
-    t.string   "status",         limit: 20
-    t.string   "phone",          limit: 100
-    t.string   "email",          limit: 150
-    t.integer  "team_member_id", limit: 4
-  end
-
-  add_index "user_members", ["team_member_id"], name: "fk_user_members_1_idx", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -127,11 +85,7 @@ ActiveRecord::Schema.define(version: 20160217155524) do
     t.string   "email",      limit: 150
   end
 
+  add_foreign_key "bookings", "futsal_places", name: "fk_bookings_to_fp_1"
   add_foreign_key "futsal_places", "users", name: "fk_futsal_places_1"
-  add_foreign_key "orders", "futsal_places", name: "fk_orders_to_place1"
-  add_foreign_key "orders", "team_members", name: "fk_orders_to_team1"
-  add_foreign_key "orders", "visitors"
   add_foreign_key "prices", "futsal_places", name: "fk_prices_to_place1"
-  add_foreign_key "usages", "team_members", name: "fk_usages_2"
-  add_foreign_key "user_members", "team_members", name: "fk_user_members_1"
 end
