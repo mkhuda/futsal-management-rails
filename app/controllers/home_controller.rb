@@ -15,13 +15,10 @@ class HomeController < ApplicationController
 		@lapangan = Booking.all
 		params[:hari].present? ? @hari = params[:hari].to_date.strftime('%A, %d %B %Y') : @hari = Time.now.strftime('%A, %d %B %Y')
 		params[:hari].present? ? @sethari = params[:hari] : @sethari = Time.now.strftime("%Y-%m-%d")
+
+		@testimoni = Testimonial.new
 		add_breadcrumb "Arena Futsal", :arena_path
 		add_breadcrumb @fp.name
-		
-		respond_to do |format|
-			format.html
-			format.js
-		end
 	end
 
 	def map
@@ -47,6 +44,21 @@ class HomeController < ApplicationController
 		end
 		
 	end
+
+	def createtestimoni
+		@fp = FutsalPlace.find_by(id: params[:futsal_place_id])
+		@testimoni = @fp.testimonials.create(testimoni_params)
+		if @fp.save
+			redirect_to showarena_path(@fp.id, (@fp.name).gsub(' ', '-').downcase, :anchor => "testimoni")
+		else
+			render 'new'
+		end
+	end
+
+	private
+		def testimoni_params
+			params.require(:testimoni).permit(:name, :email, :isi)
+		end
  
 	def set_locale
 	  I18n.locale = params[:locale] || I18n.default_locale

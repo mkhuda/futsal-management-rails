@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'arena' => 'home#list'
   get 'map' => 'home#map'
 
+  post 'testimoni/:futsal_place_id' => 'home#createtestimoni', as: :testimoni
+
   get 'account' => 'account#index'
   patch 'account' => 'account#update'
   put 'account' => 'account#update'

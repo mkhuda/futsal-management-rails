@@ -78,6 +78,10 @@ $(".list-box").hover(function() {
 	});
 	
 	$("img.load").lazyload();
+
+	$(".btn-testimoni").click(function(e){
+		$("#form-testimoni").slideDown("fast");
+	})
 };
 
 $(document).ready(ready);

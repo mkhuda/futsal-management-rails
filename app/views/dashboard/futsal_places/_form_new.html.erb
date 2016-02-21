@@ -9,15 +9,15 @@
 
 	<div class="form-group">
 		<%= f.label "Deskripsi Singkat", class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_area :deskripsi, class: "form-control", placeholder: "Tulis Deskripsi" %>
+		<div class="col-sm-8">
+			<%= f.text_area :deskripsi, class: "form-control", placeholder: "Tulis Deskripsi", cols: "30", rows: "10" %>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :alamat, class: "col-sm-2 control-label" %>
 		<div class="col-sm-6">
-			<%= f.text_area :alamat, class: "form-control", placeholder: "Alamat" %>
+			<%= f.text_area :alamat, class: "form-control", placeholder: "Alamat", cols: "20", rows: "8" %>
 		</div>
 	</div>
 
