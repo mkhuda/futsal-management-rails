@@ -16,6 +16,28 @@
   	<div style='width: 100%; background: grey; padding: 3px;'>
   		<div id="map" style='width: auto; height: 400px;'></div>
   	</div>
+
+
+<hr>
+<div class="row">
+<div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+    <a class="lightbox-gallery" data-gallery="gallery" href="<%= @fp.image_url %>">
+      <%= image_tag(@fp.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
+    </a>
+  </div>
+ </div>
+  <% @fp.galleries.each_with_index do |a, index| %>
+  
+ <div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+    <a class="lightbox-gallery" data-gallery="gallery" href="<%= a.image_url %>">
+      <%= image_tag(a.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
+    </a>
+  </div>
+ </div>
+  <% end %>
+</div>
   	
       		<h3>Detail <%= @fp.name %></h3>
      
@@ -69,12 +91,7 @@
 				 e.preventDefault();
 				$(this).ekkoLightbox();	
 			});
-			$('#lightbox-gallery-<%= @fp.id %>').click(function(e){
-				 e.preventDefault();
-				$(this).ekkoLightbox({
-					gallery: "galleryname"
-				});	
-			});
+			
 
       var date = new Date();
       date.setDate(date.getDate());

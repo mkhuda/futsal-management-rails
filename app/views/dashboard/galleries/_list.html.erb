@@ -32,6 +32,14 @@
 	$(document).on('change', '.btn-file :file', function() {
 		$(".loading").html("<center><i class='fa fa-circle-o-notch fa-spin'></i> Uploading...</center>");
 		$( ".form-gallery" ).submit();
+		// $( ".form-gallery" ).bind('ajax:beforeSend', function(){
+		// 	console.log("Uploading");
+		// })
+
+		$(document).on('submit','form.form-gallery',function(){
+			console.log("Uploading");
+		});
+
 	});
 	$('.link-delete').bind('ajax:beforeSend', function() {
 		$(".loading-row").html("<center><i class='fa fa-circle-o-notch fa-spin'></i> Deleting image...</center>");

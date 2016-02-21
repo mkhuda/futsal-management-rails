@@ -22,6 +22,7 @@ class Dashboard::GalleriesController < ApplicationController
 			if @fp.save
 				# redirect_to dashboard_futsal_place_galleries_path(@fp.id), :flash => { :success => "Gambar Berhasil Ditambahkan" }
 				@f = FutsalPlace.find_by(id: params[:futsal_place_id])
+				@gallery = Gallery.new
 				respond_to do |format|
 					format.html { redirect_to dashboard_futsal_place_galleries_path(@fp.id), :flash => { :success => "Gambar Berhasil Ditambahkan" } }
 					format.js
@@ -37,6 +38,7 @@ class Dashboard::GalleriesController < ApplicationController
 		@g = Gallery.find(params[:id])
 		if @g.destroy
 			@f = FutsalPlace.find_by(id: params[:futsal_place_id])
+			@gallery = Gallery.new
 			respond_to do |format|
 				format.html { redirect_to dashboard_futsal_place_galleries_path(@fp.id), :flash => { :success => "Gambar Berhasil Ditambahkan" } }
 				format.js

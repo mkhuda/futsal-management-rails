@@ -65,10 +65,17 @@ $(".list-box").hover(function() {
     var target = window.location.href.split('#');
     $('.nav a').filter('[href="#'+target[1]+'"]').tab('show');
 
-$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-    event.preventDefault();
-    $(this).ekkoLightbox();
-}); 
+	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+	    event.preventDefault();
+	    $(this).ekkoLightbox();
+	}); 
+
+	$('.lightbox-gallery').click(function(e){
+		e.preventDefault();
+		$(this).ekkoLightbox({
+			gallery: "gallery"
+		});	
+	});
 	
 	$("img.load").lazyload();
 };
