@@ -18,12 +18,7 @@
 				image_tag("add-image.png", :class => "img-thumbnail img-responsive") %> <%= f.file_field :image, class: "form-control" 
 				%>
 			</span>
-<!-- 			
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-8">
-					<%= f.submit %>
-				</div>
-			</div> -->
+			<div class="loading"></div>
 		</div>
 	</div>
 
@@ -32,3 +27,5 @@
 <div id="gallery-list">
 <%= render 'list' %>
 </div>
+
+
