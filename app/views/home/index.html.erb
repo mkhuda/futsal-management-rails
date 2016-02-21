@@ -1,6 +1,8 @@
 <% provide(:title, "Beranda") %>
     <%= render "header" %>
+
         <div class="container">
+            
             <div class="row">
                 <div class="col-lg-7">
                         <h1>Mau Futsal? Yuk kesini!</h1>
@@ -15,7 +17,18 @@
           <i class="fa fa-futbol-o big-logo"></i>
         </div> -->
             </div>
-            <div id="the-content">
+            <br><br>
+            <div class="main-slider">
+            <ul class="bxslider">
+                <li><%= image_tag("slider/1.jpg", :title => "Futsal Arena") %></li>
+                <li><%= image_tag("slider/5.jpg", :title => "Futsal Arena") %></li>
+                <li><%= image_tag("slider/3.jpg", :title => "Futsal Arena") %></li>
+                <li><%= image_tag("slider/4.jpg", :title => "Futsal Arena") %></li>
+                <li><%= image_tag("slider/5.jpg", :title => "Futsal Arena") %></li>
+            </ul>
+            </div>
+            <div id="home-content">
+
                 <div class="page-header">
                     <h3>Arena Futsal Terpopuler</h3>
                 </div>

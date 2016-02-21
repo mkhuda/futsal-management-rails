@@ -15,7 +15,7 @@
 //= require jquery.remotipart
 //= require tether
 //= require bootstrap-sprockets
-
+//= require bxslider
 //= require underscore
 //= require moment
 //= require gmaps/google
@@ -81,7 +81,14 @@ $(".list-box").hover(function() {
 
 	$(".btn-testimoni").click(function(e){
 		$("#form-testimoni").slideDown("fast");
-	})
+	});
+
+	 $('.bxslider').bxSlider({
+		minSlides: 4,
+		maxSlides: 5,
+		slideWidth: 360,
+		slideMargin: 10
+	 });
 };
 
 $(document).ready(ready);
