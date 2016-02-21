@@ -2,9 +2,7 @@ class Dashboard::HomeController < ApplicationController
 	before_filter :require_authorization
 
 	def index
-		@a1 = session[:user_id]
-		@a2 = session[:role]
-		@a3 = session[:futsal_place_id]
+		@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 20)
 	end
 
 	def require_authorization

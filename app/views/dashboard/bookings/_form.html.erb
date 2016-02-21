@@ -1,0 +1,69 @@
+
+	<%= form_for([:dashboard, :futsal_place, @booking], :html => {:class => "form-horizontal"}) do |f| %>
+
+	<div class="form-group">
+		<%= f.label :hari, class: "col-sm-2 control-label" %>
+		<div class="col-sm-6">
+            <div class="input-group date hari">
+    <input type="text" class="form-control" name="booking[hari]" value="<%= Time.now.strftime("%Y/%m/%d") %>">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+	<%= f.label "Jam Mulai", class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+<div class='input-group date' id='datetimepicker3' class="timepicker">
+                    <input name="booking[jam_mulai]" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+                </div>
+  </div>
+
+  <div class="form-group">
+	<%= f.label "Jam Berakhir", class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+<div class='input-group date' id='datetimepicker4'>
+                    <input name="booking[jam_akhir]" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+                </div>
+  </div>
+
+    <div class="form-group">
+	<%= f.label "Lapangan", class: "col-sm-2 control-label" %>
+		<div class="col-sm-4">
+<div class='input-group'>
+
+<%= 
+            f.select :lapangan, options_for_select((1..@f.jumlah_lapangan).map {|d| ["Lapangan "+d.to_s, d]}),{}, {:class => "form-control"}
+            %>
+                    
+                </div>
+                </div>
+  </div>
+<script>
+$(function () {
+    $('#datetimepicker3').datetimepicker({
+        format: 'LT'
+    });
+    $('#datetimepicker4').datetimepicker({
+        format: 'LT'
+    });
+    $('.hari').datepicker({format: "yyyy/mm/dd"});
+
+});
+</script>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-8">
+		  <%= f.submit "Simpan Sekarang", class: "btn btn-lg btn-danger" %>
+		</div>
+	</div>
+<% end %>

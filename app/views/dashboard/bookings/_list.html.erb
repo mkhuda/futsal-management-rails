@@ -1,6 +1,6 @@
 
 <hr>
-<span class="label label-default"><%= @hari %></span>
+<span class="label label-default"><%= @hari == Time.now.strftime('%A, %d %B %Y') ? "Jadwal Booking Hari ini" : "Jadwal Booking Hari: "+l(@hari.to_date, :format => '%A, %d %B %Y') %></span>
   <% @fp.jumlah_lapangan.times do |i| %>
   
     <div class="panel panel-default">
@@ -16,9 +16,7 @@
   </div>
   <% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
   <% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
-          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Terpakai</span>
-          <span class="text-danger pull-right"><%= link_to "Hapus", dashboard_admin_booking_path(a.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }  %></span>
-          </div>
+          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Terpakai</span> <span class="text-danger pull-right"><%= link_to "Hapus", dashboard_futsal_place_booking_path(@fp.id, a.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }  %></span></div>
           <% end %>
         <% else %>
         <div class="alert alert-success">Lapangan Bisa Dibooking</div>

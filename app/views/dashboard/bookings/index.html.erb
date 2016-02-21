@@ -1,0 +1,30 @@
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
+
+<%= link_to (fa_icon "plus-square-o", text: "Tambah Booking"), new_dashboard_futsal_place_booking_path(@fp.id), class: "btn btn-sm btn-warning" %>
+
+ <%= dashboard_header("h3", "Booking Pengunjung", "") %>
+<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+<div class="input-group date sethari">
+    <input type="text" class="form-control" value="<%= Time.now.strftime("%m/%d/%Y") %>">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+</div>
+
+<%= render 'list' %>
+
+<script>
+$('.sethari').datepicker({format: "mm-dd-yyyy"});
+$('.sethari').on("changeDate", function() {
+        var tanggal = $('.sethari').datepicker('getDate')
+		var day = tanggal.getDate();
+		var month = tanggal.getMonth()+1;
+		var year = tanggal.getFullYear();
+		var full = year+"-"+month+"-"+day; 
+        Turbolinks.visit("<%= dashboard_futsal_place_bookings_url(@fp.id) %>"+"?hari="+full);
+      });
+</script>

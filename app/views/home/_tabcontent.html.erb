@@ -1,53 +1,47 @@
-<div>
-<hr>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs navbar-default" role="tablist">
-    <!-- <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li> -->
-    <li role="presentation"><a href="#jadwal" aria-controls="profile" role="tab" data-toggle="tab">Jadwal</a></li>
-    <li role="presentation"><a href="#booking" aria-controls="booking" role="tab" data-toggle="tab">Booking</a></li>
-    <li role="presentation" class="active"><a href="#kontak" aria-controls="messages" role="tab" data-toggle="tab">Kontak</a></li>
-  </ul>
-
-  <!-- Tab panes -->
+<!-- Tab panes -->
   <div class="tab-content">
+
+  <!-- Tab panel for Detail -->
     <div role="tabpanel" class="tab-pane fade" id="detail">
-    	<div class="page-header">
-    		<h3>Detail <%= @fp.name %></h3>
-    	</div>
-			<div class="media">
-				<div class="media-left">
-					<a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
-						<%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
-					</a>
-				</div>
-				<div class="media-body">
-					<%= nl2br(@fp.deskripsi).html_safe %>
-				</div>
-			</div>
-    	<div class="page-header">
-    		<h5>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h5>
-    	</div>
-    	
+      <div class="page-header">
+        <h3>Detail <%= @fp.name %></h3>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
+            <%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
+          </a>
+        </div>
+        <div class="media-body">
+          <%= nl2br(@fp.deskripsi).html_safe %>
+        </div>
+      </div>
+      <div class="page-header">
+        <h5>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h5>
+      </div>
+      
     </div>
+
+    <!-- Tab panel for Jadwal -->
     <div role="tabpanel" class="tab-pane fade in" id="jadwal">
-    	<hr>
+      <hr>
 <% if @fp.prices.present? %>
 
-  <% @fp.prices.order(hari: :desc).each_with_index do |a, index| %>
+  <% @fp.prices.each_with_index do |a, index| %>
   
-    <div class="panel panel-default">
+  <div class="panel panel-default">
   <div class="panel-body">
 
     <div class="row">
-    	<div class="col-lg-3">
-    		<%= a.hari %>
-    	</div>
-    	<div class="col-lg-5">
-    		<i class="fa fa-clock-o"></i> <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB
-    	</div>
-    	<div class="col-lg-4">
-    		Rp. <%= a.harga %> Per Jam
-    	</div>
+      <div class="col-lg-5">
+        <%= a.hari %>
+      </div>
+      <div class="col-lg-4">
+        <i class="fa fa-clock-o"></i> <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB
+      </div>
+      <div class="col-lg-3">
+        Rp. <%= a.harga %> Per Jam
+      </div>
     </div>
 
   </div>
@@ -55,64 +49,56 @@
   <% end %>
 
 <% else %>
-	<div class="alert alert-warning">Belum ada ketentuan harga</div>
+  <div class="alert alert-warning">Belum ada ketentuan harga</div>
 <% end %>
     </div>
 
-    <div role="tabpanel" class="tab-pane fade in" id="booking">
-      <div class="row">
-        <!-- <div class="col-lg-4">
-        <div id="tanggalan" data-date="02/03/2016"></div>
-<input type="hidden" id="my_hidden_input" value="<%= @sethari %>">
-      </div> -->
-      <div class="col-lg-12">
+<!-- Tab panel for booking -->
+  <div role="tabpanel" class="tab-pane fade in" id="booking"> 
+      <div id="tanggalan" data-date="02/03/2016"></div>
+      <input type="hidden" id="my_hidden_input" value="<%= @sethari %>"> 
       <br>
-<span class="label label-default"><%= @hari %></span>
+<span class="label label-default"><%= @hari == Time.now.strftime('%A, %d %B %Y') ? "Jadwal Booking Hari ini" : "Jadwal Booking Hari: "+l(@hari.to_date, :format => '%A, %d %B %Y') %></span>
   <% @fp.jumlah_lapangan.times do |i| %>
-  
-    <div class="panel panel-default">
-  <div class="panel-body">
 
-    <div class="row">
-      <div class="col-lg-5">
+<div class="panel panel-default">
+<div class="panel-body">
 
-        Lapangan <%= i+1 %>
-      </div>
+  <div class="row">
+    <div class="col-lg-5">
+      Lapangan <%= i+1 %>
     </div>
-
   </div>
-  <% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
-  <% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
-          <div class="panel-heading"><%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Penuh</span></div>
-        <% end %>
-        <% else %>
-        <div class="alert alert-success">Lapangan Bisa Dibooking</div>
-        <% end %>
-  
-</div>
-  <% end %>
 
+</div>
+<% if @lapangan.booking_lapangan(i+1, @fp.id, @sethari).present? %>
+<% @lapangan.booking_lapangan(i+1, @fp.id, @sethari).each_with_index do |a, index| %>
+      <div class="panel-heading">
+        <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Terpakai</span>
       </div>
-      </div>
-      
+    <% end %>
+    <% else %>
+      <div class="alert alert-success">Lapangan Bisa Dibooking</div>
+    <% end %>
+</div>
+<% end %>
     </div>
 
+    <!-- Tab panel for Kontak -->
     <div role="tabpanel" class="tab-pane fade in active" id="kontak">
-    	<div class="page-header">
-    		<h5>Alamat</h5>
-    	</div>
-    	<p class="text-center"><%= @fp.alamat %></p>
-    	<div class="page-header">
-    		<h5>Telephon</h5>
-    	</div>
-    	<p class="text-center"><i class="fa fa-phone"></i> <%= @fp.phone %></p>
+      <div class="page-header">
+        <h5>Alamat</h5>
+      </div>
+      <p class="text-center"><%= @fp.alamat %></p>
+      <div class="page-header">
+        <h5>Telephon</h5>
+      </div>
+      <p class="text-center"><i class="fa fa-phone"></i> <%= @fp.phone %></p>
 
 
-    	<div class="page-header">
-    		<h5>Email</h5>
-    	</div>
-    	<p class="text-center"><i class="fa fa-envelope"></i> <%= @fp.email %></p>
+      <div class="page-header">
+        <h5>Email</h5>
+      </div>
+      <p class="text-center"><i class="fa fa-envelope"></i> <%= @fp.email %></p>
     </div>
   </div>
-
-</div>

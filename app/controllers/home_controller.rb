@@ -5,7 +5,9 @@ class HomeController < ApplicationController
 	add_breadcrumb "<i class='fa fa-home'></i> Beranda".html_safe, :root_path
 
 	def index
-		@fp = FutsalPlace.order('created_at DESC').take(3)
+		# @fp = FutsalPlace.order('created_at DESC').take(3)
+		@fp = FutsalPlace.count_book()
+
 	end
 
 	def show
@@ -31,7 +33,7 @@ class HomeController < ApplicationController
 			marker.lng futsal.longitude
 			marker.picture({ :url => "http://androgan.com/ico/football.png", :width   => 32, :height  => 32
                  })
-			marker.infowindow "<b>"+futsal_path+"</b><br><p>"+futsal.alamat+"</p>"
+			marker.infowindow "<b>"+futsal_path+"</b><br><p>"+futsal.alamat+"</p><p class='text-danger'>"+futsal.phone+"</p>"
 		end
 	end
 

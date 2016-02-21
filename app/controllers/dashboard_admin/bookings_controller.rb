@@ -31,10 +31,11 @@ class DashboardAdmin::BookingsController < ApplicationController
 	end
 
 	def create
+		@hari = params[:booking][:hari]
 		@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
 		@booking = @fp.bookings.create(booking_params)
 		if @fp.save
-			redirect_to new_dashboard_admin_booking_path(@fp.id), :flash => { :success => "Booking Berhasil Ditambahkan" }
+			redirect_to dashboard_admin_booking_path(@fp.id, :hari => @hari.to_date.strftime('%Y-%m-%d')), :flash => { :success => "Booking Berhasil Ditambahkan" }
 		else
 			flash.now[:danger] = 'Gagal Melakukan Penambahan Booking'
 			render 'new'
@@ -42,10 +43,11 @@ class DashboardAdmin::BookingsController < ApplicationController
 	end
 
 	def destroy
+		session[:return_to] ||= request.referer
 		@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
 		@f = Booking.find(params[:id])
 		if @f.destroy
-			redirect_to new_dashboard_admin_booking_path(@fp.id), :flash => { :success => "Booking Berhasil Dihapus" }
+			redirect_to session.delete(:return_to), :flash => { :success => "Booking Berhasil Dihapus" }
 		else 
 			flash.now[:danger] = 'Gagal Melakukan Penghapusan Booking'
 			render 'new'
