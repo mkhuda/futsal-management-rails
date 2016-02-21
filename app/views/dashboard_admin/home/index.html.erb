@@ -2,3 +2,28 @@
 <%= dashboard_header("h3", @fp.name, "fa-building") %>
 
 <p><%= @fp.deskripsi %></p>
+<hr>
+<h3>Testimoni</h3>
+<hr>
+  <% if @fp.testimonials.blank? %>
+  <div class="alert alert-warning">Belum ada testimoni</div>
+  <% else %>
+  <% @fp.testimonials.each do |t| %>
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+        <%= gravatar_for(t) %>
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= t.name %></h4>
+        <%= t.isi %>
+        <span class="pull-right">
+        <%= link_to (fa_icon "trash"), dashboard_admin_testimonial_path(t.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus testimoni ini?" }, class: "btn btn-sm btn-danger"  %>
+        </span>
+      </div>
+    </div>
+
+  <% end %>
+  <% end %>
+  <hr>
