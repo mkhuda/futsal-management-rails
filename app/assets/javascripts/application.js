@@ -87,7 +87,8 @@ $(".list-box").hover(function() {
 		minSlides: 3,
 		maxSlides: 5,
 		slideWidth: 400,
-		slideMargin: 10
+		slideMargin: 10,
+		auto: true
 	 });
 };
 
