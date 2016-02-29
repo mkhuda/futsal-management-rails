@@ -52,10 +52,15 @@
 <script>
 $(function () {
     $('#datetimepicker3').datetimepicker({
+		language: 'id',
         format: 'LT'
     });
     $('#datetimepicker4').datetimepicker({
+		language: 'id',
         format: 'LT'
+    });
+	$('#datetimepicker3').on('dp.change', function (e) {
+            $('#datetimepicker4').data('DateTimePicker').minDate(e.date);
     });
     $('.hari').datepicker({format: "yyyy/mm/dd"});
 
