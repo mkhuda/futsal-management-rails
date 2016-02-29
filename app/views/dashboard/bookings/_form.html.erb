@@ -52,15 +52,26 @@
 <script>
 $(function () {
     $('#datetimepicker3').datetimepicker({
-		language: 'id',
         format: 'LT'
     });
     $('#datetimepicker4').datetimepicker({
-		language: 'id',
         format: 'LT'
     });
+    function currDate(dong)
+    {
+        var d = new Date(dong);
+        var y = d.getFullYear();
+        var m = d.getMonth() ;
+        var da = d.getDate();
+        var h = d.getHours()+1;
+        var mi = d.getMinutes();
+        var se = d.getSeconds();
+        var mDate = new Date(y, m, da, h, mi,se);
+        return mDate;
+    };
 	$('#datetimepicker3').on('dp.change', function (e) {
-            $('#datetimepicker4').data('DateTimePicker').minDate(e.date);
+            
+            $('#datetimepicker4').data('DateTimePicker').minDate(currDate(e.date));
     });
     $('.hari').datepicker({format: "yyyy/mm/dd"});
 
