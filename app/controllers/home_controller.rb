@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
 	def show
 		@fp = FutsalPlace.find_by(id: params[:id])
-		@lapangan = Booking.all
+		@lapangan = Booking.all.order(:jam_mulai)
 		params[:hari].present? ? @hari = params[:hari].to_date.strftime('%A, %d %B %Y') : @hari = Time.now.strftime('%A, %d %B %Y')
 		params[:hari].present? ? @sethari = params[:hari] : @sethari = Time.now.strftime("%Y-%m-%d")
 

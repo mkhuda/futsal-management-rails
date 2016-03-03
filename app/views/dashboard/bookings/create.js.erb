@@ -1,0 +1,13 @@
+
+$('.loading').html('');
+$('#alert').html("");
+<% if (@show == "oke") %>
+	$('#alert').html("<div class='alert alert-success'>Data booking berhasil ditambahkan</div>")
+	$('#booking-list').html("<%= j render :partial => 'list', :formats => :html %>")
+<% elsif (@show == "booked") %>
+	$('#alert').html("<div class='alert alert-danger'>Jam ini sudah terpakai</div>")
+<% else %>
+	$('#alert').html("<div class='alert alert-danger'>Terjadi masalah sistem</div>")
+<% end %>
+
+

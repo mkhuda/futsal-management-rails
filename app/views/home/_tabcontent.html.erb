@@ -77,6 +77,7 @@
         <%= a.jam_mulai.strftime("%H:%M") %> - <%= a.jam_akhir.strftime("%H:%M") %> WIB <span class="text-danger">Terpakai</span>
       </div>
     <% end %>
+    <div class="alert alert-warning">Selain Jam Diatas, Anda dapat melakukan booking lapangan ini.<br>Untuk Melakukan Booking Silahkan Hubungi : <strong><%= @fp.phone %></strong>,<br>atau datang langsung ke <strong><%= @fp.name %></strong></div>
     <% else %>
       <div class="alert alert-success">Lapangan Bisa Dibooking</div>
     <% end %>

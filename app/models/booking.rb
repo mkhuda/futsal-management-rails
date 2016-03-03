@@ -4,4 +4,6 @@ class Booking < ActiveRecord::Base
 	def self.booking_lapangan(a, b, c)
 		where("lapangan = ? AND futsal_place_id = ? AND hari = ?", "#{a}", "#{b}", "#{c}")
 	end
+
+	
 end

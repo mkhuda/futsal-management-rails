@@ -33,4 +33,9 @@ module ApplicationHelper
 	def nl2br(s)
 		s.gsub(/\n/, '<br>')
 	end
+
+	# fungsi untuk mengecek waktu booking apakah sudah pernah disetting
+	def check_waktu(a,b,c,d,e)
+		book = Booking.all.where(futsal_place_id: a, hari: b, lapangan: c, :jam_mulai => d..e)
+	end
 end

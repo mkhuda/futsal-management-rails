@@ -9,7 +9,7 @@
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 <div class="input-group date sethari">
-    <input type="text" class="form-control" value="<%= Time.now.strftime("%m/%d/%Y") %>">
+    <input type="text" class="form-control" value="<%= @sethari %>">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
     </div>
@@ -18,7 +18,7 @@
 <%= render 'list' %>
 
 <script>
-$('.sethari').datepicker({format: "mm-dd-yyyy"});
+$('.sethari').datepicker({format: "yyyy/mm/dd"});
 $('.sethari').on("changeDate", function() {
         var tanggal = $('.sethari').datepicker('getDate')
 		var day = tanggal.getDate();
