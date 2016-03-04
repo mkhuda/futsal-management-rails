@@ -43,6 +43,7 @@ class DashboardAdmin::BookingsController < ApplicationController
 		@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
 		@check = ""
 
+		# EMSI Algorithm checker
 		# checking availability from ApplicationHelper
 		if check_waktu(session[:futsal_place_id],@hari,@lap,@jmulai,@jakhir).present?
 			check_waktu(session[:futsal_place_id],@hari,@lap,@jmulai,@jakhir).each do |a|
@@ -73,7 +74,7 @@ class DashboardAdmin::BookingsController < ApplicationController
 
 				@hari = params[:booking][:hari]
 				@sethari = params[:booking][:hari]
-				
+
 				@show = "oke"
 				respond_to do |format|
 					format.html { redirect_to dashboard_admin_booking_path(@fp.id, :hari => @hari.to_date.strftime('%Y-%m-%d')), :flash => { :success => "Booking Berhasil Ditambahkan" } }
