@@ -38,8 +38,10 @@ class DashboardAdmin::BookingsController < ApplicationController
 	def create
 		@hari = params[:booking][:hari]
 		@lap = params[:booking][:lapangan]
-		@jmulai = Time.strptime(params[:booking][:jam_mulai], "%I:%M %p").strftime("%H:%M")
-		@jakhir = Time.strptime(params[:booking][:jam_akhir], "%I:%M %p").strftime("%H:%M")
+		@jmulai = params[:booking][:jam_mulai]
+		@jakhir = params[:booking][:jam_akhir]
+		# @jmulai = Time.strptime(params[:booking][:jam_mulai], "%I:%M %p").strftime("%H:%M")
+		# @jakhir = Time.strptime(params[:booking][:jam_akhir], "%I:%M %p").strftime("%H:%M")
 		@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
 		@check = ""
 

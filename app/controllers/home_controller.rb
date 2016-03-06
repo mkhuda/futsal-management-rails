@@ -2,11 +2,14 @@ class HomeController < ApplicationController
 
 	before_action :set_locale
 
+	autocomplete :futsal_place, :name, :full => true
+
 	add_breadcrumb "<i class='fa fa-home'></i> Beranda".html_safe, :root_path
 
 	def index
 		# @fp = FutsalPlace.order('created_at DESC').take(3)
 		@fp = FutsalPlace.count_book()
+		@futsal = FutsalPlace.new
 
 	end
 

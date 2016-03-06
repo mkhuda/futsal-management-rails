@@ -62,9 +62,6 @@
       </div>
   	</div>
 </div>
- 	
-
-	
 
 <%= render "footer" %>
 	<script>
@@ -104,7 +101,7 @@
         minDate: 0,
         beforeShowDay: function(date) {
           var current = date.getFullYear() + "-" + (date.getMonth()+1) + "-" +date.getDate();
-          var hariterpilih = ['<%= @hari.to_date.strftime("%Y-%-m-%e") %>'];
+          var hariterpilih = ['<%= @hari.to_date.strftime("%Y-%-m-%-d") %>'];
           if ($.inArray(current, hariterpilih) < 0) {
           } else {
             return {classes: 'highlight_booked', tooltip: 'Pilihan Anda'};
@@ -127,7 +124,5 @@
       );
       });
 	</script>
-	
-	<script type="text/javascript">
-	</script>
+
  </div>

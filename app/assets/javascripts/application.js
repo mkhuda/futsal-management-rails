@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require jquery-ui/autocomplete
+//= require autocomplete-rails
 //= require tether
 //= require bootstrap-sprockets
 //= require bxslider
@@ -90,6 +92,10 @@ $(".list-box").hover(function() {
 		slideMargin: 10,
 		auto: true
 	 });
+
+		$('.auto-true').bind('railsAutocomplete.select', function(event, data){
+			alert(data.item.id);
+		});
 };
 
 $(document).ready(ready);

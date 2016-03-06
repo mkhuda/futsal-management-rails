@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'arena/:id-:name' => 'home#show', as: :showarena
   get 'arena' => 'home#list'
   get 'map' => 'home#map'
+  get 'auto' => 'home#autocomplete_futsal_place_name'
 
   post 'testimoni/:futsal_place_id' => 'home#createtestimoni', as: :testimoni
 
@@ -21,6 +22,9 @@ Rails.application.routes.draw do
 
   # admin
   get 'dashboard_admin' => 'dashboard_admin/home#index'
+
+  get 'futsal_places/autocomplete_futsal_place_name'
+  resources :futsal_places
   
   namespace :dashboard_admin do
     resources :futsal_places
