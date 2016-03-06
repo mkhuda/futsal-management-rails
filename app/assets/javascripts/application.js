@@ -93,9 +93,6 @@ $(".list-box").hover(function() {
 		auto: true
 	 });
 
-		$('.auto-true').bind('railsAutocomplete.select', function(event, data){
-			alert(data.item.id);
-		});
 };
 
 $(document).ready(ready);
