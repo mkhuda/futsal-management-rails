@@ -15,7 +15,7 @@
 <div class="input-group">
 	<%= 
     # text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." 
-    text_field_tag :search, params[:search], class: "form-control auto-true", placeholder: "Cari arena futsal...", type: "search", data: {autocomplete: auto_path} 
+    text_field_tag :search, params[:search], class: "form-control auto-true", placeholder: "Cari arena futsal...", type: "search", data: {autocomplete: auto_path, :update_elements => {}}
     %>
 	<span class="input-group-btn">
 	<%= submit_tag "Cari", class: "btn btn-success" %>
