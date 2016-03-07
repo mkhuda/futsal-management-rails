@@ -13,8 +13,8 @@ auto = function() {
 			var futsal_id = data.item.id;
 			var futsal_name = (data.item.label).replace(" ", "-").toLowerCase();
 			var the_url = url+"/arena/"+futsal_id+"-"+futsal_name;
-			Turbolinks.visit(the_url);
-			console.log(window.location.pathname);
+			// Turbolinks.visit(the_url);
+			// console.log(window.location.pathname);
 	});
 	$('.auto-true').focus(function() {
 		$(this).autocomplete( "search", "");
