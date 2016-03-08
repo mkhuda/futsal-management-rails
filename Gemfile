@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 gem 'remotipart'
 gem 'responders', '~> 2.0'
 
@@ -50,6 +50,8 @@ gem 'momentjs-rails', '>= 2.9.0'
 # datetime picker
 gem 'bootstrap-datepicker-rails', '~> 1.5'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+
+gem 'pickadate-rails'
 
 # carrierwave uploader
 gem 'carrierwave'

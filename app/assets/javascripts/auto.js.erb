@@ -2,16 +2,24 @@
 var auto;
 auto = function() {
 	$('.auto-true').bind('railsAutocomplete.select', function(event, data){
-			var url = window.location.origin;
+			var url;
+			if (window.location.pathname == "/") {
+				url = window.location.origin;
+				console.log(url+"- true");
+			} else {
+				url = window.location.origin+""+window.location.pathname;
+				console.log(url+"- false");
+			}
 			var futsal_id = data.item.id;
 			var futsal_name = (data.item.label).replace(" ", "-").toLowerCase();
 			var the_url = url+"/arena/"+futsal_id+"-"+futsal_name;
-			Turbolinks.visit(the_url);
+			// Turbolinks.visit(the_url);
+			// console.log(window.location.pathname);
 	});
 	$('.auto-true').focus(function() {
 		$(this).autocomplete( "search", "");
 		$("ul.ui-autocomplete").css("display", "block");
-		<!-- alert("john"); -->
+		
 	});
 }
 $(document).ready(auto);

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery-ui/autocomplete
+//= require pickadate/picker
+//= require pickadate/picker.time
 //= require autocomplete-rails
 //= require tether
 //= require bootstrap-sprockets
