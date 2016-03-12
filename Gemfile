@@ -38,6 +38,9 @@ gem 'rails-jquery-autocomplete'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# brakeman
+gem "brakeman", :require => false
+
 # nprogress for Rails
 gem 'nprogress-rails'
 
