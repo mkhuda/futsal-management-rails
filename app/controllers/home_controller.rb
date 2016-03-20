@@ -28,12 +28,13 @@ class HomeController < ApplicationController
 		@fp = FutsalPlace.all
 		@hashmap = Gmaps4rails.build_markers(@fp) do |futsal, marker|
 			futsal_path = view_context.link_to futsal.name, showarena_path(futsal.id, (futsal.name).gsub(' ', '-').downcase)
+			image_show = futsal.image_url(:thumb)
 
 			marker.lat futsal.latitude
 			marker.lng futsal.longitude
 			marker.picture({ :url => "http://androgan.com/ico/football.png", :width   => 32, :height  => 32
                  })
-			marker.infowindow "<b>"+futsal_path+"</b><br><p>"+futsal.alamat+"</p><p class='text-danger'>"+futsal.phone+"</p>"
+			marker.infowindow "<b>"+futsal_path+"</b><br><p>"+futsal.alamat+"</p><p class='text-danger'>"+futsal.phone+"</p>"+"<img class='img-thumbnail img-responsive' src="+image_show+">"
 		end
 	end
 
