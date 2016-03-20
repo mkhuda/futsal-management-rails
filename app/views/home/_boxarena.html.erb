@@ -4,7 +4,7 @@
     <div class="thumbnail">
       
 	  <%= link_to showarena_path(a.id, (a.name).gsub(' ', '-').downcase) do %>
-		<%= a.image? ? image_tag(a.image_url, class: "load", lazy: true) : image_tag("no-image.jpg") %>
+		<%= a.image? ? image_tag(a.image_url, class: "load", lazy: false) : image_tag("no-image.jpg") %>
 	  <% end %>
       <div class="caption">
 	  
