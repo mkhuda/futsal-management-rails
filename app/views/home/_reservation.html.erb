@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :hari, class: "col-sm-3 control-label" %>
     <div class="col-sm-6">
-      <div class="input-group date hari">
+      <div class="input-group date harireservation">
         <input type="text" class="form-control" name="reservation[hari]" value="<%= @sethari %>">
         <div class="input-group-addon">
           <span class="glyphicon glyphicon-th"></span>
@@ -90,11 +90,11 @@
   
   		var datebook = new Date();
   		datebook.setDate(datebook.getDate());
-  		$('.hari').datepicker({
+  		$('.harireservation').datepicker({
   			format: "yyyy/mm/dd",
   			startDate: datebook
   		});
-  		$('.hari').on("changeDate", function() {
+  		$('.harireservation').on("changeDate", function() {
   			var tanggal = $('.hari').datepicker('getDate')
   			var day = tanggal.getDate();
   			var month = tanggal.getMonth()+1;
