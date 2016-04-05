@@ -1,0 +1,160 @@
+﻿<%= form_for(:reservation, url: reservation_path(@fp.id), :html => {:class => "form-horizontal form-booking"}, :remote => true) do |f| %>
+<div id="alert"></div>
+	
+	<div class="form-group">
+	<%= f.label "Nama", class: "col-sm-3 control-label" %>
+	<div class="col-sm-8">
+		<%= f.text_field :name, class: "form-control", placeholder: "Nama Lengkap", required: "" %>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<%= f.label "Email", class: "col-sm-3 control-label" %>
+	<div class="col-sm-8">
+		<%= f.email_field :email, class: "form-control", placeholder: "Alamat Email", required: "" %>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<%= f.label "Phone", class: "col-sm-3 control-label" %>
+	<div class="col-sm-8">
+		<%= f.text_field :phone, class: "form-control", placeholder: "Nomor Telepon", required: "" %>
+	</div>
+	</div>
+	
+	<div class="form-group">
+	<%= f.label :hari, class: "col-sm-3 control-label" %>
+		<div class="col-sm-6">
+			<div class="input-group date hari">
+				<input type="text" class="form-control" name="reservation[hari]" value="<%= @sethari %>">
+				<div class="input-group-addon">
+				<span class="glyphicon glyphicon-th"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+	<%= f.label "Jam Mulai", class: "col-sm-3 control-label" %>
+		<div class="col-sm-8">
+			<div class='input-group date' id='datetimepicker3' class="timepicker">
+				<input name="reservation[jam_mulai]" id="input_from" type='text' class="form-control" />
+				<span class="input-group-addon">
+				<span class="glyphicon glyphicon-time"></span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+	<%= f.label "Jam Berakhir", class: "col-sm-3 control-label" %>
+		<div class="col-sm-8">
+			<div class='input-group date' id='datetimepicker4'>
+				<input name="reservation[jam_akhir]" id="input_to" type='text' class="form-control" />
+				<span class="input-group-addon">
+				<span class="glyphicon glyphicon-time"></span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+	<%= f.label "Lapangan", class: "col-sm-3 control-label" %>
+	<div class="col-sm-8">
+		<div class='input-group'>
+			<%= f.select :lapangan, options_for_select((1..@f.jumlah_lapangan).map {|d| ["Lapangan "+d.to_s, d]}),{}, {:class => "form-control"} %>
+		</div>
+	</div>
+	</div>
+  
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-8">
+			<%= f.submit "Order Sekarang", class: "btn btn-lg btn-danger" %>
+		</div>
+	</div>
+
+    <div class="loading"></div>
+
+<% end %>
+
+	<script>
+	
+	$(function () {
+		$(document).on('submit','form.form-booking',function(){
+			$(".loading").html("<center><i class='fa fa-circle-o-notch fa-spin'></i> Submitting...</center>");
+		});
+
+		function currDate(dong) {
+			var d = new Date(dong);
+			var y = d.getFullYear();
+			var m = d.getMonth() ;
+			var da = d.getDate();
+			var h = d.getHours()+1;
+			var mi = d.getMinutes();
+			var se = d.getSeconds();
+			var mDate = new Date(y, m, da, h, mi,se);
+			return mDate;
+		};
+		
+		$('#datetimepicker3').on('dp.change', function (e) {
+				$('#datetimepicker4').data('DateTimePicker').minDate(currDate(e.date));
+		});
+		
+		var datebook = new Date();
+		datebook.setDate(datebook.getDate());
+		$('.hari').datepicker({
+			format: "yyyy/mm/dd",
+			startDate: datebook
+		});
+		$('.hari').on("changeDate", function() {
+			var tanggal = $('.hari').datepicker('getDate')
+			var day = tanggal.getDate();
+			var month = tanggal.getMonth()+1;
+			var year = tanggal.getFullYear();
+			var full = year+"-"+month+"-"+day; 
+			Turbolinks.visit("<%= new_dashboard_admin_booking_url %>"+"?hari="+full);
+		  });
+
+		var from_$input = $('#input_from').pickatime({
+			format: "HH:i"
+			}),
+			from_picker = from_$input.pickatime('picker');
+
+			var to_$input = $('#input_to').pickatime({
+			format: "HH:i",
+				formatLabel: function( timeObject ) {
+					var minObject = this.get( 'min' ),
+						hours = timeObject.hour - minObject.hour,
+						mins = ( timeObject.mins - minObject.mins ) / 60,
+						pluralize = function( number, word ) {
+							return number + ' ' + ( number === 1 ? word : word + 's' )
+						}
+					return '<b>H</b>:i'
+				}
+			}),
+			to_picker = to_$input.pickatime('picker')
+
+
+			// Check if there? a ?rom?or ?o?time to start with.
+			if ( from_picker.get('value') ) {
+			to_picker.set('min', from_picker.get('select'))
+			}
+			if ( to_picker.get('value') ) {
+			// from_picker.set('max', to_picker.get('select') )
+			}
+
+			// When something is selected, update the ?rom?and ?o?limits.
+			from_picker.on('set', function(event) {
+			if ( event.select ) {
+			to_picker.set('min', from_picker.get('select'))
+			}
+			})
+			to_picker.on('set', function(event) {
+			if ( event.select ) {
+			// from_picker.set('max', to_picker.get('select'))
+			}
+			})
+
+	});
+	
+	</script>

@@ -38,4 +38,59 @@ module ApplicationHelper
 	def check_waktu(a,b,c,d,e)
 		book = Booking.all.where(futsal_place_id: a, hari: b, lapangan: c, :jam_mulai => d..e)
 	end
+	
+	# fungsi di controller
+	def show_check(a,b,c,d,e)
+		check = ""
+		if check_waktu(a,b,c,d,e).present?
+			check_waktu(a,b,c,d,e).each do |xx|
+				if (e == xx.jam_mulai.strftime("%H:%M")) 
+					check += "oke"
+				else
+					check += "tidak"
+				end
+			end
+			
+		else
+			check += "oke"
+		end
+
+		# move variable availability @check to @show
+		show = check
+		return show
+	end
+	
+	# fungsi untuk mengecek waktu booking apakah sudah pernah disetting
+	def check_waktu_reservasi(a,b,c,d,e)
+		book = Reservation.all.where(futsal_place_id: a, hari: b, lapangan: c, :jam_mulai => d..e)
+	end
+	
+	# fungsi di controller
+	def show_check_reservation(a,b,c,d,e)
+		check = ""
+		if check_waktu_reservasi(a,b,c,d,e).present?
+			check_waktu_reservasi(a,b,c,d,e).each do |xx|
+				if (e == xx.jam_mulai.strftime("%H:%M")) 
+					check += "oke"
+				else
+					check += "tidak"
+				end
+			end
+			
+		else
+			check += "oke"
+		end
+
+		# move variable availability @check to @show
+		show = check
+
+		# if @show contain "tidak"
+		if show.include? "tidak"
+			show = "booked"
+		# else if ok then save it to db
+		else
+			show = "available"
+		end
+		return show
+	end
 end

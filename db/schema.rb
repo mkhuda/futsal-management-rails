@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221153228) do
+ActiveRecord::Schema.define(version: 20160405035835) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "lapangan",        limit: 4
@@ -67,10 +67,22 @@ ActiveRecord::Schema.define(version: 20160221153228) do
 
   add_index "prices", ["futsal_place_id"], name: "fk_prices_to_place1_idx", using: :btree
 
-  create_table "testimonials", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "reservations", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  create_table "testimonials", force: :cascade do |t|
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "name",            limit: 100
+    t.string   "email",           limit: 150
+    t.string   "isi",             limit: 255
+    t.integer  "futsal_place_id", limit: 4
+  end
+
+  add_index "testimonials", ["futsal_place_id"], name: "fk_testimonials_to_fp1_idx", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -85,18 +97,9 @@ ActiveRecord::Schema.define(version: 20160221153228) do
 
   add_index "users", ["email"], name: "email_UNIQUE", unique: true, using: :btree
 
-  create_table "visitors", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "phone",      limit: 45
-    t.string   "alamat",     limit: 255
-    t.string   "kota",       limit: 100
-    t.string   "email",      limit: 150
-  end
-
   add_foreign_key "bookings", "futsal_places", name: "fk_bookings_to_fp_1"
   add_foreign_key "futsal_places", "users", name: "fk_futsal_places_1"
   add_foreign_key "galleries", "futsal_places", name: "fk_galleries_to_fp1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "prices", "futsal_places", name: "fk_prices_to_place1"
+  add_foreign_key "testimonials", "futsal_places", name: "fk_testimonials_to_fp1", on_update: :cascade, on_delete: :cascade
 end

@@ -6,6 +6,7 @@ class FutsalPlace < ActiveRecord::Base
 	has_many :bookings
 	has_many :galleries
 	has_many :testimonials
+	has_many :reservations
 	# scope :top3,
 	#     select("*, count(bookings.id) AS booking_count").
 	#     joins(:bookings).

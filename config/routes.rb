@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'auto' => 'home#autocomplete_futsal_place_name'
 
   post 'testimoni/:futsal_place_id' => 'home#createtestimoni', as: :testimoni
+  post 'reservation/:futsal_reservation_id' => 'home#createreservation', as: :reservation
 
   get 'account' => 'account#index'
   patch 'account' => 'account#update'

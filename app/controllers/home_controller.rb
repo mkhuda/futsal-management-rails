@@ -5,6 +5,8 @@ class HomeController < ApplicationController
 	autocomplete :futsal_place, :name, :full => true
 
 	add_breadcrumb "<i class='fa fa-home'></i> Beranda".html_safe, :root_path
+	
+	include ApplicationHelper
 
 	def index
 		# @fp = FutsalPlace.order('created_at DESC').take(3)
@@ -15,7 +17,9 @@ class HomeController < ApplicationController
 
 	def show
 		@fp = FutsalPlace.find_by(id: params[:id])
+		@f = FutsalPlace.find_by(id: params[:id])
 		@lapangan = Booking.all.order(:jam_mulai)
+		@reservation = Reservation.new
 		params[:hari].present? ? @hari = params[:hari].to_date.strftime('%A, %d %B %Y') : @hari = Time.now.strftime('%A, %d %B %Y')
 		params[:hari].present? ? @sethari = params[:hari] : @sethari = Time.now.strftime("%Y-%m-%d")
 
@@ -58,10 +62,53 @@ class HomeController < ApplicationController
 			render 'new'
 		end
 	end
+	
+	def createreservation
+		@id = params[:futsal_reservation_id]
+		@hari = params[:reservation][:hari]
+		@lap = params[:reservation][:lapangan]
+		@jmulai = params[:reservation][:jam_mulai]
+		@jakhir = params[:reservation][:jam_akhir]
+		# @jmulai = Time.strptime(params[:booking][:jam_mulai], "%I:%M %p").strftime("%H:%M")
+		# @jakhir = Time.strptime(params[:booking][:jam_akhir], "%I:%M %p").strftime("%H:%M")
+		@fp = FutsalPlace.find_by(id: @id)
+		@check_one = ""
+		@check_two = ""
+		@show = ""
+		
+		# checking availability from ApplicationHelper
+		@check_one = show_check(@id,@hari,@lap,@jmulai,@jakhir)
+		@check_two = show_check_reservation(@id,@hari,@lap,@jmulai,@jakhir)
+		
+		if @check_one == "booked"
+			@show = "booked"
+		else
+			if @check_two == "booked"
+				@show = "booked"
+			else
+				@fp = FutsalPlace.find_by(id: @id)
+				@reservation = @fp.reservations.create(reservation_params)
+				if @fp.save
+
+					@show = "available"
+					respond_to do |format|
+						format.js
+					end
+				else
+					@show = "error"
+				end
+			end
+		end
+		
+	end
 
 	private
 		def testimoni_params
 			params.require(:testimoni).permit(:name, :email, :isi)
+		end
+		
+		def reservation_params
+			params.require(:reservation).permit(:name, :email, :phone, :jam_mulai, :jam_akhir, :lapangan, :hari)
 		end
  
 	def set_locale
