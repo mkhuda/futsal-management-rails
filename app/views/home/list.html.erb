@@ -1,57 +1,52 @@
 <% if params[:search] %>
-	<% provide(:title, "Hasil Pencarian: "+params[:search]) %>
+  <% provide(:title, "Hasil Pencarian: "+params[:search]) %>
 <% else %>
-	<% provide(:title, "List Arena Futsal") %>
+  <% provide(:title, "List Arena Futsal") %>
 <% end %>
 <%= render "header" %>
- <div class="container">
- <ol class="breadcrumb">
+<div class="container">
+  <ol class="breadcrumb">
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
   <div class="row">
-      <div class="col-lg-7">
+    <div class="col-lg-7">
       <% if !params[:search] %>
         <h1>Bingung Cari Arena Futsal ?</h1>
-        <br><br>
+        <br>
+        <br>
         <p class="lead"><strong>Yuk Futsal!</strong> Menyediakan sistem pencarian arena futsal yang bisa kamu gunakan untuk mencari tempat arena yang belum kamu ketahui. Yuk cari !</p>
       <% end %>
-         <%= form_tag(arena_path, :method => "get", id: "search-form") do %>
-  <div class="input-group">
-  
-  <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
-  
-      <span class="input-group-btn">
-        <%= submit_tag "Cari Sekarang", class: "btn btn-success" %>
-      </span>
-     
-    </div><!-- /input-group -->
-    <% end %>
+      <%= form_tag(arena_path, :method => "get", id: "search-form") do %>
+        <div class="input-group">
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." %>
+          <span class="input-group-btn">
+            <%= submit_tag "Cari Sekarang", class: "btn btn-success" %>
+          </span>
         </div>
-<!-- 
+        <!-- /input-group -->
+      <% end %>
+    </div>
+    <!-- 
         <div class="col-lg-5 right-jumbo">
           <i class="fa fa-futbol-o big-logo"></i>
         </div> -->
-
-      </div>
-	  <% if params[:search] %>
-		<div id="search-content">
-	  <% else %>
-		<div id="the-content">
-			<div class="page-header">
-			<h3>List Arena Futsal</h3>
-			</div>
-	  <% end %>
-
-      
- 	<% if params[:search] %>
- 		<div class="alert alert-info" role="alert">Hasil Pencarian Keyword: <strong><%= params[:search] %></strong></div>
-	<% end %>
-
-    <% if !@fp.present? %>
-    	<center><%= image_tag("no-result.png", :class => "img-rounded img-responsive") %></center><br>
-    <% end %>
-    <%= render "listarena" %>
-    <%= will_paginate @fp %>
-</div>
-      <%= render "footer" %>
- </div>
+  </div>
+  <% if params[:search] %>
+    <div id="search-content">
+    <% else %>
+      <div id="the-content">
+        <div class="page-header">
+          <h3>List Arena Futsal</h3>
+        </div>
+      <% end %>
+      <% if params[:search] %>
+        <div class="alert alert-info" role="alert">Hasil Pencarian Keyword: <strong><%= params[:search] %></strong></div>
+      <% end %>
+      <% if !@fp.present? %>
+        <center><%= image_tag("no-result.png", :class => "img-rounded img-responsive") %></center><br>
+      <% end %>
+      <%= render "listarena" %>
+      <%= will_paginate @fp %>
+    </div>
+    <%= render "footer" %>
+  </div>

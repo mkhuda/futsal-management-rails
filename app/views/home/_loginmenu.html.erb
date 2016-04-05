@@ -1,37 +1,36 @@
 <% if !logged_in?[0] %>
-    <li>
-        <%= link_to "Login", "#", class: "dropdown-toggle", data: { :toggle =>"dropdown"}, id:"navLogin"%>
-            <div class="dropdown-menu" style="padding:17px;">
-                <%= form_for(:session, url: login_path, :html => {:class => "form-horizontal"}) do |f| %>
-                    <%= f.label :email, class: "sr-only", for: "inputEmail" %>
-                        <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
-                            <br>
-                            <%= f.label :password, class: "sr-only" %>
-                                <%= f.password_field :password, class: 'form-control', id: "inputPassword", placeholder: "Password", required: "" %>
-                                    <br>
-                                    <%= f.label :remember_me, class: "checkbox inline" do %>
-                                        <%= f.check_box :remember_me %>
-                                            <span class="ember">Remember me</span>
-                                            <% end %>
-                                                <br>
-                                                <%= f.button :submit, class: "btn btn-sm btn-danger" do %>
-                                                    <i class='fa fa-sign-in'></i> Masuk
-                                                    <% end %>
-                                                        <br>
-                                                        <% flash.each do |message_type, message| %>
-                                                            <div class="alert alert-<%= message_type %>">
-                                                                <%= message %>
-                                                            </div>
-                                                            <% end %>
-                                                                <% end %>
-            </div>
-    </li>
-    <% else %>
-                <li>
-                    <%= link_to "<i class='fa fa-gears'></i> Dashboard".html_safe, (logged_in?[1] == 'super') ? dashboard_path : dashboard_admin_path %>
-                </li>
-                <li>
-                    <%= link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, logout_path, method: :delete %>
-                </li>
-
+  <li>
+    <%= link_to "Login", "#", class: "dropdown-toggle", data: { :toggle =>"dropdown"}, id:"navLogin"%>
+    <div class="dropdown-menu" style="padding:17px;">
+      <%= form_for(:session, url: login_path, :html => {:class => "form-horizontal"}) do |f| %>
+        <%= f.label :email, class: "sr-only", for: "inputEmail" %>
+        <%= f.email_field :email, class: 'form-control', id: "inputEmail", placeholder: "Username", required: "" %>
+        <br>
+        <%= f.label :password, class: "sr-only" %>
+        <%= f.password_field :password, class: 'form-control', id: "inputPassword", placeholder: "Password", required: "" %>
+        <br>
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span class="ember">Remember me</span>
         <% end %>
+        <br>
+        <%= f.button :submit, class: "btn btn-sm btn-danger" do %>
+          <i class='fa fa-sign-in'></i> Masuk
+                                                    <% end %>
+        <br>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </li>
+<% else %>
+  <li>
+    <%= link_to "<i class='fa fa-gears'></i> Dashboard".html_safe, (logged_in?[1] == 'super') ? dashboard_path : dashboard_admin_path %>
+  </li>
+  <li>
+    <%= link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, logout_path, method: :delete %>
+  </li>
+<% end %>

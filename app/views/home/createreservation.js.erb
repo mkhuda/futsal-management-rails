@@ -1,11 +1,15 @@
 $('.loading').html('');
 $('#alert').html("");
 <% if (@show == "available") %>
-	$('#alert').html("<div class='alert alert-success'>Booking berhasil dilakukan. Silahkan melakukan pembayaran. Informasi akan disampaikan melalui email.</div>")
+  $('#alert').html("
+  <div class='alert alert-success'>Booking berhasil dilakukan. Silahkan melakukan pembayaran. Informasi akan disampaikan melalui email.</div>
+  ")
 <% elsif (@show == "booked") %>
-	$('#alert').html("<div class='alert alert-danger'>Jam ini sudah terpakai</div>")
+  $('#alert').html("
+  <div class='alert alert-danger'>Jam ini sudah terpakai</div>
+  ")
 <% else %>
-	$('#alert').html("<div class='alert alert-danger'>Terjadi masalah sistem</div>")
+  $('#alert').html("
+  <div class='alert alert-danger'>Terjadi masalah sistem</div>
+  ")
 <% end %>
-
-

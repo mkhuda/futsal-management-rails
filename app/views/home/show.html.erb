@@ -1,128 +1,116 @@
 <% provide(:title, @fp.name) %>
-
 <%= render "header" %>
- <div class="container">
- 
- <ol class="breadcrumb">
+<div class="container">
+  <ol class="breadcrumb">
     <%= render_breadcrumbs :tag => :li, :separator => "" %>
   </ol>
-<div class="row">
-  <div class="page-header">
-   		<h2><%= @fp.name %></h2>
-  		</div>
-  	<div class="col-lg-6">
-  		
-
-  	<div style='width: 100%; background: grey; padding: 3px;'>
-  		<div id="map" style='width: auto; height: 400px;'></div>
-  	</div>
-
-
-<hr>
-<div class="row">
-<div class="col-xs-6 col-md-3">
-  <div class="thumbnail">
-    <a class="lightbox-gallery" data-gallery="gallery" href="<%= @fp.image_url %>">
-      <%= image_tag(@fp.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
-    </a>
-  </div>
- </div>
-  <% @fp.galleries.each_with_index do |a, index| %>
-  
- <div class="col-xs-6 col-md-3">
-  <div class="thumbnail">
-    <a class="lightbox-gallery" data-gallery="gallery" href="<%= a.image_url %>">
-      <%= image_tag(a.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
-    </a>
-  </div>
- </div>
-  <% end %>
-</div>
-  	
-      		<h3>Detail <%= @fp.name %></h3>
-  		<div class="media-body">
-  					<%= nl2br(@fp.deskripsi) %>
-  				</div>
-  	</div>
-  	<div class="col-lg-6" style="background: white">
+  <div class="row">
+    <div class="page-header">
+      <h2><%= @fp.name %></h2>
+    </div>
+    <div class="col-lg-6">
+      <div style='width: 100%; background: grey; padding: 3px;'>
+        <div id="map" style='width: auto; height: 400px;'></div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail">
+            <a class="lightbox-gallery" data-gallery="gallery" href="<%= @fp.image_url %>">
+              <%= image_tag(@fp.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
+            </a>
+          </div>
+        </div>
+        <% @fp.galleries.each_with_index do |a, index| %>
+          <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+              <a class="lightbox-gallery" data-gallery="gallery" href="<%= a.image_url %>">
+                <%= image_tag(a.image_url(:thumb), :class => "img-thumbnail img-responsive") %>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <h3>Detail <%= @fp.name %></h3>
+      <div class="media-body">
+        <%= nl2br(@fp.deskripsi) %>
+      </div>
+    </div>
+    <div class="col-lg-6" style="background: white">
       <div>
         <hr>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs navbar-default" role="tablist">
-        <!-- <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li> -->
-        <li role="presentation"><a href="#jadwal" aria-controls="jadwal" role="tab" data-toggle="tab">Jadwal</a></li>
-        <li role="presentation"><a href="#booking" aria-controls="booking" role="tab" data-toggle="tab">Booking</a></li>
-        <li role="presentation" class="active"><a href="#kontak" aria-controls="kontak" role="tab" data-toggle="tab">Kontak</a></li>
-        <li role="presentation"><a href="#testimoni" aria-controls="testimoni" role="tab" data-toggle="tab">Testimoni</a></li>
-		<li role="presentation"><a href="#order" aria-controls="testimoni" role="tab" data-toggle="tab">Order</a></li>
+          <!-- <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Detail Arena</a></li> -->
+          <li role="presentation"><a href="#jadwal" aria-controls="jadwal" role="tab" data-toggle="tab">Jadwal</a></li>
+          <li role="presentation"><a href="#booking" aria-controls="booking" role="tab" data-toggle="tab">Booking</a></li>
+          <li role="presentation" class="active"><a href="#kontak" aria-controls="kontak" role="tab" data-toggle="tab">Kontak</a></li>
+          <li role="presentation"><a href="#testimoni" aria-controls="testimoni" role="tab" data-toggle="tab">Testimoni</a></li>
+          <li role="presentation"><a href="#order" aria-controls="testimoni" role="tab" data-toggle="tab">Order</a></li>
         </ul>
-
         <%= render 'tabcontent' %>
-
       </div>
-  	</div>
+    </div>
+  </div>
+  <%= render "footer" %>
+  <script>
+    handler = Gmaps.build('Google');
+    			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    
+    			markers = handler.addMarkers([
+    			{
+    			"lat": <%= @fp.latitude %>,
+    			"lng": <%= @fp.longitude %>,
+    			"picture": {
+    			"url": "http://45.32.252.124/sites/androgan/ico/football.png",
+    			"width":  32,
+    			"height": 32
+    			},
+    			"infowindow": "<%= @fp.name %>"
+    			}
+    			]);
+    			handler.bounds.extendWith(markers);
+    			handler.fitMapToBounds();
+    			handler.getMap().setZoom(16);
+    
+    			});
+    			$('#lightbox-<%= @fp.id %>').click(function(e){
+    				 e.preventDefault();
+    				$(this).ekkoLightbox();
+    			});
+    
+    
+          var date = new Date();
+          date.setDate(date.getDate());
+          $('#tanggalan').datepicker({
+            todayHighlight: true,
+            startDate: date,
+            format: "mm-dd-yyyy",
+            multidate: true,
+            minDate: 0,
+            beforeShowDay: function(date) {
+              var current = date.getFullYear() + "-" + (date.getMonth()+1) + "-" +date.getDate();
+              var hariterpilih = ['<%= @hari.to_date.strftime("%Y-%-m-%-d") %>'];
+              if ($.inArray(current, hariterpilih) < 0) {
+              } else {
+                return {classes: 'highlight_booked', tooltip: 'Pilihan Anda'};
+              }
+            }
+    
+          });
+          $('#tanggalan').on("changeDate", function() {
+            tanggal = $('#tanggalan').datepicker('getDate');
+            // Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"#booking");
+            var tanggal = $('#tanggalan').datepicker('getDate');
+            var day = tanggal.getDate();
+            var month = tanggal.getMonth()+1;
+            var year = tanggal.getFullYear();
+            var full = year+"-"+month+"-"+day;
+            Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"?hari="+full+"#booking");
+          $('#my_hidden_input').val(
+            $('#tanggalan').datepicker('getFormattedDate')
+    
+          );
+          });
+  </script>
 </div>
-
-<%= render "footer" %>
-	<script>
-			handler = Gmaps.build('Google');
-			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-
-			markers = handler.addMarkers([
-			{
-			"lat": <%= @fp.latitude %>,
-			"lng": <%= @fp.longitude %>,
-			"picture": {
-			"url": "http://45.32.252.124/sites/androgan/ico/football.png",
-			"width":  32,
-			"height": 32
-			},
-			"infowindow": "<%= @fp.name %>"
-			}
-			]);
-			handler.bounds.extendWith(markers);
-			handler.fitMapToBounds();
-			handler.getMap().setZoom(16);
-
-			});
-			$('#lightbox-<%= @fp.id %>').click(function(e){
-				 e.preventDefault();
-				$(this).ekkoLightbox();	
-			});
-			
-
-      var date = new Date();
-      date.setDate(date.getDate());
-      $('#tanggalan').datepicker({
-        todayHighlight: true,
-        startDate: date,
-        format: "mm-dd-yyyy",
-        multidate: true,
-        minDate: 0,
-        beforeShowDay: function(date) {
-          var current = date.getFullYear() + "-" + (date.getMonth()+1) + "-" +date.getDate();
-          var hariterpilih = ['<%= @hari.to_date.strftime("%Y-%-m-%-d") %>'];
-          if ($.inArray(current, hariterpilih) < 0) {
-          } else {
-            return {classes: 'highlight_booked', tooltip: 'Pilihan Anda'};
-          }
-        }
-
-      });
-      $('#tanggalan').on("changeDate", function() {
-        tanggal = $('#tanggalan').datepicker('getDate');
-        // Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"#booking");
-        var tanggal = $('#tanggalan').datepicker('getDate');
-        var day = tanggal.getDate();
-        var month = tanggal.getMonth()+1;
-        var year = tanggal.getFullYear();
-        var full = year+"-"+month+"-"+day; 
-        Turbolinks.visit("<%= showarena_url(@fp.id, (@fp.name).gsub(' ', '-').downcase) %>"+"?hari="+full+"#booking");
-      $('#my_hidden_input').val(
-        $('#tanggalan').datepicker('getFormattedDate')
-
-      );
-      });
-	</script>
-
- </div>
