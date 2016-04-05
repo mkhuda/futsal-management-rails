@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
 	end
 
 	def User.new_token
-		SecureRandom.urlsafe_base_64
+		# SecureRandom.urlsafe_base_64
+		SecureRandom.base64(12)
 	end
 
 	def remember
