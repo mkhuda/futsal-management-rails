@@ -1,104 +1,93 @@
 <ol class="breadcrumb">
-    <%= render_breadcrumbs :tag => :li, :separator => "" %>
-  </ol>
-    <div class="pull-right">
-      <%= link_to (fa_icon "gears", text: "Setting Harga"), new_dashboard_futsal_place_price_path(@fp.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(@fp.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "calendar-check-o", text: "Edit Booking"), dashboard_futsal_place_bookings_path(@fp.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "image", text: "Gallery"), dashboard_futsal_place_galleries_path(@fp.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "commenting", text: "Testimoni"), dashboard_futsal_place_testimonials_path(@fp.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(@fp.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
-    </div>
+  <%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
+<div class="pull-right">
+  <%= link_to (fa_icon "gears", text: "Setting Harga"), new_dashboard_futsal_place_price_path(@fp.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(@fp.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "calendar-check-o", text: "Edit Booking"), dashboard_futsal_place_bookings_path(@fp.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "image", text: "Gallery"), dashboard_futsal_place_galleries_path(@fp.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "commenting", text: "Testimoni"), dashboard_futsal_place_testimonials_path(@fp.id), class: "btn btn-sm btn-default" %>
+  <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(@fp.id), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
+</div>
 <%= dashboard_header("h3", @fp.name, "fa-building") %>
-
- <!-- Nav tabs -->
-  <ul class="nav nav-tabs navbar-default" role="tablist">
-    <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail Arena</a></li>
-    <li role="presentation"><a href="#jadwal" aria-controls="jadwal" role="tab" data-toggle="tab">Jadwal</a></li>
-    <li role="presentation"><a href="#kontak" aria-controls="kontak" role="tab" data-toggle="tab">Kontak</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="detail">
-    	<div style='width: 100%; background: grey; padding: 3px;'>
-		<div id="map" style='width: auto; height: 400px;'></div>
-	</div>
-    	<div class="page-header">
-    		<h5>Detail <%= @fp.name %></h5>
-    	</div>
-    	<!-- <p><%= @fp.deskripsi %></p> -->
-			<div class="media">
-				<div class="media-left">
-					<a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
-						<%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
-					</a>
-				</div>
-				<div class="media-body">
-					<%= nl2br(@fp.deskripsi) %>
-				</div>
-			</div>
-    	<div class="page-header">
-    		<h5>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h5>
-    	</div>
-    	
+<!-- Nav tabs -->
+<ul class="nav nav-tabs navbar-default" role="tablist">
+  <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail Arena</a></li>
+  <li role="presentation"><a href="#jadwal" aria-controls="jadwal" role="tab" data-toggle="tab">Jadwal</a></li>
+  <li role="presentation"><a href="#kontak" aria-controls="kontak" role="tab" data-toggle="tab">Kontak</a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="detail">
+    <div style='width: 100%; background: grey; padding: 3px;'>
+      <div id="map" style='width: auto; height: 400px;'></div>
     </div>
-    <div role="tabpanel" class="tab-pane fade in" id="jadwal">
-    	Jadwal Belum Terpublish
+    <div class="page-header">
+      <h5>Detail <%= @fp.name %></h5>
     </div>
-    <div role="tabpanel" class="tab-pane fade in" id="kontak">
-    	<div class="page-header">
-    		<h5>Alamat</h5>
-    	</div>
-    	<p class="text-center"><%= @fp.alamat %></p>
-    	<div class="page-header">
-    		<h5>Telephon</h5>
-    	</div>
-    	<p class="text-center"><i class="fa fa-phone"></i> <%= @fp.phone %></p>
-
-
-    	<div class="page-header">
-    		<h5>Email</h5>
-    	</div>
-    	<p class="text-center"><i class="fa fa-envelope"></i> <%= @fp.email %></p>
+    <!-- <p><%= @fp.deskripsi %></p> -->
+    <div class="media">
+      <div class="media-left">
+        <a href="<%= @fp.image? ? image_url(@fp.image_url) : image_url('no-image.jpg') %>" id="lightbox-<%= @fp.id %>">
+          <%= @fp.image? ? image_tag(@fp.image_url(:thumb)) : image_tag("no-image.jpg") %>
+        </a>
+      </div>
+      <div class="media-body">
+        <%= nl2br(@fp.deskripsi) %>
+      </div>
     </div>
-
+    <div class="page-header">
+      <h5>Jumlah Lapangan: <strong><%= @fp.jumlah_lapangan %></strong></h5>
+    </div>
   </div>
-
-	<script>
-		
-
-			handler = Gmaps.build('Google');
-			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-
-			markers = handler.addMarkers([
-			{
-			"lat": <%= @fp.latitude %>,
-			"lng": <%= @fp.longitude %>,
-			"picture": {
-			"url": "http://androgan.com/ico/football.png",
-			"width":  32,
-			"height": 32
-			},
-			"infowindow": "<%= @fp.name %>"
-			}
-			]);
-			handler.bounds.extendWith(markers);
-			handler.fitMapToBounds();
-			handler.getMap().setZoom(16);
-
-			});
-
-            $('#lightbox-<%= @fp.id %>').click(function(e){
-                 e.preventDefault();
-                $(this).ekkoLightbox(); 
-            });
-            $('#lightbox-gallery-<%= @fp.id %>').click(function(e){
-                 e.preventDefault();
-                $(this).ekkoLightbox({
-                    gallery: "galleryname"
-                }); 
-            });
-
-
-	</script>
+  <div role="tabpanel" class="tab-pane fade in" id="jadwal">
+    Jadwal Belum Terpublish
+    </div>
+  <div role="tabpanel" class="tab-pane fade in" id="kontak">
+    <div class="page-header">
+      <h5>Alamat</h5>
+    </div>
+    <p class="text-center"><%= @fp.alamat %></p>
+    <div class="page-header">
+      <h5>Telephon</h5>
+    </div>
+    <p class="text-center"><i class="fa fa-phone"></i> <%= @fp.phone %></p>
+    <div class="page-header">
+      <h5>Email</h5>
+    </div>
+    <p class="text-center"><i class="fa fa-envelope"></i> <%= @fp.email %></p>
+  </div>
+</div>
+<script>
+  handler = Gmaps.build('Google');
+  			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  
+  			markers = handler.addMarkers([
+  			{
+  			"lat": <%= @fp.latitude %>,
+  			"lng": <%= @fp.longitude %>,
+  			"picture": {
+  			"url": "http://androgan.com/ico/football.png",
+  			"width":  32,
+  			"height": 32
+  			},
+  			"infowindow": "<%= @fp.name %>"
+  			}
+  			]);
+  			handler.bounds.extendWith(markers);
+  			handler.fitMapToBounds();
+  			handler.getMap().setZoom(16);
+  
+  			});
+  
+              $('#lightbox-<%= @fp.id %>').click(function(e){
+                   e.preventDefault();
+                  $(this).ekkoLightbox();
+              });
+              $('#lightbox-gallery-<%= @fp.id %>').click(function(e){
+                   e.preventDefault();
+                  $(this).ekkoLightbox({
+                      gallery: "galleryname"
+                  });
+              });
+</script>

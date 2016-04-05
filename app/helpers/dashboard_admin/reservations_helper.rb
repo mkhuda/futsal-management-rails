@@ -1,0 +1,2 @@
+module DashboardAdmin::ReservationsHelper
+end

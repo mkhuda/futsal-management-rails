@@ -1,96 +1,80 @@
 <%= form_for([:dashboard, @fp], :html => {:class => "form-horizontal"}) do |f| %>
-
-	<div class="form-group">
-		<%= f.label :name, class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_field :name, class: "form-control", placeholder: "Nama Arena" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label "Deskripsi Singkat", class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_area :deskripsi, class: "form-control", placeholder: "Tulis Deskripsi", cols: "30", rows: "10" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :alamat, class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_area :alamat, class: "form-control", placeholder: "Alamat" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :jumlah_lapangan, class: "col-sm-2 control-label" %>
-		<div class="col-sm-3">
-			<%= 
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: "form-control", placeholder: "Nama Arena" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "Deskripsi Singkat", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_area :deskripsi, class: "form-control", placeholder: "Tulis Deskripsi", cols: "30", rows: "10" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :alamat, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_area :alamat, class: "form-control", placeholder: "Alamat" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :jumlah_lapangan, class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= 
 			f.select :jumlah_lapangan, options_for_select((1..20).map {|d| [d, d]}, :selected => @fp.jumlah_lapangan), {}, {:class => "form-control"}
 			%>
-		</div>
-	</div>
-
-	
-
-	<div class="form-group">
-		<%= f.label :kecamatan, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= f.text_field :kecamatan, class: "form-control", placeholder: "Kecamatan" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :longitude, class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_field :longitude, class: "form-control", placeholder: "Longitude" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :latitude, class: "col-sm-2 control-label" %>
-		<div class="col-sm-6">
-			<%= f.text_field :latitude, class: "form-control", placeholder: "Latitude" %>
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-6">			
-			<button type="button" class="btn btn-sm btn-primary" aria-label="Left Align" data-toggle="modal" data-target="#editMaps">
-				<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Tampilkan Maps (Draggable)
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :kecamatan, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :kecamatan, class: "form-control", placeholder: "Kecamatan" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :longitude, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :longitude, class: "form-control", placeholder: "Longitude" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :latitude, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :latitude, class: "form-control", placeholder: "Latitude" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-sm btn-primary" aria-label="Left Align" data-toggle="modal" data-target="#editMaps">
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Tampilkan Maps (Draggable)
 			</button>
-		</div>
-	</div>
-
-
-	<div class="form-group">
-		<%= f.label :email, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= f.email_field :email, class: "form-control", placeholder: "Email Address" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :phone, class: "col-sm-2 control-label" %>
-		<div class="col-sm-4">
-			<%= f.telephone_field :phone, class: "form-control", placeholder: "Phone Number" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label :image, class: "col-sm-2 control-label" %>
-		<div class="col-sm-5">
-			<%= f.file_field :image, class: "form-control" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-8">
-		  <%= f.submit "Simpan Sekarang", class: "btn btn-lg btn-danger" %>
-		</div>
-	</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.email_field :email, class: "form-control", placeholder: "Email Address" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone Number" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit "Simpan Sekarang", class: "btn btn-lg btn-danger" %>
+    </div>
+  </div>
 <% end %>
-
 <!-- Modal -->
 <div class="modal fade" id="editMaps" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -101,8 +85,8 @@
       </div>
       <div class="modal-body">
         <div>
-		<div id="map-<%= @fp.id %>" style='width: auto; height: 400px;'></div>
-	</div>
+          <div id="map-<%= @fp.id %>" style='width: auto; height: 400px;'></div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -110,77 +94,73 @@
     </div>
   </div>
 </div>
-
 <script>
-			
-	$('#editMaps').on('shown.bs.modal', function(e) {
-		markers_options = { draggable: true };
-		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map-<%= @fp.id %>'}}, function(){
-				var markers_json =[
-			{
-			"lat": <%= @fp.latitude %>,
-			"lng": <%= @fp.longitude %>,
-			"picture": {
-				"url": "http://androgan.com/ico/football.png",
-				"width":  32,
-				"height": 32 }
-			}];
-		Gmaps.markers = handler.addMarkers(markers_json, markers_options);
-		handler.bounds.extendWith(Gmaps.markers);
-		handler.fitMapToBounds();
-		handler.getMap().setZoom(16);
-		// Callback function
-		_.each(Gmaps.markers, listenToDragDrop)
-
-		// On click, clear markers, place a new one, update coordinates in the form
-		google.maps.event.addListener(handler.getMap(), 'click', function(event) {
-		clearOverlays();
-		placeMarker(event.latLng);
-		updateFormLocation(event.latLng);
-		});
-
-		});
-
-		function listenToDragDrop(marker){
-			google.maps.event.addListener(marker.getServiceObject(), 'dragend', function() {
-			updateFormLocation(marker.getServiceObject().getPosition());
-		});    
-		}
-
-		// Other functions
-		// Update form attributes with given coordinates
-		function updateFormLocation(latLng) {
-			console.log(latLng.lat()+" "+latLng.lng())
-			$('#futsal_place_latitude').val(latLng.lat());
-			$('#futsal_place_longitude').val(latLng.lng());
-		}
-		// Add a marker with an open infowindow
-		function placeMarker(latLng) {
-			var marker = handler.addMarker({
-			lat: latLng.lat(),
-			lng: latLng.lng(),
-			"picture": {
-				"url": "http://androgan.com/ico/football.png",
-				"width":  32,
-				"height": 32 },
-			infowindow: '<div class="popup"><h2><%= @fp.name %></h2><p>Drag position and adjust the zoom level.</p>'
-			}, markers_options)
-
-			Gmaps.markers.push(marker)
-
-			// Set and open infowindow
-			google.maps.event.trigger(marker.getServiceObject(), 'click');
-
-			listenToDragDrop(marker);
-		}
-		// // Removes the overlays from the map, including the ones loaded with the map itself
-		function clearOverlays() {
-			handler.removeMarkers(Gmaps.markers);
-			Gmaps.markers = [];
-		}
-
-	});
-
-
-	</script>
+  $('#editMaps').on('shown.bs.modal', function(e) {
+  		markers_options = { draggable: true };
+  		handler = Gmaps.build('Google');
+  		handler.buildMap({ provider: {}, internal: {id: 'map-<%= @fp.id %>'}}, function(){
+  				var markers_json =[
+  			{
+  			"lat": <%= @fp.latitude %>,
+  			"lng": <%= @fp.longitude %>,
+  			"picture": {
+  				"url": "http://androgan.com/ico/football.png",
+  				"width":  32,
+  				"height": 32 }
+  			}];
+  		Gmaps.markers = handler.addMarkers(markers_json, markers_options);
+  		handler.bounds.extendWith(Gmaps.markers);
+  		handler.fitMapToBounds();
+  		handler.getMap().setZoom(16);
+  		// Callback function
+  		_.each(Gmaps.markers, listenToDragDrop)
+  
+  		// On click, clear markers, place a new one, update coordinates in the form
+  		google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+  		clearOverlays();
+  		placeMarker(event.latLng);
+  		updateFormLocation(event.latLng);
+  		});
+  
+  		});
+  
+  		function listenToDragDrop(marker){
+  			google.maps.event.addListener(marker.getServiceObject(), 'dragend', function() {
+  			updateFormLocation(marker.getServiceObject().getPosition());
+  		});
+  		}
+  
+  		// Other functions
+  		// Update form attributes with given coordinates
+  		function updateFormLocation(latLng) {
+  			console.log(latLng.lat()+" "+latLng.lng())
+  			$('#futsal_place_latitude').val(latLng.lat());
+  			$('#futsal_place_longitude').val(latLng.lng());
+  		}
+  		// Add a marker with an open infowindow
+  		function placeMarker(latLng) {
+  			var marker = handler.addMarker({
+  			lat: latLng.lat(),
+  			lng: latLng.lng(),
+  			"picture": {
+  				"url": "http://androgan.com/ico/football.png",
+  				"width":  32,
+  				"height": 32 },
+  			infowindow: '<div class="popup"><h2><%= @fp.name %></h2><p>Drag position and adjust the zoom level.</p>'
+  			}, markers_options)
+  
+  			Gmaps.markers.push(marker)
+  
+  			// Set and open infowindow
+  			google.maps.event.trigger(marker.getServiceObject(), 'click');
+  
+  			listenToDragDrop(marker);
+  		}
+  		// // Removes the overlays from the map, including the ones loaded with the map itself
+  		function clearOverlays() {
+  			handler.removeMarkers(Gmaps.markers);
+  			Gmaps.markers = [];
+  		}
+  
+  	});
+</script>
