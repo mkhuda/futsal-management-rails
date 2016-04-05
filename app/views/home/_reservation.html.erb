@@ -100,7 +100,6 @@
   			var month = tanggal.getMonth()+1;
   			var year = tanggal.getFullYear();
   			var full = year+"-"+month+"-"+day;
-  			Turbolinks.visit("<%= new_dashboard_admin_booking_url %>"+"?hari="+full);
   		  });
   
   		var from_$input = $('#input_from').pickatime({
