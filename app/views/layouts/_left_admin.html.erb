@@ -20,8 +20,11 @@
 		<i class="fa fa-thumb-tack fa-fw"></i> Booking
 	<% end %>
 		<div class="list-group">
-		<%= link_to dashboard_admin_bookings_path, class: "list-group-item" do %>
+			<%= link_to dashboard_admin_bookings_path, class: "list-group-item" do %>
 				<i class="fa fa-eye fa-fw"></i> Lihat Booking
+			<% end %>
+			<%= link_to dashboard_admin_reservations_path, class: "list-group-item" do %>
+				<i class="fa fa-eye fa-fw"></i> Lihat Reservasi
 			<% end %>
 			<%= link_to new_dashboard_admin_booking_path, class: "list-group-item" do %>
 				<i class="fa fa-calendar-check-o fa-fw"></i> Set Booking

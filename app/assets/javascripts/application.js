@@ -59,11 +59,22 @@ function scrollToTop() {
 
 $(".list-box").hover(function() {
       // $(this).children(".actions-box").css("display", "block");
+
       $(this).children(".actions-box").slideDown("fast");
     }, function() {
       
       $(this).children(".actions-box").slideUp("fast");
       $(this).children(".actions-box").css("display", "none");
+    });
+
+$(".list-box-reservation-href").click(function(e) {
+	// e.preventDefault();
+	// alert(e.attr('data-id'));
+	var id = $(this).attr("data-id");
+		$( ".detail-reservation-box-"+id ).toggle( "slow", function() {
+		// Animation complete.
+		});
+      // $(this).children(".actions-box").slideDown("fast");
     });
 
     var target = window.location.href.split('#');

@@ -1,33 +1,31 @@
 <% provide(:title, "Dashboard Direktori") %>
 <ol class="breadcrumb">
-    <%= render_breadcrumbs :tag => :li, :separator => "" %>
-  </ol>
+  <%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
 <% if @fp.present? %>
-
-<%= dashboard_header("h3", "List Arena Futsal", "") %>
-<% flash.each do |message_type, message| %>
+  <%= dashboard_header("h3", "List Arena Futsal", "") %>
+  <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
-<ul class="list-group">
-
-  <% @fp.each_with_index do |a, index| %>
-  <div class="list-box list-box-<%= a.id %>">
-  <a href="<%= dashboard_futsal_place_path(a.id) %>" class="list-group-item">
-    <%= a.name %>
-  </a>
-  <div class="pull-right actions-box">
-      <%= link_to (fa_icon "gears", text: "Setting Harga"), new_dashboard_futsal_place_price_path(a.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-warning" %>
-      <%= link_to (fa_icon "calendar-check-o", text: "Booking"), dashboard_futsal_place_bookings_path(a.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "image", text: "Gallery"), dashboard_futsal_place_galleries_path(a.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "commenting", text: "Testimoni"), dashboard_futsal_place_testimonials_path(a.id), class: "btn btn-sm btn-default" %>
-      <%= link_to (fa_icon "eye", text: "Lihat Data"), dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-default" %>
-  <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(a), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
-    </div>
-    </div>
-  <% end %>
-</ul>
+  <ul class="list-group">
+    <% @fp.each_with_index do |a, index| %>
+      <div class="list-box list-box-<%= a.id %>">
+        <a href="<%= dashboard_futsal_place_path(a.id) %>" class="list-group-item">
+          <%= a.name %>
+        </a>
+        <div class="pull-right actions-box">
+          <%= link_to (fa_icon "gears", text: "Setting Harga"), new_dashboard_futsal_place_price_path(a.id), class: "btn btn-sm btn-default" %>
+          <%= link_to (fa_icon "pencil", text: "Edit"), edit_dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-warning" %>
+          <%= link_to (fa_icon "calendar-check-o", text: "Booking"), dashboard_futsal_place_bookings_path(a.id), class: "btn btn-sm btn-default" %>
+          <%= link_to (fa_icon "image", text: "Gallery"), dashboard_futsal_place_galleries_path(a.id), class: "btn btn-sm btn-default" %>
+          <%= link_to (fa_icon "commenting", text: "Testimoni"), dashboard_futsal_place_testimonials_path(a.id), class: "btn btn-sm btn-default" %>
+          <%= link_to (fa_icon "eye", text: "Lihat Data"), dashboard_futsal_place_path(a.id), class: "btn btn-sm btn-default" %>
+          <%= link_to (fa_icon "trash"), dashboard_futsal_place_path(a), method: :delete, data: { confirm: "Apakah anda ingin menghapus ?" }, class: "btn btn-sm btn-danger"  %>
+        </div>
+      </div>
+    <% end %>
+  </ul>
 <% else %>
-	<div class="alert alert-warning"> Belum ada arena futsal. <%= link_to "Tambahkan arena.", new_dashboard_futsal_place_path, class: "btn btn-sm btn-default" %> </div>
+  <div class="alert alert-warning"> Belum ada arena futsal. <%= link_to "Tambahkan arena.", new_dashboard_futsal_place_path, class: "btn btn-sm btn-default" %> </div>
 <% end %>
 <%= will_paginate @fp %>

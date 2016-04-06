@@ -1,0 +1,36 @@
+<% provide(:title, "Dashboard Direktori") %>
+<ol class="breadcrumb">
+  <%= render_breadcrumbs :tag => :li, :separator => "" %>
+</ol>
+<% if @rs.present? %>
+  <%= dashboard_header("h3", "List Reservasi User", "") %>
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <hr>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%= 
+			select_tag "Arena", options_for_select(FutsalPlace.all.collect {|p| [ p.name, p.id ] }), prompt: "Pilih Arena", class: "form-control"
+			%>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group">
+    <% @rs.each_with_index do |a, index| %>
+      <div class="list-box-reservation">
+        <a href="#" class="list-group-item list-box-reservation-href" data-id="<%= a.id %>">
+          <%= a.name %>
+        </a>
+        <a href="#" class="list-group-item active detail-reservation-box detail-reservation-box-<%= a.id %>">Details</a>
+        <!-- <div class="pull-right actions-box"> -->
+        <!-- </div> -->
+      </div>
+      
+    <% end %>
+  </ul>
+<% else %>
+  <div class="alert alert-warning"> Belum ada reservasi.</div>
+<% end %>
+<%= will_paginate @rs %>

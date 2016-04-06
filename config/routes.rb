@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :dashboard_admin do
+  get 'reservations/index'
+  end
+
+  namespace :dashboard do
+  get 'reservations/index'
+  end
+
   root "home#index"
 
   get 'arena/:id-:name' => 'home#show', as: :showarena
@@ -35,11 +43,11 @@ Rails.application.routes.draw do
     resources :futsal_places do
       resources :prices, :bookings, :galleries, :testimonials
     end
-    resources :users
+    resources :users, :reservations
   end
 
   namespace :dashboard_admin do
-    resources :prices, :bookings, :testimonials
+    resources :prices, :bookings, :testimonials, :reservations
   end
 
 end
