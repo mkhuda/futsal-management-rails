@@ -182,8 +182,26 @@ body.list #the-content {
 	display: none;
 }
 
+.showing-box {
+	display: block !important;
+}
+
+.hidden-box {
+	//display: none;
+}
+
+.list-box-reservation {
+	margin-bottom: 5px;
+}
+.list-box-reservation-href {
+	cursor: pointer;
+}
+
 .detail-reservation-box {
-	display: none;
+	//display: none;
+	color: #000 !important;
+    background-color: #E9E9E9 !important;
+    border-color: #ddd !important;
 }
 
 .page-header {

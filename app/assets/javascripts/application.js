@@ -35,7 +35,7 @@
 var ready;
 ready = function() {
 
-$(function(){
+	$(function(){
 
 	$(document).on( 'scroll', function(){
 
@@ -47,34 +47,30 @@ $(function(){
 	});
 
 	$('.scroll-top-wrapper').on('click', scrollToTop);
-});
+	});
 
-function scrollToTop() {
-	verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-	element = $('body');
-	offset = element.offset();
-	offsetTop = offset.top;
-	$('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
-}
+	function scrollToTop() {
+		verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+		element = $('body');
+		offset = element.offset();
+		offsetTop = offset.top;
+		$('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+	}
 
-$(".list-box").hover(function() {
-      // $(this).children(".actions-box").css("display", "block");
+	$(".list-box").hover(function() {
+		$(this).children(".actions-box").slideDown("fast");
+	}, function() {
+		$(this).children(".actions-box").slideUp("fast");
+		$(this).children(".actions-box").css("display", "none");
+	});
 
-      $(this).children(".actions-box").slideDown("fast");
-    }, function() {
-      
-      $(this).children(".actions-box").slideUp("fast");
-      $(this).children(".actions-box").css("display", "none");
-    });
-
-$(".list-box-reservation-href").click(function(e) {
-	// e.preventDefault();
-	// alert(e.attr('data-id'));
-	var id = $(this).attr("data-id");
-		$( ".detail-reservation-box-"+id ).toggle( "slow", function() {
+	$(".list-box-reservation-href").click(function(e) {
+		var id = $(this).attr("data-id");
+		//$('ul.list-group .list-box-reservation .detail-reservation-box-'+id).attr('style','display:block !important');
+		//$('ul.list-group .list-box-reservation .detail-reservation-box:not(.detail-reservation-box-'+id+')').attr('style','display:none !important');
+		//$( ".detail-reservation-box-"+id ).toggleClass( "showing-box", function() {
 		// Animation complete.
-		});
-      // $(this).children(".actions-box").slideDown("fast");
+		//});
     });
 
     var target = window.location.href.split('#');
