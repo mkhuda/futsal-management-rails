@@ -23,7 +23,7 @@ class FutsalPlace < ActiveRecord::Base
 		.joins("LEFT JOIN bookings ON futsal_places.id = bookings.futsal_place_id")
 		.group("futsal_places.id")
 		.order("booking_count desc")
-		.take(3)
+		.take(6)
 	end
 
 	def count_book_by_fp(id)
