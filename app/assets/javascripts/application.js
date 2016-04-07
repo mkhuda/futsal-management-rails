@@ -64,8 +64,22 @@ ready = function() {
 		$(this).children(".actions-box").css("display", "none");
 	});
 
+	$(".btn-approve-reservation").click(function(e){
+		e.preventDefault();
+		var id = $(this).parents().eq(2).attr('data-id');
+		var gsub_id = id.replace(/\W/g, '');
+		$(this).prop("disabled", "disabled");
+		$(this).removeClass('btn-info');
+		$(this).addClass('btn-success');
+		$(this).html("Approved");
+	});
+	$(".btn-approved").click(function(){
+		alert("sim");
+	});
+
+
 	$(".list-box-reservation-href").click(function(e) {
-		var id = $(this).attr("data-id");
+		// var id = $(this).attr("data-id");
 		//$('ul.list-group .list-box-reservation .detail-reservation-box-'+id).attr('style','display:block !important');
 		//$('ul.list-group .list-box-reservation .detail-reservation-box:not(.detail-reservation-box-'+id+')').attr('style','display:none !important');
 		//$( ".detail-reservation-box-"+id ).toggleClass( "showing-box", function() {
