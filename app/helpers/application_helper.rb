@@ -1,5 +1,17 @@
 module ApplicationHelper
 	
+	def id_enc(str)
+	 return encrypted_data = AESCrypt.encrypt(str, session[:user_id].to_s).strip
+	end
+
+	def id_enc_gsub(str)
+		return encrypted_data = AESCrypt.encrypt(str, session[:user_id].to_s).strip.gsub(/[^0-9a-z ]/i, '')
+	end
+
+	def id_dec(str)
+		return decrypt_data = AESCrypt.decrypt(str, session[:user_id].to_s)
+	end
+
 	def dashboard?
 		controller.class.name.split("::").first=="Dashboard"
 	end

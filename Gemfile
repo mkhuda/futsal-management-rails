@@ -18,6 +18,9 @@ gem 'therubyracer', platforms: :ruby
 gem 'remotipart'
 gem 'responders', '~> 2.0'
 
+gem 'attr_encrypted'
+gem 'aescrypt'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

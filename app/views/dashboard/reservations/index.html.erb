@@ -17,12 +17,12 @@
   </div>
   <ul class="list-group">
     <% @rs.each_with_index do |a, index| %>
-      <div class="list-box-reservation">
-        <a class="list-group-item list-box-reservation-href" data-id="<%= a.id %>">
+      <div class="list-box-reservation" id="<%= id_enc_gsub(a.id) %>" data-id="<%= id_enc(a.id) %>">
+        <a class="list-group-item list-box-reservation-href">
           <%= a.name %>
 		  <div class="pull-right"><i class="fa fa-clock-o"></i> <%= a.jam_mulai.strftime("%H:%M") %> s/d <%= a.jam_akhir.strftime("%H:%M") %> WIB - <i class="fa fa-calendar-check-o"></i> <%= a.hari.strftime("%e %B %Y") %></div>
         </a>
-        <div class="list-group-item active detail-reservation-box detail-reservation-box-<%= a.id %>">
+        <div class="list-group-item active detail-reservation-box detail-reservation-box-<%= id_enc_gsub(a.id) %>">
 		<%= a.futsal_place.name %> (Lapangan <%= a.lapangan %>)
 		<div class="pull-right"><button class="btn btn-xs btn-info btn-approve"><i class="fa fa-check-square-o"></i> Approve</button> <button class="btn btn-xs btn-danger btn-approve"><i class="fa fa-minus-square-o"></i> Delete</button></div>
 		</div>
