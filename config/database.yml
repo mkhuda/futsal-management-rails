@@ -53,6 +53,8 @@ test:
 #
 production:
   <<: *default
+  host: localhost
+  port: 3306 
   database: ruby_futsalgan
   username: ruby_udb
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
