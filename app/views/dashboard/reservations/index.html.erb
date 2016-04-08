@@ -26,9 +26,9 @@
 		<%= a.futsal_place.name %> (Lapangan <%= a.lapangan %>)
 		<div class="pull-right the-btn-reservation">
       <% if a.status.nil? %>
-       <button class="btn btn-xs btn-info btn-approve-reservation"><i class="fa fa-check-square-o"></i> Approve</button> <button class="btn btn-xs btn-danger btn-approve"><i class="fa fa-minus-square-o"></i> Delete</button>
+       <button class="btn btn-xs btn-info btn-approve-reservation"><i class="fa fa-check-square-o"></i> Approve</button> <button class="btn btn-xs btn-danger btn-delete-reservation"><i class="fa fa-minus-square-o"></i> Delete</button>
       <% else %>
-        <button class="btn btn-xs btn-success btn-approved" disabled><i class="fa fa-check-square-o"></i> Approved</button> <button class="btn btn-xs btn-danger btn-approved"><i class="fa fa-times-circle"></i> Cancel</button> <button class="btn btn-xs btn-danger btn-approve"><i class="fa fa-minus-square-o"></i> Delete</button>
+        <button class="btn btn-xs btn-success btn-approved" disabled><i class="fa fa-check-square-o"></i> Approved</button> <button class="btn btn-xs btn-danger btn-cancel-reservation"><i class="fa fa-times-circle"></i> Cancel</button> <button class="btn btn-xs btn-danger btn-approve"><i class="fa fa-minus-square-o"></i> Delete</button>
       <% end %>
     </div>
 		</div>

@@ -13,27 +13,58 @@ class Dashboard::ReservationsController < ApplicationController
 
 	def create
 
-		@id = id_dec(params[:id])
-		@rs = Reservation.find_by(id: @id)
-		@name = @rs.name
-		@jam_mulai = @rs.jam_mulai
-		@jam_akhir = @rs.jam_akhir
-		@hari = @rs.hari
-		@lapangan = @rs.lapangan
-		@fpid = @rs.futsal_place_id
-		@book = Booking.new(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
-		if @book.save
-			@status = "ok"
-			@update = @rs.update_attributes(:status => 1)
-			respond_to do |format|
-        		format.js
-    		end
-		else
-			@status = "problem"
-			respond_to do |format|
-        		format.js
-    		end
+		@action = params[:act]
+
+		if @action == "add"
+			# Jika approve
+			@id = id_dec(params[:id])
+			@rs = Reservation.find_by(id: @id)
+			@name = @rs.name
+			@jam_mulai = @rs.jam_mulai
+			@jam_akhir = @rs.jam_akhir
+			@hari = @rs.hari
+			@lapangan = @rs.lapangan
+			@fpid = @rs.futsal_place_id
+			@book = Booking.new(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
+			if @book.save
+				@status = "ok"
+				@update = @rs.update_attributes(:status => 1)
+				respond_to do |format|
+	        		format.js
+	    		end
+			else
+				@status = "problem"
+				respond_to do |format|
+	        		format.js
+	    		end
+			end
+		elsif @action == "cancel"
+			# Jika cancel
+			@id = id_dec(params[:id])
+			@rs = Reservation.find_by(id: @id)
+			@name = @rs.name
+			@jam_mulai = @rs.jam_mulai
+			@jam_akhir = @rs.jam_akhir
+			@hari = @rs.hari
+			@lapangan = @rs.lapangan
+			@fpid = @rs.futsal_place_id
+			@book = Booking.find_by(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
+			if @book.destroy
+				@status = "ok"
+				@update = @rs.update_attributes(:status => nil)
+				respond_to do |format|
+	        		format.js
+	    		end
+			else
+				@status = "problem"
+				respond_to do |format|
+	        		format.js
+	    		end
+			end
+		elsif @action == "delete"
 		end
+				
+			
 		
 	end
 
