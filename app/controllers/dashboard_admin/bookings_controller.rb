@@ -1,12 +1,12 @@
 class DashboardAdmin::BookingsController < ApplicationController
 	before_filter :require_authorization
 
-	add_breadcrumb "Dashboard", :dashboard_path
+	add_breadcrumb "Dashboard", :dashboard_admin_path
 
 	include ApplicationHelper
-	
+
 	def index
-	
+
 		@f = FutsalPlace.find_by(id: session[:futsal_place_id])
 		add_breadcrumb @f.name, dashboard_admin_futsal_place_path(@f.id)
 		add_breadcrumb "Tambahkan Hari Booking Pengunjung"
@@ -21,7 +21,7 @@ class DashboardAdmin::BookingsController < ApplicationController
 	end
 
 	def new
-	
+
 		@f = FutsalPlace.find_by(id: session[:futsal_place_id])
 		add_breadcrumb @f.name, dashboard_admin_futsal_place_path(@f.id)
 		add_breadcrumb "Tambahkan Hari Booking Pengunjung"
@@ -49,16 +49,16 @@ class DashboardAdmin::BookingsController < ApplicationController
 		# checking availability from ApplicationHelper
 		if check_waktu(session[:futsal_place_id],@hari,@lap,@jmulai,@jakhir).present?
 			check_waktu(session[:futsal_place_id],@hari,@lap,@jmulai,@jakhir).each do |a|
-				if (@jakhir == a.jam_mulai.strftime("%H:%M")) 
+				if (@jakhir == a.jam_mulai.strftime("%H:%M"))
 					@check += "oke"
 				else
 					@check += "tidak"
 				end
 			end
-			
+
 		else
 			@check += "oke"
-			
+
 		end
 
 		# move variable availability @check to @show
@@ -85,7 +85,7 @@ class DashboardAdmin::BookingsController < ApplicationController
 			else
 				@show = "error"
 			end
-			
+
 		end
 	end
 
@@ -95,11 +95,11 @@ class DashboardAdmin::BookingsController < ApplicationController
 		@f = Booking.find(params[:id])
 		if @f.destroy
 			redirect_to session.delete(:return_to)
-		else 
+		else
 			flash.now[:danger] = 'Gagal Melakukan Penghapusan Booking'
 			render 'new'
 		end
-	
+
 	end
 
 	private

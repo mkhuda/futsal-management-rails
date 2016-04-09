@@ -27,15 +27,15 @@ class Dashboard::ReservationsController < ApplicationController
 			@fpid = @rs.futsal_place_id
 			@book = Booking.new(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
 			if @book.save
-				@status = "ok"
 				@update = @rs.update_attributes(:status => 1)
 				respond_to do |format|
-	        		format.js
+          msg = { :status => "ok" }
+          format.json  { render :json => msg }
 	    		end
 			else
-				@status = "problem"
 				respond_to do |format|
-	        		format.js
+          msg = { :status => "problem" }
+          format.json  { render :json => msg }
 	    		end
 			end
 		elsif @action == "cancel"
@@ -50,15 +50,15 @@ class Dashboard::ReservationsController < ApplicationController
 			@fpid = @rs.futsal_place_id
 			@book = Booking.find_by(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
 			if @book.destroy
-				@status = "ok"
 				@update = @rs.update_attributes(:status => nil)
 				respond_to do |format|
-	        		format.js
+          msg = { :status => "ok" }
+          format.json  { render :json => msg }
 	    		end
 			else
-				@status = "problem"
 				respond_to do |format|
-	        		format.js
+          msg = { :status => "problem" }
+          format.json  { render :json => msg }
 	    		end
 			end
 		elsif @action == "delete"
@@ -81,24 +81,24 @@ class Dashboard::ReservationsController < ApplicationController
 
           # Jika hapus data di reservation sukses
           if @rs.destroy
-            @status = "ok"
             respond_to do |format|
-    	        		format.js
+                  msg = { :status => "ok" }
+                  format.json  { render :json => msg }
     	    	end
 
           # Jika hapus data di reservation gagal
           else
-            @status = "problem"
             respond_to do |format|
-    	        		format.js
+              msg = { :status => "problem" }
+              format.json  { render :json => msg }
     	    	end
           end
 
         # Jika hapus data di booking gagal
         else
-          @status = "problem"
           respond_to do |format|
-  	        		format.js
+            msg = { :status => "problem" }
+            format.json  { render :json => msg }
   	    	end
         end
 
@@ -107,16 +107,16 @@ class Dashboard::ReservationsController < ApplicationController
 
         # Jika hapus data di reservation sukses
         if @rs.destroy
-          @status = "ok"
           respond_to do |format|
-  	        		format.js
+            msg = { :status => "ok" }
+            format.json  { render :json => msg }
   	    	end
 
         # Jika hapus data di reservation gagal
         else
-          @status = "problem"
           respond_to do |format|
-  	        		format.js
+            msg = { :status => "problem" }
+            format.json  { render :json => msg }
   	    	end
         end
 

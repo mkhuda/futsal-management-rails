@@ -1,7 +1,7 @@
 class DashboardAdmin::TestimonialsController < ApplicationController
 	before_filter :require_authorization
 
-	add_breadcrumb "Dashboard", :dashboard_path
+	add_breadcrumb "Dashboard", :dashboard_admin_path
 
 	def index
 		@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
@@ -12,7 +12,7 @@ class DashboardAdmin::TestimonialsController < ApplicationController
 		@t = Testimonial.find(params[:id])
 		@t.destroy
 		redirect_to dashboard_admin_testimonials_path
-	
+
 	end
 
 

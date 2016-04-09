@@ -35,7 +35,7 @@ body.home {
 	    background-size: 24%;
     background-position-y: 305px;
     background-position: 0 305px;
-    
+
 }
 
 body.list {
@@ -53,7 +53,7 @@ body.home, body.list, body.dashboard {
 }
 
 body.session {
-	font-family: 'Quattrocento Sans', sans-serif !important;	
+	font-family: 'Quattrocento Sans', sans-serif !important;
 }
 
 body.home ol.breadcrumb a, body.list ol.breadcrumb a {
@@ -80,7 +80,7 @@ body.dashboard .page-header {
 	margin-top: 5px !important;
 	background: #eeeeee;
 	color: #888888;
-}  
+}
 
 body.dashboard .page-header h3, body.dashboard .page-header h4 {
 	margin-top: 5px !important;
@@ -97,6 +97,10 @@ body.dashboard .page-header h3, body.dashboard .page-header h4 {
 }
 body.list #the-content {
 	// padding-top: 10px;
+}
+
+.modal-header {
+	background: #f6f9fc;
 }
 
 #home-content {
@@ -128,7 +132,7 @@ body.list #the-content {
 }
 
 .list-group.list-group-root > .list-group-item:first-child {
-  
+
 }
 
 .list-group.list-group-root > .list-group > .list-group-item {

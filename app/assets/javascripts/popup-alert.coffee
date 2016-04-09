@@ -19,8 +19,8 @@ $ ->
                    <h3>#{message}</h3>
                  </div>
                  <div class="modal-footer">
-                   <a data-dismiss="modal" class="btn">#{link.data('cancel')}</a>
-                   <a data-dismiss="modal" class="btn btn-primary confirm">#{link.data('ok')}</a>
+                   <a data-dismiss="modal" class="btn">Cancel</a>
+                   <a data-dismiss="modal" class="btn btn-primary confirm">Ok</a>
                  </div>
                </div>
              </div>
