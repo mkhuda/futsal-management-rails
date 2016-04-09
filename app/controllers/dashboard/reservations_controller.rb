@@ -6,7 +6,7 @@ class Dashboard::ReservationsController < ApplicationController
 	add_breadcrumb "Dashboard", :dashboard_path
 
 	def index
-	
+	  add_breadcrumb "Reservasi"
 		@rs = Reservation.paginate(:page => params[:page], :per_page => 10)
 
 	end
@@ -62,10 +62,69 @@ class Dashboard::ReservationsController < ApplicationController
 	    		end
 			end
 		elsif @action == "delete"
+      # Jika delete
+			@id = id_dec(params[:id])
+			@rs = Reservation.find_by(id: @id)
+			@name = @rs.name
+			@jam_mulai = @rs.jam_mulai
+			@jam_akhir = @rs.jam_akhir
+			@hari = @rs.hari
+			@lapangan = @rs.lapangan
+			@fpid = @rs.futsal_place_id
+			@book = Booking.find_by(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
+
+      # Jika data ada di booking
+			if @book.presence
+
+        # Jika hapus data di booking sukses
+        if @book.destroy
+
+          # Jika hapus data di reservation sukses
+          if @rs.destroy
+            @status = "ok"
+            respond_to do |format|
+    	        		format.js
+    	    	end
+
+          # Jika hapus data di reservation gagal
+          else
+            @status = "problem"
+            respond_to do |format|
+    	        		format.js
+    	    	end
+          end
+
+        # Jika hapus data di booking gagal
+        else
+          @status = "problem"
+          respond_to do |format|
+  	        		format.js
+  	    	end
+        end
+
+      # Jika data tidak ada di booking
+			else
+
+        # Jika hapus data di reservation sukses
+        if @rs.destroy
+          @status = "ok"
+          respond_to do |format|
+  	        		format.js
+  	    	end
+
+        # Jika hapus data di reservation gagal
+        else
+          @status = "problem"
+          respond_to do |format|
+  	        		format.js
+  	    	end
+        end
+
+			end
 		end
-				
-			
-		
+
+
+
 	end
 
 	def destroy

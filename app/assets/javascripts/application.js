@@ -36,17 +36,16 @@ var ready;
 ready = function() {
 
 	$(function(){
+		$(document).on( 'scroll', function(){
 
-	$(document).on( 'scroll', function(){
+			if ($(window).scrollTop() > 100) {
+				$('.scroll-top-wrapper').addClass('show');
+			} else {
+				$('.scroll-top-wrapper').removeClass('show');
+			}
+		});
 
-		if ($(window).scrollTop() > 100) {
-			$('.scroll-top-wrapper').addClass('show');
-		} else {
-			$('.scroll-top-wrapper').removeClass('show');
-		}
-	});
-
-	$('.scroll-top-wrapper').on('click', scrollToTop);
+			$('.scroll-top-wrapper').on('click', scrollToTop);
 	});
 
 	function scrollToTop() {
@@ -71,15 +70,15 @@ ready = function() {
 	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
 	    event.preventDefault();
 	    $(this).ekkoLightbox();
-	}); 
+	});
 
 	$('.lightbox-gallery').click(function(e){
 		e.preventDefault();
 		$(this).ekkoLightbox({
 			gallery: "gallery"
-		});	
+		});
 	});
-	
+
 	$("img.load").lazyload();
 
 	$(".btn-testimoni").click(function(e){
