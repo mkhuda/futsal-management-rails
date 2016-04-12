@@ -90,8 +90,7 @@ ready = function() {
 		maxSlides: 5,
 		slideWidth: 400,
 		slideMargin: 10,
-		auto: true,
-		controls: false
+		auto: true
 	 });
 
 };
