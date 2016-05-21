@@ -20,7 +20,7 @@ $ ->
                  </div>
                  <div class="modal-footer">
                    <a data-dismiss="modal" class="btn">Cancel</a>
-                   <a data-dismiss="modal" class="btn btn-primary confirm">Ok</a>
+                   <a data-dismiss="modal" class="btn btn-primary" ng-click="delete()">Ok</a>
                  </div>
                </div>
              </div>
