@@ -2,7 +2,6 @@ var rs;
 rs = function() {
 	wrapper = $(".list-box-reservation");
 	$(wrapper).on("click", ".btn-approve-reservation", function(e) {
-	// $(".btn-approve-reservation").click(function(e){
 		e.preventDefault();
 		var btn_default = '<button class="btn btn-xs btn-info btn-approve-reservation"><i class="fa fa-check-square-o"></i> Approve</button> <button class="btn btn-xs btn-danger btn-delete-reservation popup-delete"><i class="fa fa-minus-square-o"></i> Delete</button>';
 		var btn_success = '<button class="btn btn-xs btn-success btn-approved" disabled><i class="fa fa-check-square-o"></i> Approved</button> <button class="btn btn-xs btn-danger btn-cancel-reservation"><i class="fa fa-times-circle"></i> Cancel</button> <button class="btn btn-xs btn-danger btn-delete-reservation popup-delete"><i class="fa fa-minus-square-o"></i> Delete</button>';
