@@ -44,7 +44,6 @@ rs = function() {
             datatype: "text",
             data: {id: the_id, act: "cancel"},
             success: function(msg) {
-            	// alert(msg);
               if (msg.status == "ok") {
                   $("#"+gsub_id+" .detail-reservation-box .the-btn-reservation").html(btn_default);
               } else {
