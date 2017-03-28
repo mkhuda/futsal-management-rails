@@ -69,7 +69,6 @@ rs = function() {
 		var gsub_id = the_id.replace(/\W/g, '');
 		var nama = $("#"+gsub_id+" .list-box-reservation-href .nama").text();
 		var nama_lapangan = $("#"+gsub_id+" .detail-reservation-box .nama_lapangan").text();
-
 		var popup_delete = '<div class="modal" id="confirmationDialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><a class="close" data-dismiss="modal">×</a><h3>Hapus?</h3></div><div class="modal-body"><p>Yakin data <strong>'+nama+'</strong> ingin dihapus dari reservasi <strong>'+nama_lapangan+'</strong>?</p></div><div class="modal-footer"><a data-dismiss="modal" class="btn">Cancel</a><a data-dismiss="modal" class="btn btn-primary confirm">Ok</a></div></div></div></div>';
 
 		$(popup_delete).modal();
