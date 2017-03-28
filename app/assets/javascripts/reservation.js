@@ -72,7 +72,6 @@ rs = function() {
 		var popup_delete = '<div class="modal" id="confirmationDialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><a class="close" data-dismiss="modal">×</a><h3>Hapus?</h3></div><div class="modal-body"><p>Yakin data <strong>'+nama+'</strong> ingin dihapus dari reservasi <strong>'+nama_lapangan+'</strong>?</p></div><div class="modal-footer"><a data-dismiss="modal" class="btn">Cancel</a><a data-dismiss="modal" class="btn btn-primary confirm">Ok</a></div></div></div></div>';
 
 		$(popup_delete).modal();
-
 		$('#confirmationDialog .confirm').on('click', function() {
 			 $("#"+gsub_id).fadeTo( "slow", 0.33 );
 			$.ajax({
