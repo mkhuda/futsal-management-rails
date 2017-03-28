@@ -37,7 +37,6 @@ rs = function() {
 		var data_p = $(this).parents().eq(2).attr('data-p');
 		var gsub_id = the_id.replace(/\W/g, '');
 		$("#"+gsub_id+" .detail-reservation-box .the-btn-reservation").html(btn_default);
-		// alert(window.location.href);
 		$.ajax({
             type: "POST",
             url: data_p,
