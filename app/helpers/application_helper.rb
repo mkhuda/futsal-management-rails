@@ -33,7 +33,7 @@ module ApplicationHelper
 	end
 
 	def activemenu(menu)
-		(action_name == menu) ? "active" : " "
+		(action_name == menu) ? "active" : ""
 	end
 	
 	def dashboard_header(type, title, icon)
