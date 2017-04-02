@@ -110,8 +110,8 @@ class HomeController < ApplicationController
 			params.require(:reservation).permit(:name, :email, :phone, :jam_mulai, :jam_akhir, :lapangan, :hari)
 		end
  
-	def set_locale
-	  I18n.locale = params[:locale] || I18n.default_locale
-	end
+	  def set_locale
+	    I18n.locale = params[:locale] || I18n.default_locale
+	  end
 
 end
