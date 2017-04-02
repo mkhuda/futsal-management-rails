@@ -105,6 +105,7 @@ class HomeController < ApplicationController
 			params.require(:testimoni).permit(:name, :email, :isi)
 		end
 		
+    # get reservation parameters
 		def reservation_params
 			params.require(:reservation).permit(:name, :email, :phone, :jam_mulai, :jam_akhir, :lapangan, :hari)
 		end
