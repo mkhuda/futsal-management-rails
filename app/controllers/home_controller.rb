@@ -77,6 +77,7 @@ class HomeController < ApplicationController
 		@check_one = show_check(@id,@hari,@lap,@jmulai,@jakhir)
 		@check_two = show_check_reservation(@id,@hari,@lap,@jmulai,@jakhir)
 		
+    # must be fixed
 		if @check_one == "booked"
 			@show = "booked"
 		else
