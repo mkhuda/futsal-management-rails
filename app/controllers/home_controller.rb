@@ -68,7 +68,6 @@ class HomeController < ApplicationController
 		@lap = params[:reservation][:lapangan]
 		@jmulai = params[:reservation][:jam_mulai]
 		@jakhir = params[:reservation][:jam_akhir]
-		# @jmulai = Time.strptime(params[:booking][:jam_mulai], "%I:%M %p").strftime("%H:%M")
 		# @jakhir = Time.strptime(params[:booking][:jam_akhir], "%I:%M %p").strftime("%H:%M")
 		@fp = FutsalPlace.find_by(id: @id)
 		@check_one = ""
