@@ -9,7 +9,6 @@ class HomeController < ApplicationController
 	include ApplicationHelper
 
 	def index
-		# @fp = FutsalPlace.order('created_at DESC').take(3)
 		@fp = FutsalPlace.count_book()
 		@futsal = FutsalPlace.new
 
