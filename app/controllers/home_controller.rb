@@ -87,7 +87,6 @@ class HomeController < ApplicationController
 				@fp = FutsalPlace.find_by(id: @id)
 				@reservation = @fp.reservations.create(reservation_params)
 				if @fp.save
-
 					@show = "available"
 					respond_to do |format|
 						format.js
