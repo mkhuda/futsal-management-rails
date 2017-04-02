@@ -78,6 +78,7 @@ class HomeController < ApplicationController
 		@check_two = show_check_reservation(@id,@hari,@lap,@jmulai,@jakhir)
 		
     # must be fixed
+    # causing over booked
 		if @check_one == "booked"
 			@show = "booked"
 		else
