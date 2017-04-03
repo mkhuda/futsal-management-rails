@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
+    # find user details based on email according login method
 		# mencari detail user berdasarkan email untuk keperluan username login
 		user = User.find_by(email: params[:session][:email].downcase)
 
