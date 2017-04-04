@@ -1,6 +1,7 @@
 class DashboardAdmin::HomeController < ApplicationController
   before_filter :require_authorization
-  
+ 
+  # dashboard admin for futsal place
   def index
   	@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
   end
