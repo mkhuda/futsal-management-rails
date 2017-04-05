@@ -3,7 +3,6 @@ class DashboardAdmin::FutsalPlacesController < ApplicationController
 
   add_breadcrumb "Dashboard", :dashboard_admin_path
   
-
   def index
   	@fp = FutsalPlace.find_by(id: session[:futsal_place_id])
   end
