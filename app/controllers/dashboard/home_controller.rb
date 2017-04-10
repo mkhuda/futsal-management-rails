@@ -1,6 +1,7 @@
 class Dashboard::HomeController < ApplicationController
 	before_filter :require_authorization
 
+  # get all futsal place use pagination
 	def index
 		@fp = FutsalPlace.paginate(:page => params[:page], :per_page => 20)
 	end
