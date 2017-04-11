@@ -4,13 +4,11 @@ class Dashboard::PricesController < ApplicationController
 	add_breadcrumb "Dashboard", :dashboard_path
 
 	def new
-	
 		@f = FutsalPlace.find_by(id: params[:futsal_place_id])
 		add_breadcrumb @f.name, dashboard_futsal_place_path(@f.id)
 		add_breadcrumb "Tambahkan Harga"
 		@price = Price.new
 		@fp = FutsalPlace.find_by(id: params[:futsal_place_id])
-
 	end
 
 	def create
