@@ -12,9 +12,9 @@ class Dashboard::ReservationsController < ApplicationController
 	end
 
 	def create
-
 		@action = params[:act]
-
+    
+    # need refactore [OR] move to helper
 		if @action == "add"
 			# Jika approve
 			@id = id_dec(params[:id])
