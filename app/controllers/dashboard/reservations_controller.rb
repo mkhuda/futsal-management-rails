@@ -72,7 +72,8 @@ class Dashboard::ReservationsController < ApplicationController
 			@lapangan = @rs.lapangan
 			@fpid = @rs.futsal_place_id
 			@book = Booking.find_by(:hari => @hari, :jam_mulai => @jam_mulai, :jam_akhir => @jam_akhir, :lapangan => @lapangan, :futsal_place_id => @fpid)
-
+      
+      ## NEED TO REFACTOR
       # Jika data ada di booking
 			if @book.presence
 
