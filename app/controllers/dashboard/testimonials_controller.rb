@@ -12,9 +12,7 @@ class Dashboard::TestimonialsController < ApplicationController
 		@t = Testimonial.find(params[:id])
 		@t.destroy
 		redirect_to dashboard_futsal_place_testimonials_path
-	
 	end
-
 
 	def require_authorization
 		redirect_to root_path unless ((logged_in?[0]) && (logged_in?[1] == 'super'))
