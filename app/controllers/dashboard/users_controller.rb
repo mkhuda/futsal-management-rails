@@ -51,7 +51,7 @@ class Dashboard::UsersController < ApplicationController
 			params.require(:user).permit(:name, :email, :futsal_place_id, :role, :password, :password_confirmation)
 		end
 
-	def require_authorization
-		redirect_to root_path unless ((logged_in?[0]) && (logged_in?[1] == 'super'))
-	end
+    def require_authorization
+      redirect_to root_path unless ((logged_in?[0]) && (logged_in?[1] == 'super'))
+    end
 end
