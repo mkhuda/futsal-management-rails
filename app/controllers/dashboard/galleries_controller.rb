@@ -17,7 +17,8 @@ class Dashboard::GalleriesController < ApplicationController
 		@gallery = @fp.galleries.create(gallery_params)
 		
 			if @fp.save
-				# redirect_to dashboard_futsal_place_galleries_path(@fp.id), :flash => { :success => "Gambar Berhasil Ditambahkan" }
+				# redirect_to dashboard_futsal_place_galleries_path(@fp.id), 
+        # :flash => { :success => "Gambar Berhasil Ditambahkan" }
 				@f = FutsalPlace.find_by(id: params[:futsal_place_id])
 				@gallery = Gallery.new
 				respond_to do |format|
