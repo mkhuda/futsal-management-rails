@@ -22,13 +22,15 @@ class Dashboard::GalleriesController < ApplicationController
 				@f = FutsalPlace.find_by(id: params[:futsal_place_id])
 				@gallery = Gallery.new
 				respond_to do |format|
-					format.html { redirect_to dashboard_futsal_place_galleries_path(@fp.id), :flash => { :success => "Gambar Berhasil Ditambahkan" } }
+					format.html { 
+            redirect_to dashboard_futsal_place_galleries_path(@fp.id),
+            :flash => { :success => "Gambar Berhasil Ditambahkan" } 
+          }
 					format.js
 				end
 			else
 				render 'index', :flash => { :danger => "Gambar Gagal Ditambahkan" }
 			end
-		
 	end
 
 	def destroy	
