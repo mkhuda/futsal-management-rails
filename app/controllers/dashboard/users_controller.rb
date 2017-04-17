@@ -5,9 +5,7 @@ class Dashboard::UsersController < ApplicationController
 	add_breadcrumb "Users", :dashboard_users_path
 	
 	def index
-		
 		@user = User.paginate(:page => params[:page], :per_page => 20).where("role = ?", "admin")
-		
 	end
 
 	def show
