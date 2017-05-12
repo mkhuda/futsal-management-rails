@@ -14,9 +14,16 @@
         <%= form_tag(arena_path, :method => "get", id: "search-form", class: "navbar-form") do %>
           <div class="input-group">
             <%= 
-    # text_field_tag :search, params[:search], class: "form-control", placeholder: "Cari arena futsal..." 
-    text_field_tag :search, params[:search], class: "form-control auto-true", placeholder: "Cari arena futsal...", type: "search", data: {autocomplete: auto_path, :update_elements => {}}
-    %>
+              text_field_tag :search,
+                params[:search], 
+                class: "form-control auto-true",
+                placeholder: "Cari arena futsal...",
+                type: "search", 
+                data: {
+                  autocomplete: auto_path,
+                  :update_elements => {}
+                }
+            %>
             <span class="input-group-btn">
               <%= submit_tag "Cari", class: "btn btn-success" %>
             </span>
