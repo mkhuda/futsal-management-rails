@@ -13,10 +13,10 @@
   <script>
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map-full'}}, function(){
-    markers = handler.addMarkers(<%=raw @hashmap.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
+      markers = handler.addMarkers(<%=raw @hashmap.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(12);
     });
   </script>
 </div>
