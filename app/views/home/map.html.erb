@@ -3,7 +3,7 @@
 <div class="container">
   <div id="map-content">
     <div class="page-header">
-      <h4>Peta Arena Futsal</h4>
+      <h4>Map Arena Futsal</h4>
     </div>
     <div style='width: 100%; background: grey; padding: 3px;'>
       <div id="map-full" style='width: auto; height: 500px;'></div>
@@ -12,13 +12,11 @@
   <%= render "footer" %>
   <script>
     handler = Gmaps.build('Google');
-    			handler.buildMap({ provider: {}, internal: {id: 'map-full'}}, function(){
-    
-    			markers = handler.addMarkers(<%=raw @hashmap.to_json %>);
-    			handler.bounds.extendWith(markers);
-    			handler.fitMapToBounds();
-    			handler.getMap().setZoom(12);
-    
-    			});
+    handler.buildMap({ provider: {}, internal: {id: 'map-full'}}, function(){
+    markers = handler.addMarkers(<%=raw @hashmap.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+    });
   </script>
 </div>
