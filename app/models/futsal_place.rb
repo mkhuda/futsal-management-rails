@@ -7,7 +7,6 @@ class FutsalPlace < ActiveRecord::Base
 	has_many :galleries
 	has_many :testimonials
 	has_many :reservations
-	#     joins(:bookings).
 	#     group("bookings.id").
 	#     order("booking_count DESC").
 	#     limit(3)
