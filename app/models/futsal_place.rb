@@ -8,12 +8,11 @@ class FutsalPlace < ActiveRecord::Base
 	has_many :testimonials
 	has_many :reservations
 	
-  def self.search(query)
-		where("name LIKE ? OR deskripsi LIKE ?", "%#{query}%", "%#{query}%")
+  def self.search(q)
+		where("name LIKE ? OR deskripsi LIKE ?", "%#{q}%", "%#{q}%")
 	end
 
 	def self.count_book()
-		# includes("bookings").where(bookings: { futsal_place_id: '#{id}' }).count
 		select("futsal_places.id, futsal_places.name, futsal_places.deskripsi, futsal_places.image, count(bookings.id) as booking_count")
 		.joins("LEFT JOIN bookings ON futsal_places.id = bookings.futsal_place_id")
 		.group("futsal_places.id")
